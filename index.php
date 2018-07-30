@@ -19,7 +19,7 @@
                                     <i class="fa fa-search"></i>
 
                                 </button>
-        <a href="index.php"><img style="float: left; padding-left: 10" src="C:\xampp\htdocs\rar\GitHub\GadTo\Image\GadTo.jpg" width="80" height="50"></a>
+        <a href="index.php"><img style="float: left; padding-left: 10" src="C:/xampp/htdocs/rar/GitHub/GadTo/Image/GadTo.jpg" width="80" height="50"></a>
         <a href="home.php">Home</a> | <a href=#about>About Us</a> | <a href="SignIn.php">Sign In</a> | <a href="SignUp.php">Sign Up</a> | <a href=#FAQ>FAQ</a> | <a href=#help>Help</a> | <a href=#feedback>Feedback</a>
     </div>
     <div style="padding-top: 80">
@@ -32,12 +32,12 @@
 
             <tr>
                 <td align="center">
-                    <img src="gs.jpg" alt="Specifications icon" width="50" height="60">
+                    <img src="C:/xampp/htdocs/rar/GitHub/GadTo/Image/gs.jpg" alt="Specifications icon" width="50" height="60">
                     <h3>Gadget Specification</h3><br>
                     Each gadget is shown with lots of specifications to give best overview about a gadget for the passionte gadget lover.
                 </td>
                 <td align="center">
-                    <img src="tk.png" alt="Price icon" width="50" height="60">
+                    <img src="C:/xampp/htdocs/rar/GitHub/GadTo/Image/tk.png" alt="Price icon" width="50" height="60">
                     <h3>
                         Gadget Price
                     </h3><br>
@@ -45,7 +45,7 @@
                 </td>
             
                 <td align="center">
-                    <img src="rr.jpg" alt="Review icon" width="50" height="60">
+                    <img src="C:/xampp/htdocs/rar/GitHub/GadTo/Image/rr.jpg" alt="Review icon" width="50" height="60">
                     <h3>
                         Gadget & E-commerce Company reviews
                     </h3><br>
