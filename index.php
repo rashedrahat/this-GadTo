@@ -19,7 +19,7 @@
                                     <i class="fa fa-search"></i>
 
                                 </button>
-        <a href="index.php"><img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50"></a>
+        <a href="index.php"><img style="float: left; padding-left: 10" src="C:\xampp\htdocs\rar\GitHub\GadTo\Image\GadTo.jpg" width="80" height="50"></a>
         <a href="home.php">Home</a> | <a href=#about>About Us</a> | <a href="SignIn.php">Sign In</a> | <a href="SignUp.php">Sign Up</a> | <a href=#FAQ>FAQ</a> | <a href=#help>Help</a> | <a href=#feedback>Feedback</a>
     </div>
     <div style="padding-top: 80">
