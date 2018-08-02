@@ -1,17 +1,36 @@
+CAUTION!
+NOTE: Last updated on 6:16 PM. USE these queries after importing the new updated database which is v3.0_gadto.sql...
+
 #1
-SELECT * FROM gadget_categorys //for displaying all the categories of gadgets (home page).
+SELECT * FROM gadget_categorys //for displaying all the categories of gadgets; (home page).
 
 #2
-SELECT brand_name FROM brand_categorys WHERE category_name='Computer' //(@page2.php displaying all the brands under computer gadget category. Similar for all the categories like Mobile, Watch, etc. Just change the category name in this portion {category_name='Mobile'}).
+SELECT brand_name FROM brand_categorys WHERE category_name='Computer'; //(@page2.php displaying all the brands under computer gadget category. Similar for all the categories like Mobile, Watch, etc. Just change the category name in this portion {category_name='Mobile'}).
 
 #3
-SELECT gadget_name FROM gadget_info WHERE brand_id= (SELECT brand_id FROM brand_categorys WHERE brand_name='Asus' AND category_name='Computer') //(@page3.php displaying all the gadgets under asus brand category. Similar for all the brands like Apple, HP, etc. Just change the value in this portion {brand_name='Apple' AND category_name='Mobile'}).
+SELECT gadget_name FROM gadget_info WHERE brand_id= (SELECT brand_id FROM brand_categorys WHERE brand_name='Asus' AND category_name='Computer'); //(@page3.php displaying all the gadgets under asus brand category. Similar for all the brands like Apple, HP, etc. Just change the value in this portion {brand_name='Apple' AND category_name='Mobile'}).
 
 #4
-CREATE OR REPLACE VIEW computer_specs AS SELECT processor, processor_clock_speed, display, RAM, RAM_type, HDD, OS, gadget_id FROM specs_info_computer; //Created a view
+CREATE VIEW computer_specs AS SELECT processor, processor_clock_speed, display, RAM, RAM_type, HDD, OS, gadget_id FROM specs_info_computer; //Created a view
 
 #5
-SELECT * FROM computer_specs WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name = 'ASUS 540YA') //for showing specifications @page4.php
+SELECT * FROM computer_specs WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name = 'ASUS X540YA'); //for showing specifications @page4.php
 
-#More queries are coming soon...
+#6
+SELECT price_info.price, company_info.name FROM price_info INNER JOIN company_info ON price_info.price_id=company_info.price_id WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name='ASUS X540YA'); //for showing price comparison of a gadget in price section @page4.php [similar for all kind of gadget]
+
+#7
+CREATE VIEW gadget_review AS SELECT review.user_name, review.rating, review.comment, review.recommend, review.post_date, gadget_info.gadget_name FROM review INNER JOIN gadget_info ON review.gadget_id=gadget_info.gadget_id WHERE r_type_id=1; //created a view to see gadget review.
+
+#8
+CREATE VIEW e_commerce_company_review AS SELECT review.user_name, review.rating, review.comment, review.recommend, review.post_date, gadget_info.gadget_name FROM review INNER JOIN gadget_info ON review.gadget_id=gadget_info.gadget_id WHERE r_type_id=2; //created a view to see e-commerce_company review.
+
+#9
+SELECT * FROM gadget_review WHERE gadget_name='ASUS X540YA'; //To see gadget's review(s) of the specific gadget.
+
+#10
+SELECT * FROM e_commerce_company_review WHERE gadget_name='ASUS X540YA'; //To see e-commerce company's review(s) of the specific gadget.
+
+
+
 
