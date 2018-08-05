@@ -106,7 +106,21 @@ elseif ($category_name=='Mobile') {
 
             <tr>
                 <td colspan="9" align="center">
-                        <a href="www.daraz.com.bd" title="Click to go this site">BDT 60000 @Daraz</a> | <a href="#Ryans" title="Click to go this site">BDT 60500 @Ryans</a> | <a href="#Kaymu" title="Click to go this site">BDT 61000 @Kaymu</a> | <a href="#StarTech" title="Click to go this site">BDT 62000 @StarTech</a> | <a href="#Global" title="Click to go this site">BDT 63000 @Global</a>
+                  <?php
+                  $s="SELECT * FROM price_comparison WHERE gadget_id='$gadget_id';";
+                  $result2=mysqli_query($conn, $s)or die(mysqli_error($conn));
+
+                  while ($row=mysqli_fetch_assoc($result2)) {
+
+
+                   ?>
+                        <a class="page-link" href="<?=$row['company_gadget_link']?>" title="Click to go this site" target="_blank">
+                          <?=$row['price']?>tk@<?=$row['name']?>
+                         </a>
+<?php } ?>
+
+
+
 
                 </td>
             </tr>
@@ -208,6 +222,10 @@ elseif ($category_name=='Mobile') {
     <div style="padding:5; text-align:center;">
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
     </div>
+
+    <?php 
+      mysqli_close($conn);
+      ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
