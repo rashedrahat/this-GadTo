@@ -42,7 +42,7 @@ $category_name=$_REQUEST['category_name'];
                 ?>
                 <tr>
                   <td>
-                    <a class="page-link" href="Page4.php?gadget_name=<?php echo $row['gadget_name']; ?> ">
+                    <a class="page-link" href="Page4.php?gadget_id=<?php echo $row['gadget_id'];?>">
                       <h4 class="text-center"><?php echo $row['gadget_name']; ?> </h4>
                       <div class="text-center">
                         <img src="Image/<?php echo $row['gadget_name'];?>.jpg" class="rounded " alt="<?php echo $row['gadget_name'];?>" width="20%" height="20%">
