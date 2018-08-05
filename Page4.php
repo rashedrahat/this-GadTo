@@ -106,7 +106,7 @@ elseif ($category_name=='Mobile') {
 
             <tr>
                 <td colspan="9" align="center">
-                        <a href="www.daraz.com.bd">BDT 60000 @Daraz</a> | <a href="#Ryans">BDT 60500 @Ryans</a> | <a href="#Kaymu">BDT 61000 @Kaymu</a> | <a href="#StarTech">BDT 62000 @StarTech</a> | <a href="#Global">BDT 63000 @Global</a>
+                        <a href="www.daraz.com.bd" title="Click to go this site">BDT 60000 @Daraz</a> | <a href="#Ryans" title="Click to go this site">BDT 60500 @Ryans</a> | <a href="#Kaymu" title="Click to go this site">BDT 61000 @Kaymu</a> | <a href="#StarTech" title="Click to go this site">BDT 62000 @StarTech</a> | <a href="#Global" title="Click to go this site">BDT 63000 @Global</a>
 
                 </td>
             </tr>

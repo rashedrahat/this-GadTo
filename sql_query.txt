@@ -1,5 +1,5 @@
 CAUTION!
-NOTE: Last updated on 6:16 PM. USE these queries after importing the new updated database which is v3.0_gadto.sql...
+NOTE: Last updated on 8:16 PM. USE these queries after importing the new updated database which is v5.0_gadto.sql...
 
 #1
 SELECT * FROM gadget_categorys //for displaying all the categories of gadgets; (home page).
@@ -24,7 +24,7 @@ create view for Watch
 SELECT * FROM computer_specs WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name = 'ASUS X540YA'); //for showing specifications @page4.php
 
 #6
-SELECT price_info.price, company_info.name FROM price_info INNER JOIN company_info ON price_info.price_id=company_info.price_id WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name='ASUS X540YA'); //for showing price comparison of a gadget in price section @page4.php [similar for all kind of gadget]
+SELECT price_info.price, company_info.name FROM price_info INNER JOIN company_info ON price_info.price_id=company_info.price_id WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name='ASUS X540YA'); //for showing price comparison of a gadget in price section @page4.php [similar for all kind of gadget].
 
 #7
 CREATE VIEW gadget_review AS SELECT review.user_name, review.rating, review.comment, review.recommend, review.post_date, gadget_info.gadget_name FROM review INNER JOIN gadget_info ON review.gadget_id=gadget_info.gadget_id WHERE r_type_id=1; //created a view to see gadget review.
@@ -37,3 +37,11 @@ SELECT * FROM gadget_review WHERE gadget_name='ASUS X540YA'; //To see gadget's r
 
 #10
 SELECT * FROM e_commerce_company_review WHERE gadget_name='ASUS X540YA'; //To see e-commerce company's review(s) of the specific gadget.
+``````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+New queries:
+------------
+#11
+CREATE VIEW price_comparison AS SELECT price_info.price_id, price_info.price, price_info.gadget_id, company_info.name, company_info.company_gadget_link FROM price_info INNER JOIN company_info ON price_info.price_id=company_info.price_id; //Creating view.
+
+#12
+SELECT price, name, company_gadget_link FROM price_comparison WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name = 'ASUS X540YA'); //showing price comparison of a gadget in price section @page4.php [similar for all kind of gadget]. After click on the link, the link redirect to a particular e-commerce company's website where the gadget will be from @page4.php [similar for all kind of gadget].
