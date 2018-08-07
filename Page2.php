@@ -1,5 +1,10 @@
 <?php
 $category_name=$_REQUEST['category_name'];
+if ($category_name=="") {
+  header("Location:home.php");
+		exit;
+}
+
  $conn = mysqli_connect('localhost','root','','gadto')
  or die('Error connecting to MySQL server.');
 ?>
@@ -56,7 +61,7 @@ $category_name=$_REQUEST['category_name'];
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
         </div>
 
-        <?php 
+        <?php
           mysqli_close($conn);
           ?>
 
