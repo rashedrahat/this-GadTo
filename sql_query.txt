@@ -45,3 +45,6 @@ CREATE VIEW price_comparison AS SELECT price_info.price_id, price_info.price, pr
 
 #12
 SELECT price, name, company_gadget_link FROM price_comparison WHERE gadget_id=(SELECT gadget_id FROM gadget_info WHERE gadget_name = 'ASUS X540YA'); //showing price comparison of a gadget in price section @page4.php [similar for all kind of gadget]. After click on the link, the link redirect to a particular e-commerce company's website where the gadget will be from @page4.php [similar for all kind of gadget].
+
+#13.
+CREATE OR REPLACE VIEW gadget_review AS SELECT review.user_name, review.rating, review.comment, review.recommend, review.post_date, gadget_info.gadget_name, gadget_info.gadget_id FROM review INNER JOIN gadget_info ON review.gadget_id=gadget_info.gadget_id WHERE r_type_id=1; //modified a view to see gadget review.
