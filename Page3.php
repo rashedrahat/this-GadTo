@@ -1,6 +1,11 @@
 <?php
 $brand_name=$_REQUEST['brand_name'];
 $category_name=$_REQUEST['category_name'];
+if ($brand_name==""&& $category_name=="") {
+  header("Location:home.php");
+		exit;
+}
+
 
  $conn = mysqli_connect('localhost','root','','gadto')
  or die('Error connecting to MySQL server.');

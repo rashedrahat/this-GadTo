@@ -1,5 +1,10 @@
 <?php
 $gadget_id=$_REQUEST['gadget_id'];
+if ($gadget_id=="") {
+  header("Location:home.php");
+		exit;
+}
+
 $conn = mysqli_connect('localhost','root','','gadto')
 or die('Error connecting to MySQL server.');
 
@@ -10,13 +15,12 @@ or die('Error connecting to MySQL server.');
 while ($row=mysqli_fetch_assoc($result)) {
   $category_name= $row['category_name'];
   $gadget_name=$row['gadget_name'];
-}
 
 ?>
 
 <html>
 <head>
-    <title><?=$gadget_name?></title>
+    <title><?=$row['gadget_name']?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -41,18 +45,26 @@ while ($row=mysqli_fetch_assoc($result)) {
         <table class="table" border="2" align="center">
             <tr>
                 <th colspan="9">
-                       <?php echo $category_name?> : <?php echo $gadget_name?>
+                       <?=$row['category_name']?> : <?=$row['gadget_name']?>
                 </th>
 
             </tr>
             <tr>
                <td colspan="6">
-                 <img src="Image/<?=$gadget_name?>.jpg" alt="<?=$gadget_name?>" width="400" height="400">
+                 <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="400" height="400">
                 </td>
                 <td colspan="3" align="left" >
                 <ul>
+                <?php } ?>
 
 <?php
+
+if ($gadget_name==""&& $category_name=="") {
+  header("Location:home.php");
+		exit;
+}
+
+
 if ($category_name=='Computer') {
   // coechode
 
@@ -127,7 +139,7 @@ elseif ($category_name=='Mobile') {
 
             <tr>
                 <td align="center" colspan="9">
-                    See Review => <a href="see_gadget_review.php">Gadget</a> OR <a href="see_company_review.php">E-Commerce Company</a> | </a> Write Review => <a href="write_review.php">Gadget</a> OR <a href="write_review.php">E-Commerce Company</a>
+                    See Review => <a href="see_gadget_review.php?gadget_id=<?=$gadget_id?>">Gadget</a> OR <a href="see_company_review.php">E-Commerce Company</a> | </a> Write Review => <a href="write_review.php">Gadget</a> OR <a href="write_review.php">E-Commerce Company</a>
                 </td>
             </tr>
 
@@ -223,7 +235,7 @@ elseif ($category_name=='Mobile') {
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
     </div>
 
-    <?php 
+    <?php
       mysqli_close($conn);
       ?>
 
