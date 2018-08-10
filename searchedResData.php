@@ -20,5 +20,5 @@ for ($i = 0; $i<mysqli_num_rows($res);$i++)
 	$row[$i] = mysqli_fetch_array($res);
 	$list = "<br/>".$row[$i]['gadget_name'];
 }
-echo $list === ""?"no suggestion":$list;
+echo $list === ""?"Not found!":$list;
 ?>
