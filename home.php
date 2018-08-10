@@ -19,14 +19,33 @@
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
                             <!-- The form -->
-                            <form class="example" action="action_page.php">
-                                <input type="text" placeholder="Search" name="search">
+                            <form class="example" action="">
+                                <input type="text" placeholder="Search" name="search" onkeyup="searchedResult(this.value)">
                                 <button type="submit">
                                     <i class="fa fa-search"></i>
-
                                 </button>
         <a href="index.php"><img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50"></a>
-        <a href="home.php">Home</a> | <a href=#about>About Us</a> | <a href="SignIn.php">Sign In</a> | <a href="SignUp.php">Sign Up</a> | <a href=#FAQ>FAQ</a> | <a href=#help>Help</a> | <a href=#feedback>Feedback</a>
+        <a href="home.php">Home</a> | <a href=#about>About Us</a> | <a href="SignIn.php">Sign In</a> | <a href="SignUp.php">Sign Up</a> | <a href=#FAQ>FAQ</a> | <a href=#help>Help</a> | <a href=#feedback>Feedback</a><br>
+    </div>
+    <div style="text-align: center;">
+        <i id="sug"><small style="text-align: center;">&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Quick See:</b> Write something in "Search" to see here the seraching thing is or not in website?</small></i>
+        <script>
+            function searchedResult(str)
+            {
+                if (str.length == 0) {document.getElementById("sug").innerHTML = "Empty!";}
+                
+                else{
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function()
+                    {
+                        if(this.readyState == 4 && this.status == 200)
+                        {document.getElementById("sug").innerHTML = this.responseText;}
+                    };
+                    xhttp.open("GET", "searchedResData.php?q="+str,true);
+                    xhttp.send();
+                }
+            }
+  </script>
     </div>
     <div style="padding-top: 80">
         <table align="center" border="1" width="1000" height="300">
