@@ -1,5 +1,5 @@
 <?php
-//Step1
+//create connection
  $conn = mysqli_connect('localhost','root','','gadto')
  or die('Error connecting to MySQL server.');
 ?>

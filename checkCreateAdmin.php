@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['fname'])&&isset($_POST['lname'])&&isset($_POST['phone']))
 	{
 		$uname 	=$_POST['uname'];

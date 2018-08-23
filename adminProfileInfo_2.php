@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-if ($_SESSION['loggedIn'] != 2)
+if ($_SESSION['uname'] != true)
 {
     header("location: SignIn.php");
 }
-
 ?>
 <html>
 

@@ -35,10 +35,10 @@ if(isset($_POST['uname'])&& isset($_POST['pass']))
 
 		if ($uname == $_POST['uname'] && $pass == $_POST['pass']) {
 				$inTwoMonths = 60 * 60 * 24 * 60 + time();
-				setcookie('username', $uname, $inTwoMonths);
-				setcookie('password', $pass, $inTwoMonths);
-				setcookie('lastVisit', date("G:i - m/d/y"), $inTwoMonths);
-				setcookie('loggedintime', date("G:i - m/d/y"), $inTwoMonths);
+				setcookie('username', $uname, $inTwoMonths, "/");
+				setcookie('password', $pass, $inTwoMonths, "/");
+				setcookie('lastVisit', date("G:i - m/d/y"), $inTwoMonths, "/");
+				setcookie('loggedintime', date("G:i - m/d/y"), $inTwoMonths, "/");
 
 		}
 
@@ -47,21 +47,18 @@ if(isset($_POST['uname'])&& isset($_POST['pass']))
 			session_start();
 			$_SESSION['uname'] = $_POST['uname'];
 			$_SESSION['pass'] = $_POST['pass'];
-			$_SESSION['loggedIn'] = 3;
 			header("location: profileHome.php");
 		}
 		elseif($type=='admin'){
 			session_start();
 			$_SESSION['uname'] = $_POST['uname'];
 			$_SESSION['pass'] = $_POST['pass'];
-			$_SESSION['loggedIn'] = 2;
 			header("location: adminPortal.php");
 		}
 		elseif ($type=='sa') {
 			session_start();
 			$_SESSION['uname'] = $_POST['uname'];
 			$_SESSION['pass'] = $_POST['pass'];
-			$_SESSION['loggedIn'] = 1;
 			header("location: superAdminPortal.php");
 		}
 		else{

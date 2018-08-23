@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['loggedIn'] != 1)
+if ($_SESSION['uname'] != true)
 {
     header("location: SignIn.php");
 }
