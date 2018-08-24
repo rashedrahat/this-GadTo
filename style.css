@@ -7,9 +7,9 @@ body{
     font-family: sans-serif;
 }
 .login-box{
-    width: 400px;
-    height: 400px;
-    background:#D3D3D3;
+    width: 500px;
+    height: 500px;
+    background:#A1B2C3;
     color: #000;
     top: 67%;
     left: 55%;
@@ -47,7 +47,7 @@ h1{
     border-bottom: 1px solid #000;
     background: transparent;
     outline: none;
-    height: 40px;
+    height: 25px;
     color: #fff;
     font-size: 16px;
 }
@@ -77,43 +77,3 @@ h1{
 {
     color:#fff;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
