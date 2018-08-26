@@ -12,7 +12,7 @@ body {
 
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: aliceblue;
   padding: 20px 10px;
 }
 
