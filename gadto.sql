@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2018 at 04:59 AM
+-- Generation Time: Aug 27, 2018 at 06:04 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -114,6 +114,17 @@ INSERT INTO `brand_categorys` (`brand_id`, `brand_name`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `brand_gad_cat`
+-- (See below for the actual view)
+--
+CREATE TABLE `brand_gad_cat` (
+`brand_name` varchar(20)
+,`gadget_name` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `card_info`
 --
 
@@ -150,7 +161,6 @@ CREATE TABLE `company_info` (
 INSERT INTO `company_info` (`price_id`, `name`, `company_gadget_link`) VALUES
 (1, 'Daraz', 'https://www.daraz.com.bd/asus-x540ya-e1-7010-notebook-dual-core-silver-246631.html'),
 (3, 'Ryans', 'https://ryanscomputers.com/asus-x540ya-amd-e1-6010-1-35ghz-4gb-1333mhz-500gb-15-6-inch-hd-1366x768-display-silver-gradient-notebook-with-free-dos-xo649d.html'),
-(4, 'Global Brand', 'https://globalbrand.com.bd/product/asus-x540ya-e1-6010-amd-beema-e1-6010/'),
 (5, 'Ryans', 'https://ryanscomputers.com/hp-14-bw077au-amd-dual-core-e2-9000e-1-5-2-0ghz-4gb-ddr4-500gb-dvd-rw-14-1-inch-black-notebook-with-win-10-home-1-yr-warranty-3gm14pa.html'),
 (6, 'Daraz', 'https://www.daraz.com.bd/hp-3gm14pa-14-bw077au-dual-core-e2-9000e-4-gb-ram-500gb-hdd-amd-radeon-r2-graphics-14.1-notebook-black-630522.html'),
 (2, 'Pickaboo', 'https://www.pickaboo.com/iphone-x-64gb.html?gclid=CjwKCAjwwJrbBRAoEiwAGA1B_dv1SgiOl9VPdF0GBZmYQ_CyjNCT75-AHDzbEQUYgDYb4mdNosXMJhoCgksQAvD_BwE'),
@@ -274,7 +284,8 @@ INSERT INTO `gadget_info` (`gadget_id`, `gadget_name`, `category_name`, `brand_i
 (8, 'Asus X540YA', 'Computer', 3, 1),
 (9, 'Acer Aspire A315-21 28F1', 'Computer', 5, 1),
 (10, 'HP 14-BW077AU', 'Computer', 6, 1),
-(11, 'Rolex WRM13', 'Watch', 7, 3);
+(11, 'Rolex WRM13', 'Watch', 7, 3),
+(12, 'iPhone 6', 'Mobile', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -290,6 +301,17 @@ CREATE TABLE `gadget_review` (
 ,`post_date` date
 ,`gadget_name` varchar(30)
 ,`gadget_id` int(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `gad_spcs_cat`
+-- (See below for the actual view)
+--
+CREATE TABLE `gad_spcs_cat` (
+`specs_name` varchar(20)
+,`gadget_name` varchar(30)
 );
 
 -- --------------------------------------------------------
@@ -402,7 +424,6 @@ INSERT INTO `price_info` (`price_id`, `price`, `gadget_id`) VALUES
 (1, 19909, 8),
 (2, 104990, 5),
 (3, 22600, 8),
-(4, 23500, 8),
 (5, 23300, 10),
 (6, 26790, 10),
 (7, 100240, 5),
@@ -551,15 +572,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `uname`, `email`, `pass`, `fname`, `lname`, `phone`, `type`, `status`) VALUES
-(8, 'rashed', 'rashed@gmail.com', '876543210', 'Rashed', 'Ahmed', 1633179767, 'sa', 'always active'),
-(9, 'tama', 'tama@gmail.com', '12345678', 'Ayesha', 'Tamanna', 4984239, 'user', 'active'),
+(8, 'rashed', 'rashed@outlook.com', '876543210', 'Rashed', 'Ahmed', 1633179767, 'sa', 'always active'),
+(9, 'tama', 'tama@gmail.com', '12345678', 'Ayesha', 'Tamanna', 123456789, 'user', 'active'),
 (12, 'Rahat', 'rahat@gmail.com', '22222222', 'Rashed', 'Ahmed', 1712345678, 'user', 'active'),
 (15, 'RahateFesf', 'rahat@gmail.com', '22222222', 'Rashed', 'Ahmed', 1712345678, 'user', 'pending'),
 (17, 'arman0010fEf', 'tipu0010@gmail.com', '11111111', 'Arman', 'Hossen', 1676568244, 'user', 'blocked'),
 (18, 'abcafdfa', 'abc@gmail.com', '555555555', 'abc', 'xyz', 4984239, 'user', 'pending'),
-(19, 'abc', 'abc@gmail.com', '5555555555', 'abc', 'xyz', 4984239, 'user', 'active'),
+(19, 'abc', 'abc@hotmail.com', '5555555555', 'Mr', 'Abc', 12345689, 'user', 'active'),
 (21, 'tipu', 'arman@gmail.com', '44444444444', 'tipu', 'Hossen', 1676568244, 'user', 'active'),
-(22, 'itsme', 'itsme@gmail.com', '123456789', 'Its', 'Me', 1546498748, 'admin', 'active');
+(22, 'itsme', 'itsme@gmail.com', '1234567890', 'Its', 'Me', 1234560, 'admin', 'active');
 
 -- --------------------------------------------------------
 
@@ -615,6 +636,15 @@ INSERT INTO `user_info` (`user_name`, `email`, `password`, `first_name`, `last_n
 -- --------------------------------------------------------
 
 --
+-- Structure for view `brand_gad_cat`
+--
+DROP TABLE IF EXISTS `brand_gad_cat`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `brand_gad_cat`  AS  select `brand_categorys`.`brand_name` AS `brand_name`,`gadget_info`.`gadget_name` AS `gadget_name` from (`brand_categorys` join `gadget_info` on((`brand_categorys`.`brand_id` = `gadget_info`.`brand_id`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `computer_specs`
 --
 DROP TABLE IF EXISTS `computer_specs`;
@@ -638,6 +668,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `gadget_review`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `gadget_review`  AS  select `review`.`user_name` AS `user_name`,`review`.`rating` AS `rating`,`review`.`comment` AS `comment`,`review`.`recommend` AS `recommend`,`review`.`post_date` AS `post_date`,`gadget_info`.`gadget_name` AS `gadget_name`,`gadget_info`.`gadget_id` AS `gadget_id` from (`review` join `gadget_info` on((`review`.`gadget_id` = `gadget_info`.`gadget_id`))) where (`review`.`r_type_id` = 1) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `gad_spcs_cat`
+--
+DROP TABLE IF EXISTS `gad_spcs_cat`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `gad_spcs_cat`  AS  select `specs_categorys`.`specs_name` AS `specs_name`,`gadget_info`.`gadget_name` AS `gadget_name` from (`specs_categorys` join `gadget_info` on((`specs_categorys`.`specs_category_id` = `gadget_info`.`specs_category_id`))) ;
 
 -- --------------------------------------------------------
 
@@ -858,7 +897,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `leave_info`

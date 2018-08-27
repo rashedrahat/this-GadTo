@@ -1,0 +1,93 @@
+Manage Gadget Info:
+-------------------
+
+`````````Showing Portion Start```````````
+
+#1 Showing the Gadget Categories Info table.
+
+SELECT category_name, COUNT(gadget_name) AS NumberOfGadget
+FROM gadget_info
+GROUP BY category_name;
+
+#2 Showing the Gadget Brand Categories Info table.
+
+//Before showing creating a view.
+
+CREATE VIEW brand_gad_cat AS
+SELECT brand_categorys.brand_name, gadget_info.gadget_name
+FROM brand_categorys INNER JOIN gadget_info ON brand_categorys.brand_id = gadget_info.brand_id;
+
+//Showing the Gadget Brand Categories Info table.
+
+SELECT brand_name, COUNT(brand_name) AS NumberOfGadget
+FROM brand_gad_cat
+GROUP BY brand_name;
+
+#3 Showing the Gadget's Specifications Categories Info table.
+
+//Before showing creating a view.
+
+CREATE VIEW gad_spcs_cat AS
+SELECT specs_categorys.specs_name, gadget_info.gadget_name
+FROM specs_categorys INNER JOIN gadget_info ON specs_categorys.specs_category_id = gadget_info.specs_category_id;
+
+//Showing the Gadget's Specifications Categories Info table.
+
+SELECT specs_name, COUNT(gadget_name) AS NumberOfGadget
+FROM gad_spcs_cat
+GROUP BY specs_name;
+
+#4 Showing the Gadget's Specifications Info table.
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#5 Showing the Gadget's Company Info table.
+
+SELECT price_id, name FROM company_info;
+
+#6 Showing the Reviews Info table.
+
+SELECT review_id, user_name, comment, post_date FROM review;
+
+================End of Showing Part================
+`````````````Start of Removing portion`````````````
+
+#1 Removing a specific row (a category of gadget categorys) from the Gadget Categories Info table.
+
+DELETE FROM gadget_categorys
+WHERE category_name='Mobile';
+
+Note: Similar for all kind of category. Just category_name='Watch/Computer' likhte hobe query portion-er ending-e.
+
+#2 Removing a specific row (a brand name from brand categorys) from the Gadget Brand Categories Info table.
+
+DELETE FROM brand_categorys
+WHERE brand_name='ASUS';
+
+Note: Similar for all kind of category. Just category_name='Apple/HP' likhte hobe query portion-er ending-e.
+
+#3 Removing a specific row (a specs_category from specs_categorys) from the Gadget's Specifications Categories Info table.
+
+DELETE FROM specs_categorys
+WHERE specs_name='Mobile';
+
+Note: Similar for all kind of category. Just specs_name='Watch/Computer' likhte hobe query portion-er ending-e.
+
+#4 Removing from the Gadget's Specifications Info table.
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#5 Removing a specific row from the Company Info table.
+
+DELETE FROM company_info
+WHERE price_id='1';
+
+Note: Similar for all kind of rows. Just price_id='numeric_value' likhte hobe query portion-er ending-e.
+
+#6 Removing a specific row from the Reviews Info table.
+
+DELETE FROM review
+WHERE review_id='6';
+
+Note: Similar for all kind of rows. Just review_id='numeric_value' likhte hobe query portion-er ending-e.
+
+================End of Removing Part================
+;;;;;;;;;;;;;;;;;;;;;The End;;;;;;;;;;;
