@@ -36,11 +36,6 @@ body {
   color: black;
 }
 
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-
 .header-right {
   float: right;
 }
@@ -87,7 +82,7 @@ input[type=text]:focus {
     </form>
   </span>
   <span class="header-right">
-    <a class="active" href="home.php">Home</a>
+    <a href="home.php">Home</a>
     <a href="signIn.php">Sign In</a>
     <a href="signUp.php">Sign Up</a>
     <a href="aboutUs.php">About Us</a>

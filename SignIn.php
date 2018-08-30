@@ -5,14 +5,9 @@
 </head>
 
 <body>
-    <div style="padding:10; text-align:right;">
-        <!-- Load icon library -->
-                            &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <a href="index.php"><img style="float: left; padding-left: 10"src="gadto.jpg" width="80" height="50"></a>
-        <a href="home.php">Home</a> | <a href=#about>About Us</a> | <a href="SignIn.php">Sign In</a> | <a href="SignUp.php">Sign Up</a> | <a href=#FAQ>FAQ</a> | <a href=#help>Help</a> | <a href=#feedback>Feedback</a>
-    </div>
+    <?php
+        include 'headSignIn.php';
+    ?>
     <form action="checkSignIn.php" method="POST">
         <table align="center" height="200" width="400" style="padding-top: 175px">
             <tr>
@@ -61,5 +56,8 @@
             </tr>
         </table>
     </form>
+    <?php
+        include 'footer.php';
+    ?>
 </body>
 </html>

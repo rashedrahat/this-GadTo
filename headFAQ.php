@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+* {box-sizing: border-box;}
 
 body { 
   margin: 0;
@@ -12,7 +13,7 @@ body {
 .header {
   overflow: hidden;
   background-color: aliceblue;
-  padding: 20px 5px;
+  padding: 20px 10px;
 }
 
 .header a {
@@ -87,11 +88,11 @@ input[type=text]:focus {
     </form>
   </span>
   <span class="header-right">
-    <a class="active" href="home.php">Home</a>
+    <a href="home.php">Home</a>
     <a href="signIn.php">Sign In</a>
     <a href="signUp.php">Sign Up</a>
     <a href="aboutUs.php">About Us</a>
-    <a href="faq.php">FAQ</a>
+    <a class="active" href="faq.php">FAQ</a>
     <a href="help.php">Help</a>
     <a href="feedback.php">Feedback</a>
   </span>

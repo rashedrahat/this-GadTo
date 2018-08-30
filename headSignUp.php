@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+* {box-sizing: border-box;}
 
 body { 
   margin: 0;
@@ -12,7 +13,7 @@ body {
 .header {
   overflow: hidden;
   background-color: aliceblue;
-  padding: 20px 5px;
+  padding: 20px 10px;
 }
 
 .header a {
@@ -56,7 +57,7 @@ body {
   }
 }
 
-input[type=text] {
+input[type=text].this {
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -71,7 +72,7 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+input[type=text].this:focus {
     width: 99%;
 }
 </style>
@@ -83,13 +84,13 @@ input[type=text]:focus {
 
   <span style="float: right;">
     <form>
-      <input type="text" name="search" placeholder="Search..">
+      <input class="this" type="text" name="search" placeholder="Search..">
     </form>
   </span>
   <span class="header-right">
-    <a class="active" href="home.php">Home</a>
+    <a href="home.php">Home</a>
     <a href="signIn.php">Sign In</a>
-    <a href="signUp.php">Sign Up</a>
+    <a class="active" href="signUp.php">Sign Up</a>
     <a href="aboutUs.php">About Us</a>
     <a href="faq.php">FAQ</a>
     <a href="help.php">Help</a>

@@ -45,47 +45,27 @@ if ($_SESSION['uname'] != true)
 </head>
 
 <body>
-    <form action="">
-        <div style="padding:10; text-align:right;">
-            <a href="index.php">
-                <img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50">
-            </a>
-            <a href="home.php">Home</a> |
-            <a href="ProfileHome.php">Profile Home</a> |
-            <a href="ProfileInfo.php">Profile Info</a> |
-            <a href="PostAd.php">Post Ad</a> |
-            <a href="ad_info.php">Ad Info</a> |
-            <a href="notification.php">Notification</a> |
-            <a href="signout.php">Log Out</a>
-        </div>
+        
+        <?php
+            include 'insideHeaderNormalUser.php';
+        ?>
+        <form action="">
         <button onclick="topFunction()" id="myBtn" title="Go to top">
             <img src="top.png" width="30" height="30">
         </button>
-
-
-
-
-        <br/>
-        <br>
-        <br>
+        <br/><br/>
         <div align="center">
            <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
         </div>
-        <table align="center" border="" height="800" width="800">
-
-
-
-
+        <br>
+        <table align="center" border="" height="800" width="900">
             <tr>
                 <td>
-
-
-                    <br/>
                     <font size="4">
-                        &emsp;Activity log
+                        &emsp;<i>Activity log</i>
                     </font>
                     <!-- Load icon library -->
-                    &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
                     <!-- The form -->
@@ -209,6 +189,9 @@ if ($_SESSION['uname'] != true)
         </script>
 
     </form>
+    <?php
+            include 'insideportalFooter.php';
+        ?>
 </body>
 
 </html>
