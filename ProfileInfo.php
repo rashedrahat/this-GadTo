@@ -13,13 +13,13 @@ if ($_SESSION['uname'] != true)
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    
 </head>
 
 <body>
-    <div style="padding:10; text-align:right;">
-        <a href="index.php"><img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50"></a>
-            <a href="home.php">Home</a> | <a href="ProfileHome.php">Profile Home</a> | <a href="ProfileInfo.php">Profile Info</a> | <a href="PostAd.php">Post Ad</a> | <a href="ad_info.php">Ad Info</a> | <a href="notification.php">Notification</a> | <a href="signout.php">Log Out</a>
-    </div>
+    <?php
+        include 'insideHeadProInfoNormalUser.php';
+    ?>
             <div class="login-box">
                 <img src="ppic.png" class="avatar">
                 <?php
@@ -77,6 +77,7 @@ if ($_SESSION['uname'] != true)
                         }
                         mysqli_close($conn);
                 ?>
+
                 <form method="POST" action="">
                     <lebel>First Name</lebel>
                     <input type="text" name="fName" value="<?php echo $row['fname']?>" border-style: solid>

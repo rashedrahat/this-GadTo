@@ -190,8 +190,8 @@ if ($_SESSION['uname'] != true)
 
     </form>
     <?php
-            include 'insideportalFooter.php';
-        ?>
+        include 'insideportalFooter.php';
+    ?>
 </body>
 
 </html>

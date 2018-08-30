@@ -16,20 +16,10 @@ if ($_SESSION['uname'] != true)
 </head>
 
 <body>
-    <div>
-        <div style="padding:10; text-align:right;">
-            <a href="index.html">
-                <img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50">
-            </a>
-            <a href="home.php">Home</a> |
-            <a href="ProfileHome.php">Profile Home</a> |
-            <a href="ProfileInfo.php">Profile Info</a> |
-            <a href="PostAd.php">Post Ad</a> |
-            <a href="ad_info.php">Ad Info</a> |
-            <a href="notification.php">Notification</a> |
-            <a href="signout.php">Log Out</a>
-        </div>
-    </div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <?php
+        include 'insideHeadPostAdPayNormalUser.php';
+    ?>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <div>
 
         <form action="">
@@ -116,8 +106,9 @@ if ($_SESSION['uname'] != true)
 
                     <td>
                         <font size="4">
-                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="COMPLETE" onclick="window.location.href='ad_pay_review.php'" />
+                            &emsp;&emsp;&emsp;&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="CANCEL" onclick="window.location.href='PostAd.php'" />
                         </font>
                     </td>

@@ -41,7 +41,7 @@ $data              = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-    <div style="padding-bottom: 110px;">
+    <div style="padding-bottom: 77px;">
         <div class="login-box">
                 <img src="ppic.png" class="avatar">
                 <?php
@@ -125,8 +125,10 @@ $data              = mysqli_fetch_assoc($result);
     </form>
 </div>
 <div align="center">
-                <a href="superAdminPortal.php">Close</a>
-            </div>
+    <a href="superAdminPortal.php">Close</a>
+</div>
+</div>
+</div>
 </body>
 
 </html>

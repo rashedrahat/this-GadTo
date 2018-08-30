@@ -49,18 +49,9 @@ if ($_SESSION['uname'] != true)
 
 <body>
     <form action="">
-        <div style="padding:10; text-align:right;">
-            <a href="index.html">
-                <img style="float: left; padding-left: 10" src="gadto.jpg" width="80" height="50">
-            </a>
-            <a href="home.php">Home</a> |
-            <a href="ProfileHome.php">Profile Home</a> |
-            <a href="ProfileInfo.php">Profile Info</a> |
-            <a href="PostAd.php">Post Ad</a> |
-            <a href="ad_info.php">Ad Info</a> |
-            <a href="notification.php">Notification</a> |
-            <a href="signout.php">Log Out</a>
-        </div>
+        <?php
+            include 'insideHeadAdInfoNormalUser.php';
+        ?>
         <button onclick="topFunction()" id="myBtn" title="Go to top">
             <img src="top.png" width="30" height="30">
         </button>

@@ -16,7 +16,7 @@ if ($_SESSION['uname'] != true)
 </head>
 
 <body>
-<div style="padding-bottom: 110px;">
+<div style="padding-bottom: 77px;">
         <div class="login-box">
                 <img src="ppic.png" class="avatar">
                 <?php
@@ -100,8 +100,8 @@ if ($_SESSION['uname'] != true)
     </form>
 </div>
 <div align="center">
-                <a href="adminPortal.php">Close</a>
-            </div>
+    <a href="adminPortal.php">Close</a>
+</div>
 </body>
 
 </html>

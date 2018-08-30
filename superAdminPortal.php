@@ -73,6 +73,21 @@ if ($_SESSION['uname'] != true)
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+input[type=text] {
+    width: 190px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
 </style>
 </head>
 <body>
@@ -132,8 +147,11 @@ if ($_SESSION['uname'] != true)
   </div>
   <a href="superAdminPortal.php">Profile Home</a>
   <a href="Home.php">Home</a>
+  <form>
+    &emsp;<input type="text" name="search" placeholder="Search..">
+  </form>
 </div>
-<br><br><br><br>
+<br><br><br>
 <div align="center">
   <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
 </div>
@@ -162,8 +180,11 @@ function drawChart() {
   chart.draw(data, options);
 }
 </script>
-<div align="center">
+<div align="center" style="padding-bottom: 10px;">
 	<a href="stats.php">See more Stats</a>
 </div>
+<?php
+  include 'insidePortalFooterAdmin.php';
+?>
 </body>
 </html>

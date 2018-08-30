@@ -119,7 +119,7 @@ if ($_SESSION['uname'] != true)
   </div>
 </div>
   </div>
-<br><br><br><br>
+<br><br>
 <div align="center">
   <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
 </div>
@@ -151,5 +151,8 @@ function drawChart() {
 <div align="center">
 	<a href="stats_2.php">See more Stats</a>
 </div>
+<?php
+  include 'insidePortalFooterAdmin.php';
+?>
 </body>
 </html>

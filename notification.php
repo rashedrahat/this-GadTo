@@ -7,10 +7,7 @@ if ($_SESSION['uname'] != true)
 }
 ?>
 <html>
-
-<head>
-
-    <head>
+  <head>
         <meta name="viewport" content="width=device-width">
         <style type="text/css">
             @charset "UTF-8";
@@ -48,9 +45,9 @@ if ($_SESSION['uname'] != true)
     </head>
 
     <body>
+        
 
-
-
+    
         <!--THE NOTIFICAIONS DROPDOWN BOX.-->
 
 
