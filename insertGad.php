@@ -35,15 +35,14 @@ if ($_SESSION['uname'] != true)
     			</tr>
 				<tr>
 			    	<td>
-			            <input type="text" name="uname" placeholder="Entry a gadget category name" size="50" style="height: 40px; width: 400px;"/>
+			            <input type="text" name="cat_name" placeholder="Entry a gadget category name" size="50" style="height: 40px; width: 400px;"/>
 			        </td>
     			</tr>
-			   
 		        <tr>
 		            <td align="center" colspan="2">
 		                <p class="this">
 		                    <br/>
-		                    <input type="button" value="Insert" style="height:40px; width:250px;" onclick="window.location.href='insertedGadCat.php'"/>
+		                    <input type="submit" name="insert" value="Insert"/>
 		                    <br/>
 		                    <br/>
 		                </p>
@@ -51,6 +50,32 @@ if ($_SESSION['uname'] != true)
 		        </tr>
 			</table>
 		</form>
+		   			<?php
+					if (isset($_post['insert'])) {
+					$catName = $_POST['cat_name'];
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$dbname = "gadto";
+
+					// Create connection
+					$conn = mysqli_connect($servername, $username, $password, $dbname);
+					// Check connection
+					if (!$conn) {
+					    die("Connection failed: " . mysqli_connect_error());
+					}
+
+					$sql = "INSERT INTO gadget_categorys VALUES ($catName)";
+
+					if (mysqli_query($conn, $sql)) {
+					    header("insertedGadCat.php");
+					} else {
+					    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+					}
+
+					mysqli_close($conn);
+					}
+					?>
     </div>
     <div align="center">
     	<a href="manageGadCat.php">Close</a>

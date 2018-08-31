@@ -1,0 +1,1 @@
+"SELECT * FROM gadget_review WHERE user_name='$ru'"; //Show activity log in the profile home of normal user.

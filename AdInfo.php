@@ -12,14 +12,11 @@ if ($_SESSION['uname'] != true)
 <head>
     <title>FORM | Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="tabledesignUser.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-    td {
-            padding-left: 8;
-        }
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 20px;
@@ -61,11 +58,7 @@ if ($_SESSION['uname'] != true)
 
 
 
-        <table align="center" border="" height="100" width="850">
-
-
-
-
+        <table align="center" border="" style="height: auto; width: auto;">
             <tr>
                 <br/>
                 <br/>
@@ -76,7 +69,7 @@ if ($_SESSION['uname'] != true)
 
                     <br/>
                     <font size="4">
-                        <b>Posted Ad Information</b>
+                        <i>Posted Ad Information</i>
                     </font>
                     <!-- Load icon library -->
                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

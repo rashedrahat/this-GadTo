@@ -10,12 +10,13 @@ if ($_SESSION['uname'] != true)
 
 <head>
     <title>Manage Existing Admin</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
     <br><br><br><br><br><br>
     <h1 align="center"><i>Existing Admin Info</i></h1>
-    <table align="center" border="" width="800">
+    <table align="center" border="">
 
         <tr align="center">
             <th>ID</th>

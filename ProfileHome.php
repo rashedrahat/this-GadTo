@@ -11,7 +11,7 @@ if ($_SESSION['uname'] != true)
 <head>
     <title>FORM | Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="tabledesignUser.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -58,7 +58,7 @@ if ($_SESSION['uname'] != true)
            <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
         </div>
         <br>
-        <table align="center" border="" height="800" width="900">
+        <table align="center" border="" style="height: auto; width: auto; padding: 1">
             <tr>
                 <td>
                     <font size="4">
@@ -82,90 +82,44 @@ if ($_SESSION['uname'] != true)
                 </td>
             </tr>
 
+            <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "gadto";
 
-            <tr>
-                <td> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <i>Today</i>
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
 
-                </td>
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you saw
-                    <a href="#">iphoneX</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:red;float: right;"></i>
-                    <br>
-                </td>
+                $ru = $_SESSION['uname'];
+                $sql = "SELECT * FROM gadget_review WHERE
+                user_name='$ru'";
+                $result = mysqli_query($conn, $sql);
 
-            </tr>
-            <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <i>22 June
-                </i>
-            </td>
+                if (mysqli_num_rows($result) > 0) {
+                    // output data of each row
+                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <tr align="center">
+                            <td>
+                                <i><?php echo $row["post_date"]?></i>
+                            </td>
+                        </tr>
+                        <tr style="text-align: left;">
+                            <td>&emsp;<?php echo $ru ?>, you posted a review about 
+                                <a href="#"><?php echo $row["gadget_name"] ?></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php }
+            }
 
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you posted a review about
-                    <a href="#">AsusZenF1</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:grey;float: right;"></i>
-                </td>
-
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you saw
-                    <a href="Page4.php">AsusX55179</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:grey;float: right;"></i>
-                </td>
-
-            </tr>
-            </tr>
-            <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <i>20 June
-                </i>
-            </td>
-            <br/>
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you posted an
-                    <a href="single_ad_info.php">Ad[A172]</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:red;float: right;"></i>
-                </td>
-
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you saw
-                    <a href="#">Hp Spector x360</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:grey;float: right;"></i>
-
-
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you saw
-                    <a href="#">Hp Spector 13</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:grey;float: right;"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you saw
-                    <a href="#">Dell xps13</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:grey;float: right;"></i>
-                </td>
-            </tr>
-            <tr>
-                <td>&emsp;<?php echo $_SESSION['uname']?>, you posted an
-                    <a href="#">Ad[152]</a>
-                    <i class="material-icons" style="font-size:20px;color:grey;float: right;">delete</i>
-                    <i class="fa fa-heart" style="font-size:20px;color:red;float: right;"></i>
-                </td>
-
-            </tr>
-        </table>
+            mysqli_close($conn);
+            ?>
         </div>
         <script>
             // When the user scrolls down 20px from the top of the document, show the button
