@@ -41,7 +41,7 @@
             <tr>
                 <td>
                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <a href="#ForgotPass">Forgot Password?</a>
+                    <a href="forgotPass.php">Forgot Password?</a>
                     <br/>
                     <br/>
 
