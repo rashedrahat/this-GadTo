@@ -1,1 +1,13 @@
+Manage Gadget Info portion (insert queries)
+1.
 "SELECT * FROM gadget_review WHERE user_name='$ru'"; //Show activity log in the profile home of normal user.
+
+2.
+"INSERT INTO gadget_categorys (category_name) VALUES ('$catName')"; //Insert a gadget category name into gadget category table.
+
+3.
+"INSERT INTO brand_categorys (brand_id, brand_name, category_name) 
+VALUES ('', '$brandName', '$catName')"; //Insert a brand name into gadget category table.
+
+4.
+"INSERT INTO specs_categorys (specs_category_id, specs_name) VALUES ('', '$specsCatName')"; //Insert a specs category name into specs category table.
