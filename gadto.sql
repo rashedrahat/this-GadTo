@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2018 at 06:04 PM
+-- Generation Time: Sep 01, 2018 at 09:35 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -109,7 +109,8 @@ INSERT INTO `brand_categorys` (`brand_id`, `brand_name`, `category_name`) VALUES
 (4, 'Asus', 'Mobile'),
 (5, 'Acer', 'Computer'),
 (6, 'HP', 'Computer'),
-(7, 'Rolex', 'Watch');
+(7, 'Rolex', 'Watch'),
+(8, 'Apple', 'Watch');
 
 -- --------------------------------------------------------
 
@@ -452,11 +453,8 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`review_id`, `post_date`, `user_name`, `comment`, `rating`, `recommend`, `r_type_id`, `gadget_id`) VALUES
-(6, '2018-07-29', 'imrashed', 'Awesome phone, i love & like it.', 5, 'Yes', 1, 5),
-(7, '2018-07-28', 'imrashed', 'Customer service is bad & product faulty (unpacked). Daraz is really suck :(', 1, 'No', 2, 8),
-(8, '2018-08-02', 'itsme', 'Hmm, good for home use and nice look.', 4, 'Yes', 1, 10),
-(9, '2018-08-01', 'itsme', 'Kaymu, their delivery is fast.', 5, 'Yes', 2, 9),
-(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5);
+(11, '2018-07-29', 'abc', 'Awesome phone, like n love it.', 5, 'Yes', 1, 5),
+(12, '2018-08-31', 'abc', 'Customer service is bad & product faulty (unpacked).', 1, 'No', 2, 8);
 
 -- --------------------------------------------------------
 
@@ -495,7 +493,8 @@ CREATE TABLE `specs_categorys` (
 INSERT INTO `specs_categorys` (`specs_category_id`, `specs_name`) VALUES
 (1, 'Computer'),
 (2, 'Mobile'),
-(3, 'Watch');
+(3, 'Watch'),
+(8, 'Tset');
 
 -- --------------------------------------------------------
 
@@ -580,7 +579,8 @@ INSERT INTO `user` (`id`, `uname`, `email`, `pass`, `fname`, `lname`, `phone`, `
 (18, 'abcafdfa', 'abc@gmail.com', '555555555', 'abc', 'xyz', 4984239, 'user', 'pending'),
 (19, 'abc', 'abc@hotmail.com', '5555555555', 'Mr', 'Abc', 12345689, 'user', 'active'),
 (21, 'tipu', 'arman@gmail.com', '44444444444', 'tipu', 'Hossen', 1676568244, 'user', 'active'),
-(22, 'itsme', 'itsme@gmail.com', '1234567890', 'Its', 'Me', 1234560, 'admin', 'active');
+(22, 'itsme', 'itsme@gmail.com', '1234567890', 'Its', 'Me', 1234560, 'admin', 'active'),
+(23, 'test', 'test@gmail.com', '@test123', 'Test', 'Test', 1633179767, 'user', 'active');
 
 -- --------------------------------------------------------
 
@@ -842,7 +842,8 @@ ALTER TABLE `specs_info_mobile`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uname` (`uname`);
 
 --
 -- Indexes for table `user_confirmation`
@@ -879,7 +880,7 @@ ALTER TABLE `ad_info`
 -- AUTO_INCREMENT for table `brand_categorys`
 --
 ALTER TABLE `brand_categorys`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `confirmation_type`
@@ -927,7 +928,7 @@ ALTER TABLE `price_info`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `review_type`
@@ -939,7 +940,7 @@ ALTER TABLE `review_type`
 -- AUTO_INCREMENT for table `specs_categorys`
 --
 ALTER TABLE `specs_categorys`
-  MODIFY `specs_category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `specs_category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `specs_info_computer`
@@ -957,7 +958,7 @@ ALTER TABLE `specs_info_mobile`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_confirmation`
@@ -1045,7 +1046,7 @@ ALTER TABLE `price_info`
 -- Constraints for table `review`
 --
 ALTER TABLE `review`
-  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `user_info` (`user_name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `user` (`uname`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`r_type_id`) REFERENCES `review_type` (`r_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `review_ibfk_3` FOREIGN KEY (`gadget_id`) REFERENCES `gadget_info` (`gadget_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
