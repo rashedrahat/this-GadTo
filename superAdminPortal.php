@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -153,7 +153,7 @@ input[type=text] {
 </div>
 <br><br><br>
 <div align="center">
-  <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
+  <b>Welcome <?php echo $_SESSION['user_name'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
 </div>
 <br>
 <div id="piechart" align="center"></div>

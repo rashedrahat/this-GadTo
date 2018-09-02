@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -27,7 +27,7 @@ if ($_SESSION['uname'] != true)
                     <td>
                         <b>
                             <font size="4">
-                                <label align="center">&emsp;&emsp;&emsp;&emsp;Complete details to create a admin.
+                                <label align="center"> Complete details to create a admin.
                                 </label>
                             </font>
                         </b>
@@ -35,34 +35,38 @@ if ($_SESSION['uname'] != true)
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="uname" placeholder="Create a username" size="50" style="height: 40px; width: 400px;"/>
+                        <input type="text" onkeyup="uncheckun()" id="username" name="user_name" placeholder="User Name" size="50" style="height: 40px; width: 400px;"/><span id="un"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="email" name="email" placeholder="Email address" size="50" style="height: 40px; width: 400px;"/>
+                        <input type="email" onkeyup="uncheckemail()" id="email" name="email" placeholder="Email Address" size="50" style="height: 40px; width: 400px;"/> <span id="em"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="password" name="pass" placeholder="Create password" size="50"style="height: 40px; width: 400px;"/>
+                        <input type="password" onkeyup="uncheckpass()" id="password" name="pass" placeholder="Password" size="50"style="height: 40px; width: 400px;"/> <span id="pass"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="fname" placeholder="First Name" size="26" style="height: 40px; width: 197px;"/>
-                        <input type="text" name="lname" placeholder="Last Name" size="25" style="height: 40px; width: 198px;"/>
+                        <input type="text" onkeyup="uncheckfn()" id="firstname" name="first_name" placeholder="First Name" size="26" style="height: 40px; width: 400px;"/> <span id="fn"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="phone" placeholder="Phone number" size="50" style="height: 40px; width: 400px;"/>
+                        <input type="text" onkeyup="uncheckln()" id="lastname" name="last_name" placeholder="Last Name" size="25" style="height: 40px; width: 400px;"/> <span id="ln"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" onkeyup="uncheckcn()" id="contactno" name="phone" placeholder="Contact No" size="50" style="height: 40px; width: 400px;"/><span id="cn"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         Select your Gender:
-                        <input type="radio" name="gender" value="Male"/>Male
+                        <input type="radio" name="gender" value="Male" checked/>Male
                         <input type="radio" name="gender" value="Female"/>Female
                         <input type="radio" name="gender" value="Other"/>Other
                     </td>
@@ -71,7 +75,8 @@ if ($_SESSION['uname'] != true)
                     <td align="center" colspan="2">
                         <p class="this">
                             <br/>
-                            <input type="submit" value="Create" style="height:40px; width:250px;" onclick="window.location.href='createdAdmin.php'"/>
+                            <input type="submit" onclick="return validation()" name="submit" value="Sign Up" style="height:40px; width:250px";/>
+                            <br/>
                             <br/>
                             <br/>
                         </p>
@@ -79,10 +84,161 @@ if ($_SESSION['uname'] != true)
                 </tr>
             </table>
         </form>
-    </div>
+    </div> 
+
     <div align="center">
-        <a href="superAdminPortal.php">Go back to Profile Home</a>
-    </div>   
+      <a href="superAdminPortal.php">Go back to Profile Home</a>
+    </div>
+
+<script>
+function validation()
+    {
+        flag=true;
+
+        if(document.getElementById("username").value.length==0)
+        {
+            document.getElementById("un").innerHTML=" * User Name Required";
+            document.getElementById("un").style.color="red";
+            flag=false;
+        }
+
+        if(document.getElementById("username").value.length<3)
+        {
+            document.getElementById("un").innerHTML=" * User Name should be minimum 3 characters";
+            document.getElementById("un").style.color="red";
+            flag=false;
+        }
+        if(document.getElementById("firstname").value.length==0)
+        {
+            document.getElementById("fn").innerHTML=" * First Name Required";
+            document.getElementById("fn").style.color="red";
+            flag=false;
+        }   
+        if(isNaN(document.getElementById("firstname").value))
+        { 
+            flag=true;
+        } 
+        else
+        {
+            document.getElementById("fn").innerHTML=" * Name can not contain number";
+            document.getElementById("fn").style.color="red";
+            flag=false;
+        }
+
+
+
+        if(document.getElementById("firstname").value.length<3)
+            {
+                document.getElementById("fn").innerHTML=" * Name should be minimum 3 characters";
+                document.getElementById("fn").style.color="red";
+                flag=false;
+            }
+        
+        if(document.getElementById("lastname").value.length==0)
+        {
+            document.getElementById("ln").innerHTML=" * Last Name Required";
+            document.getElementById("ln").style.color="red";
+            flag=false;
+        }
+            
+        if(isNaN(document.getElementById("lastname").value))
+        { 
+            flag=true;
+        } 
+        else
+        {
+            document.getElementById("ln").innerHTML=" * Name can not contain number";
+            document.getElementById("ln").style.color="red";
+            flag=false;
+        }
+
+
+        if(document.getElementById("lastname").value.length<3)
+        {
+            document.getElementById("ln").innerHTML=" * Name should be minimum 3 characters";
+            document.getElementById("ln").style.color="red";
+            flag=false;
+        }
+
+        if(document.getElementById("password").value.length==0)
+        {
+            document.getElementById("pass").innerHTML=" * Password Required";
+            document.getElementById("pass").style.color="red";
+            flag=false;
+        }
+
+        if(document.getElementById("password").value.length<8)
+        {
+            document.getElementById("pass").innerHTML=" * password should be minimum 8 characters";
+            document.getElementById("pass").style.color="red";
+            flag=false;
+        }
+        
+        if(document.getElementById("email").value.length==0)
+        {
+            document.getElementById("em").innerHTML=" * Email Required";
+            document.getElementById("em").style.color="red";
+            flag=false;
+        }
+        
+        if(document.getElementById("email").value.length!=0)
+        {
+            var z = document.getElementById("email").value;
+            var atpos = z.indexOf("@");
+            var dotpos = z.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=z.length)
+            {
+                document.getElementById("em").innerHTML=" * Not A Valid Email";
+                document.getElementById("em").style.color="red";
+                flag=false;
+            }
+        }
+        
+        if(document.getElementById("contactno").value.length==0)
+        {
+            document.getElementById("cn").innerHTML=" * Contact No Required";
+            document.getElementById("cn").style.color="red";
+            flag=false;
+        }
+
+        if(document.getElementById("contactno").value.length<11 || document.getElementById("contactno").value.length>11)
+        {
+            document.getElementById("cn").innerHTML=" * Not a Valid Contact No";
+            document.getElementById("cn").style.color="red";
+            flag=false;
+        }
+        
+        return flag;
+    }
+
+
+    function uncheckun()
+    {
+        document.getElementById("un").innerHTML="";
+    }
+    function uncheckpass()
+    {
+        document.getElementById("pass").innerHTML="";
+    }
+
+    function uncheckemail()
+    {
+        document.getElementById("em").innerHTML="";
+    }
+        function uncheckfn()
+    {
+        document.getElementById("fn").innerHTML="";
+    }
+        function uncheckln()
+    {
+        document.getElementById("ln").innerHTML="";
+    }
+    function uncheckcn()
+    {
+        document.getElementById("cn").innerHTML="";
+    }
+
+</script>
 </body>
 </html>
 

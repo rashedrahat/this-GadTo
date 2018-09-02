@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -58,9 +58,9 @@ $data              = mysqli_fetch_assoc($result);
                     if (!$conn) {
                         die("Connection failed: " . mysqli_connect_error());
                     }
-
-                    $un = $_SESSION['uname'];
-                    $sql = "SELECT fname, lname, uname, phone, pass, email FROM user WHERE uname = '$un'";
+                    
+                    $un = $_SESSION['user_name'];
+                    $sql = "SELECT first_name, last_name, user_name, phone, pass, email FROM user_info WHERE user_name = '$un'";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
@@ -83,13 +83,13 @@ $data              = mysqli_fetch_assoc($result);
                         die("Connection failed: " . mysqli_connect_error());
                     }
                     if (isset($_POST['update'])) {
-                        $un = $_SESSION['uname'];
+                        $un = $_SESSION['user_name'];
                         $UpEmail = $_POST['email'];
                         $UpPass = $_POST['password'];
                         $UpFname = $_POST['fName'];
                         $UpLname = $_POST['lName'];
                         $UpPhn = $_POST['mobileNo'];
-                        $sql = "UPDATE user SET email = '$UpEmail', pass ='$UpPass', fname = '$UpFname', lname = '$UpLname', phone = '$UpPhn' WHERE uname = '$un'";
+                        $sql = "UPDATE user_info SET email = '$UpEmail', pass ='$UpPass', first_name = '$UpFname', last_name = '$UpLname', phone = '$UpPhn' WHERE user_name = '$un'";
                         if (mysqli_query($conn, $sql)) {
                             echo "Updated successfully! Refresh to see.";
                                 } 
@@ -101,11 +101,11 @@ $data              = mysqli_fetch_assoc($result);
                 ?>
                 <form method="POST" action="">
                     <lebel>First Name</lebel>
-                    <input type="text" name="fName" value="<?php echo $row['fname']?>" border-style: solid>
+                    <input type="text" name="fName" value="<?php echo $row['first_name']?>" border-style: solid>
                     <lebel>Last Name</lebel>
-                    <input type="text" name="lName" value="<?php echo $row['lname']?>" border-style: solid>
+                    <input type="text" name="lName" value="<?php echo $row['last_name']?>" border-style: solid>
                     <lebel>Username</lebel>
-                    <input type="text" name="username" value="<?php echo $row['uname']?>" readonly border-style: solid />
+                    <input type="text" name="username" value="<?php echo $row['user_name']?>" readonly border-style: solid />
                     <lebel>Mobile Number</lebel>
                     <input type="text" name="mobileNo" value="<?php echo $row['phone']?>" border-style: solid />
                     <lebel>Password</lebel>

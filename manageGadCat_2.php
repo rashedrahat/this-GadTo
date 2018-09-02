@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -24,90 +24,38 @@ if ($_SESSION['uname'] != true)
 
 
         </tr>
-        <tr align="center">
-            
+
+<?php
+
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "gadto";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        $sql               =    "SELECT category_name, COUNT(gadget_name) AS NumberOfGadget
+                                FROM gadget_info
+                                GROUP BY category_name;";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['category_name']  = $row['category_name'];
+        $GLOBALS['NumberOfGadget']  = $row['NumberOfGadget'];
+        $GLOBALS['js']     ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $category_name .'</td>
+            <td>'. $NumberOfGadget .'</td>
             <td>
-                Mobile
+                <a href="manageGadCat_2.php?del='.$category_name.'"  onclick="'.$js.';">
+                <input type="button" value="Remove">
+                </a>
             </td>
-            <td>2056</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-        <tr align="center">
-            
-            
-            <td>Computer</td>
-            <td>
-                2018
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Watch</td>
-            <td>
-                1067
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Furniture</td>
-            <td>
-                794
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Beauty</td>
-            <td>
-                555
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-    
-
+        </tr>'; 
+        
+        }
+?> 
 
 
 
@@ -117,9 +65,21 @@ if ($_SESSION['uname'] != true)
     </table>
     <br><br>
     <div align="center">
-      <a href="insertGad_2.php">Insert a New</a> | <a href="AdminPortal.php">Go back to Profile Home</a>
+      <a href="insertGad_2.php">Insert a New</a> | <a href="adminPortal.php">Go back to Profile Home</a>
     </div> 
 </div>
 </body>
 
 </html>
+
+
+<?php
+    if(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM gadget_categorys
+                            WHERE category_name='$del_id';");
+        header("Location: manageGadCat_2.php");
+    }
+    
+?>

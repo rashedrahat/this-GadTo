@@ -1,48 +1,53 @@
 <?php 
 
-if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['fname'])&&isset($_POST['lname'])&&isset($_POST['phone']))
+if(isset($_POST['user_name'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['first_name'])&&isset($_POST['last_name'])&&isset($_POST['phone'])&&isset($_POST['gender']))
 	{
-		$uname 	=$_POST['uname'];
-		$email	=$_POST['email'];
-		$pass 	=$_POST['pass'];
-		$fname	=$_POST['fname'];
-		$lname	=$_POST['lname'];
-		$phone	=$_POST['phone'];
+		$user_name 		=$_POST['user_name'];
+		$email			=$_POST['email'];
+		$pass 			=$_POST['pass'];
+		$first_name		=$_POST['first_name'];
+		$last_name		=$_POST['last_name'];
+		$phone			=$_POST['phone'];
+		$gender			=$_POST['gender'];
 
-
-		if(empty($uname))
+		if(empty($user_name))
 		{
-			header("Location: SignUp.php?ret=erroremptyusername");
+			header("Location: createAdmin.php?ret=erroremptyusername");
 		}
 
 		elseif(empty($email))
 		{
-			header("Location: SignUp.php?ret=erroremptyemail");
+			header("Location: createAdmin.php?ret=erroremptyemail");
 		}
 
 		elseif(empty($pass))
 		{
-			header("Location: SignUp.php?ret=erroremptypass");
+			header("Location: createAdmin.php?ret=erroremptypass");
 		}
 
 		elseif(strlen($pass)<8)
 		{
-			header("Location: SignUp.php?ret=errorpasslenght");
+			header("Location: createAdmin.php?ret=errorpasslenght");
 		}
 
-		elseif(empty($fname))
+		elseif(empty($first_name))
 		{
-			header("Location: SignUp.php?ret=erroremptyfirstname");
+			header("Location: createAdmin.php?ret=erroremptyfirstname");
 		}
 
-		elseif(empty($lname))
+		elseif(empty($last_name))
 		{
-			header("Location: SignUp.php?ret=erroremptylastname");
+			header("Location: createAdmin.php?ret=erroremptylastname");
 		}
 
 		elseif(empty($phone))
 		{
-			header("Location: SignUp.php?ret=erroremptyphone");
+			header("Location: createAdmin.php?ret=erroremptyphone");
+		}
+
+		elseif(empty($gender))
+		{
+			header("Location: createAdmin.php?ret=erroremptygender");
 		}
 
 		else
@@ -60,7 +65,7 @@ if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset(
 			 }
 			 else
 			 {
-			 	$sql = "insert into user values ('','$uname','$email','$pass','$fname','$lname','$phone','user','pending')";
+			 	$sql = "insert into user_info values ('$user_name','$email','$pass','$first_name','$last_name','$phone','$gender','nu','pending')";
 		
 		        if(mysqli_query($conn, $sql))
 		        {

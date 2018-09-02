@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -19,7 +19,6 @@ if ($_SESSION['uname'] != true)
     <table align="center" border="" width="800">
 
         <tr align="center">
-            <th>ID</th>
             <th>User Name</th>
             <th>Email</th>
             <th>Action&emsp;</th>
@@ -37,22 +36,19 @@ if ($_SESSION['uname'] != true)
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-        $sql               = "select * from user where status='blocked' and type='user'";
+        $sql               = "select * from user_info where status='blocked' and u_type_name='nu'";
         $result            = mysqli_query($conn, $sql);
-        //$GLOBALS['rownum'] = mysqli_num_rows($result);
 
         while ($row = mysqli_fetch_assoc($result)) {
-        $GLOBALS['id']     = $row['id'];
-        $GLOBALS['uname']  = $row['uname'];
-        $GLOBALS['email']  = $row['email'];
-        $GLOBALS['js']     ="return confirm('Are you sure?')";
+        $GLOBALS['user_name']   = $row['user_name'];
+        $GLOBALS['email']       = $row['email'];
+        $GLOBALS['js']          ="return confirm('Are you sure?')";
        
 echo'       <tr align="center">
-            <td>'. $id .'</td>
-            <td>'. $uname .'</td>
+            <td>'. $user_name .'</td>
             <td>'. $email .'</td>
             <td>
-                <a href="manageBlockedUser.php?block='.$id.'"  onclick="'.$js.';">
+                <a href="manageBlockedUser.php?block='.$user_name.'"  onclick="'.$js.';">
                 <input type="button" value="Unblock">
                 </a>
             </td>
@@ -72,7 +68,7 @@ echo'       <tr align="center">
     if(isset($_GET['block'])){
         $block_id = $_GET['block'];
 
-        mysqli_query($conn, "update user set status='active' where id = '$block_id'");
+        mysqli_query($conn, "update user_info set status='active' where user_name = '$block_id'");
         header("Location: manageBlockedUser.php");
     }
     

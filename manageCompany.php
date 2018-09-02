@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -16,15 +16,7 @@ if ($_SESSION['uname'] != true)
     <br><br><br><br><br>
     <h1 align="center"><i>Gadget's Company Info</i></h1>
 <div align="center">
-     Filter By:
 
-                        <select>
-                            <option>Daraz</option>
-                            <option>Ryans</option>
-                            <option>Star Tech</option>
-                            <option>Kaymu</option>
-
-                        </select>
 </div><br>
     <table align="center" border="" height="350" width="800">
 
@@ -35,94 +27,36 @@ if ($_SESSION['uname'] != true)
 
 
         </tr>
-        <tr align="center">
-            
+        
+<?php
+
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "gadto";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        $sql               =    "SELECT price_id, name FROM company_info;";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['price_id']  = $row['price_id'];
+        $GLOBALS['name']  = $row['name'];
+        $GLOBALS['js']     ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $price_id .'</td>
+            <td>'. $name .'</td>
             <td>
-                101
+                <a href="manageCompany.php?del='.$price_id.'"  onclick="'.$js.';">
+                <input type="button" value="Remove">
+                </a>
             </td>
-            <td>Daraz</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-        <tr align="center">
-            
-            
-            <td>
-                102
-            </td>
-            <td>Daraz</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>
-                103
-            </td>
-            <td>Daraz</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>
-                104
-            </td>
-            <td>Daraz</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            
-            <td>
-                105
-            </td>
-            <td>Daraz</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-    
-
-
-
-
-
+        </tr>'; 
+        
+        }
+?> 
 
 
     </table>
@@ -132,5 +66,15 @@ if ($_SESSION['uname'] != true)
     </div> 
 </div>
 </body>
-
 </html>
+
+<?php
+    if(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM company_info
+                            WHERE price_id='$del_id';");
+        header("Location: manageCompany.php");
+    }
+    
+?>

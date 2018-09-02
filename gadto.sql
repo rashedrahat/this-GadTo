@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2018 at 09:35 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Sep 01, 2018 at 06:31 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -109,8 +109,7 @@ INSERT INTO `brand_categorys` (`brand_id`, `brand_name`, `category_name`) VALUES
 (4, 'Asus', 'Mobile'),
 (5, 'Acer', 'Computer'),
 (6, 'HP', 'Computer'),
-(7, 'Rolex', 'Watch'),
-(8, 'Apple', 'Watch');
+(7, 'Rolex', 'Watch');
 
 -- --------------------------------------------------------
 
@@ -166,8 +165,7 @@ INSERT INTO `company_info` (`price_id`, `name`, `company_gadget_link`) VALUES
 (6, 'Daraz', 'https://www.daraz.com.bd/hp-3gm14pa-14-bw077au-dual-core-e2-9000e-4-gb-ram-500gb-hdd-amd-radeon-r2-graphics-14.1-notebook-black-630522.html'),
 (2, 'Pickaboo', 'https://www.pickaboo.com/iphone-x-64gb.html?gclid=CjwKCAjwwJrbBRAoEiwAGA1B_dv1SgiOl9VPdF0GBZmYQ_CyjNCT75-AHDzbEQUYgDYb4mdNosXMJhoCgksQAvD_BwE'),
 (7, 'Daraz', 'https://www.daraz.com.bd/apple-iphone-x-smartphone-5.8-3gb-ram-64gb-rom-dual-12mp-camera-space-gray-448301.html'),
-(8, 'Ryans', 'https://ryanscomputers.com/acer-aspire-a315-21-28f1-amd-e2-9000-1-80-2-20ghz-4gb-ddr4-1600mhz-1tb-15-6-inch-obsidian-black-notebook-freedos-2-yr-warranty-nx-gnvsi-007.html'),
-(9, 'Daraz', 'https://www.daraz.com.bd/rolex-wrm13-analogue-watch-for-men-silver-and-golden-279031.html');
+(8, 'Ryans', 'https://ryanscomputers.com/acer-aspire-a315-21-28f1-amd-e2-9000-1-80-2-20ghz-4gb-ddr4-1600mhz-1tb-15-6-inch-obsidian-black-notebook-freedos-2-yr-warranty-nx-gnvsi-007.html');
 
 -- --------------------------------------------------------
 
@@ -453,8 +451,10 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`review_id`, `post_date`, `user_name`, `comment`, `rating`, `recommend`, `r_type_id`, `gadget_id`) VALUES
-(11, '2018-07-29', 'abc', 'Awesome phone, like n love it.', 5, 'Yes', 1, 5),
-(12, '2018-08-31', 'abc', 'Customer service is bad & product faulty (unpacked).', 1, 'No', 2, 8);
+(6, '2018-07-29', 'imrashed', 'Awesome phone, i love & like it.', 5, 'Yes', 1, 5),
+(8, '2018-08-02', 'itsme', 'Hmm, good for home use and nice look.', 4, 'Yes', 1, 10),
+(9, '2018-08-01', 'itsme', 'Kaymu, their delivery is fast.', 5, 'Yes', 2, 9),
+(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -493,8 +493,7 @@ CREATE TABLE `specs_categorys` (
 INSERT INTO `specs_categorys` (`specs_category_id`, `specs_name`) VALUES
 (1, 'Computer'),
 (2, 'Mobile'),
-(3, 'Watch'),
-(8, 'Tset');
+(3, 'Watch');
 
 -- --------------------------------------------------------
 
@@ -579,8 +578,7 @@ INSERT INTO `user` (`id`, `uname`, `email`, `pass`, `fname`, `lname`, `phone`, `
 (18, 'abcafdfa', 'abc@gmail.com', '555555555', 'abc', 'xyz', 4984239, 'user', 'pending'),
 (19, 'abc', 'abc@hotmail.com', '5555555555', 'Mr', 'Abc', 12345689, 'user', 'active'),
 (21, 'tipu', 'arman@gmail.com', '44444444444', 'tipu', 'Hossen', 1676568244, 'user', 'active'),
-(22, 'itsme', 'itsme@gmail.com', '1234567890', 'Its', 'Me', 1234560, 'admin', 'active'),
-(23, 'test', 'test@gmail.com', '@test123', 'Test', 'Test', 1633179767, 'user', 'active');
+(22, 'itsme', 'itsme@gmail.com', '1234567890', 'Its', 'Me', 1234560, 'admin', 'active');
 
 -- --------------------------------------------------------
 
@@ -611,27 +609,30 @@ INSERT INTO `user_confirmation` (`u_conf_id`, `user_name`, `c_type_id`, `u_statu
 CREATE TABLE `user_info` (
   `user_name` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `pass` varchar(30) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `phone` varchar(14) NOT NULL,
   `gender` varchar(6) NOT NULL,
-  `u_type_name` varchar(2) NOT NULL
+  `u_type_name` varchar(2) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_info`
 --
 
-INSERT INTO `user_info` (`user_name`, `email`, `password`, `first_name`, `last_name`, `phone`, `gender`, `u_type_name`) VALUES
-('ayesha', 'ayesha@gmail.com', '1234567890', 'Ayesha', 'Akhter', '+8801684313772', 'Female', 'na'),
-('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '+8801633179767', 'Male', 'nu'),
-('irashed1994', 'rashedrahat@outlook.com', 'rashed1994', 'Rashed', 'Ahmed', '+8801512349876', 'Male', 'sa'),
-('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '+8801712345678', 'Other', 'nu'),
-('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '+8801633176797', 'Male', 'na'),
-('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '+8801612345678', 'Male', 'na'),
-('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '+8801633171423', 'Male', 'sa'),
-('Tamanna', 'tamanna@gmail.com', '0123456789', 'Ayesha', 'Tamanna', '+8801684313277', 'Female', 'sa');
+INSERT INTO `user_info` (`user_name`, `email`, `pass`, `first_name`, `last_name`, `phone`, `gender`, `u_type_name`, `status`) VALUES
+('arman0010', 'tipu0010@gmail.com', '00000000', 'Arman', 'Hossen', '01676568244', 'Male', 'sa', 'active'),
+('ayesha', 'ayesha@gmail.com', '1234567890', 'Ayesha', 'Akhter', '+8801684313772', 'Female', 'na', 'active'),
+('eva0010', 'eva@gmail.com', '00000000', 'Eva', 'Mony', '01676568244', 'Female', 'na', 'active'),
+('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '+8801633179767', 'Male', 'nu', 'pending'),
+('irashed1994', 'rashedrahat@outlook.com', 'rashed1994', 'Rashed', 'Ahmed', '+8801512349876', 'Male', 'sa', 'active'),
+('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '+8801712345678', 'Other', 'nu', 'pending'),
+('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '+8801633176797', 'Male', 'na', 'active'),
+('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '+8801612345678', 'Male', 'nu', 'blocked'),
+('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '+8801633171423', 'Male', 'na', 'pending'),
+('Tamanna', 'tamanna@gmail.com', '0123456789', 'Ayesha', 'Tamanna', '+8801684313277', 'Female', 'nu', 'active');
 
 -- --------------------------------------------------------
 
@@ -842,8 +843,7 @@ ALTER TABLE `specs_info_mobile`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uname` (`uname`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_confirmation`
@@ -880,7 +880,7 @@ ALTER TABLE `ad_info`
 -- AUTO_INCREMENT for table `brand_categorys`
 --
 ALTER TABLE `brand_categorys`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `confirmation_type`
@@ -898,7 +898,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `leave_info`
@@ -928,7 +928,7 @@ ALTER TABLE `price_info`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `review_type`
@@ -940,7 +940,7 @@ ALTER TABLE `review_type`
 -- AUTO_INCREMENT for table `specs_categorys`
 --
 ALTER TABLE `specs_categorys`
-  MODIFY `specs_category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `specs_category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `specs_info_computer`
@@ -958,7 +958,7 @@ ALTER TABLE `specs_info_mobile`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_confirmation`
@@ -1046,7 +1046,7 @@ ALTER TABLE `price_info`
 -- Constraints for table `review`
 --
 ALTER TABLE `review`
-  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `user` (`uname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_name`) REFERENCES `user_info` (`user_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`r_type_id`) REFERENCES `review_type` (`r_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `review_ibfk_3` FOREIGN KEY (`gadget_id`) REFERENCES `gadget_info` (`gadget_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 

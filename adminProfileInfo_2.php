@@ -1,11 +1,36 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
+else {
+$servername = "localhost";
+$username   = "root";
+$password   = "";
+$dbname     = "gadto";
+
+$conn       = mysqli_connect($servername, $username, $password, $dbname);
+
+if (!$conn) {
+    die("Connection Error!" . mysqli_connect_error());
+}
+
+$sql               = "select * from user where type='admin'";
+$result            = mysqli_query($conn, $sql);
+$data              = mysqli_fetch_assoc($result);
+
+
+    //$name               = $data['name'];
+    //$email              = $data['email'];
+    //$gender             = $data['gender'];
+    //$date               = $data['dob'];
+
+}
 ?>
+
+
 <html>
 
 <head>
@@ -16,7 +41,7 @@ if ($_SESSION['uname'] != true)
 </head>
 
 <body>
-<div style="padding-bottom: 77px;">
+    <div style="padding-bottom: 77px;">
         <div class="login-box">
                 <img src="ppic.png" class="avatar">
                 <?php
@@ -33,9 +58,9 @@ if ($_SESSION['uname'] != true)
                     if (!$conn) {
                         die("Connection failed: " . mysqli_connect_error());
                     }
-
-                    $un = $_SESSION['uname'];
-                    $sql = "SELECT fname, lname, uname, phone, pass, email FROM user WHERE uname = '$un'";
+                    
+                    $un = $_SESSION['user_name'];
+                    $sql = "SELECT first_name, last_name, user_name, phone, pass, email FROM user_info WHERE user_name = '$un'";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
@@ -58,13 +83,13 @@ if ($_SESSION['uname'] != true)
                         die("Connection failed: " . mysqli_connect_error());
                     }
                     if (isset($_POST['update'])) {
-                        $un = $_SESSION['uname'];
+                        $un = $_SESSION['user_name'];
                         $UpEmail = $_POST['email'];
                         $UpPass = $_POST['password'];
                         $UpFname = $_POST['fName'];
                         $UpLname = $_POST['lName'];
                         $UpPhn = $_POST['mobileNo'];
-                        $sql = "UPDATE user SET email = '$UpEmail', pass ='$UpPass', fname = '$UpFname', lname = '$UpLname', phone = '$UpPhn' WHERE uname = '$un'";
+                        $sql = "UPDATE user_info SET email = '$UpEmail', pass ='$UpPass', first_name = '$UpFname', last_name = '$UpLname', phone = '$UpPhn' WHERE user_name = '$un'";
                         if (mysqli_query($conn, $sql)) {
                             echo "Updated successfully! Refresh to see.";
                                 } 
@@ -76,11 +101,11 @@ if ($_SESSION['uname'] != true)
                 ?>
                 <form method="POST" action="">
                     <lebel>First Name</lebel>
-                    <input type="text" name="fName" value="<?php echo $row['fname']?>" border-style: solid>
+                    <input type="text" name="fName" value="<?php echo $row['first_name']?>" border-style: solid>
                     <lebel>Last Name</lebel>
-                    <input type="text" name="lName" value="<?php echo $row['lname']?>" border-style: solid>
+                    <input type="text" name="lName" value="<?php echo $row['last_name']?>" border-style: solid>
                     <lebel>Username</lebel>
-                    <input type="text" name="username" value="<?php echo $row['uname']?>" readonly border-style: solid />
+                    <input type="text" name="username" value="<?php echo $row['user_name']?>" readonly border-style: solid />
                     <lebel>Mobile Number</lebel>
                     <input type="text" name="mobileNo" value="<?php echo $row['phone']?>" border-style: solid />
                     <lebel>Password</lebel>
@@ -101,6 +126,8 @@ if ($_SESSION['uname'] != true)
 </div>
 <div align="center">
     <a href="adminPortal.php">Close</a>
+</div>
+</div>
 </div>
 </body>
 

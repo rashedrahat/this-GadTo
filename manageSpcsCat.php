@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -21,97 +21,39 @@ if ($_SESSION['uname'] != true)
             <th>Category Name</th>
             <th>Number of Gadgets</th>
             <th>Action&emsp;</th>
-
-
-        </tr>
-        <tr align="center">
-            
-            <td>
-                Mobile
-            </td>
-            <td>2056</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
         </tr>
 
+<?php
 
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "gadto";
 
-        <tr align="center">
-            
-            
-            <td>Computer</td>
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        $sql               =    "SELECT specs_name, COUNT(gadget_name) AS NumberOfGadget
+                                FROM gad_spcs_cat
+                                GROUP BY specs_name;";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['specs_name']  = $row['specs_name'];
+        $GLOBALS['NumberOfGadget']  = $row['NumberOfGadget'];
+        $GLOBALS['js']     ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $specs_name .'</td>
+            <td>'. $NumberOfGadget .'</td>
             <td>
-                2018
+                <a href="manageSpecsCat.php?del='.$specs_name.'"  onclick="'.$js.';">
+                <input type="button" value="Remove">
+                </a>
             </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Watch</td>
-            <td>
-                1067
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Furniture</td>
-            <td>
-                794
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Beauty</td>
-            <td>
-                555
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-    
-
-
-
-
-
+        </tr>'; 
+        
+        }
+?> 
 
 
     </table>
@@ -123,3 +65,14 @@ if ($_SESSION['uname'] != true)
 </body>
 
 </html>
+
+<?php
+    if(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM specs_categorys
+                            WHERE specs_name='$del_id';");
+        header("Location: manageSpecsCat.php");
+    }
+    
+?>

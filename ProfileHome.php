@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -55,7 +55,7 @@ if ($_SESSION['uname'] != true)
         </button>
         <br/><br/>
         <div align="center">
-           <b>Welcome <?php echo $_SESSION['uname'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
+           <b>Welcome <?php echo $_SESSION['user_name'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
         </div>
         <br>
         <table align="center" border="" style="height: auto; width: auto; padding: 1">
@@ -95,7 +95,7 @@ if ($_SESSION['uname'] != true)
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                $ru = $_SESSION['uname'];
+                $ru = $_SESSION['user_name'];
                 $sql = "SELECT * FROM gadget_review WHERE
                 user_name='$ru'";
                 $result = mysqli_query($conn, $sql);

@@ -1,15 +1,16 @@
-<?php
-if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['fname'])&&isset($_POST['lname'])&&isset($_POST['phone']))
+<?php 
+
+if(isset($_POST['user_name'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['first_name'])&&isset($_POST['last_name'])&&isset($_POST['phone'])&&isset($_POST['gender']))
 	{
-		$uname 	=$_POST['uname'];
-		$email	=$_POST['email'];
-		$pass 	=$_POST['pass'];
-		$fname	=$_POST['fname'];
-		$lname	=$_POST['lname'];
-		$phone	=$_POST['phone'];
+		$user_name 		=$_POST['user_name'];
+		$email			=$_POST['email'];
+		$pass 			=$_POST['pass'];
+		$first_name		=$_POST['first_name'];
+		$last_name		=$_POST['last_name'];
+		$phone			=$_POST['phone'];
+		$gender			=$_POST['gender'];
 
-
-		if(empty($uname))
+		if(empty($user_name))
 		{
 			header("Location: createAdmin.php?ret=erroremptyusername");
 		}
@@ -29,12 +30,12 @@ if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset(
 			header("Location: createAdmin.php?ret=errorpasslenght");
 		}
 
-		elseif(empty($fname))
+		elseif(empty($first_name))
 		{
 			header("Location: createAdmin.php?ret=erroremptyfirstname");
 		}
 
-		elseif(empty($lname))
+		elseif(empty($last_name))
 		{
 			header("Location: createAdmin.php?ret=erroremptylastname");
 		}
@@ -42,6 +43,11 @@ if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset(
 		elseif(empty($phone))
 		{
 			header("Location: createAdmin.php?ret=erroremptyphone");
+		}
+
+		elseif(empty($gender))
+		{
+			header("Location: createAdmin.php?ret=erroremptygender");
 		}
 
 		else
@@ -59,7 +65,7 @@ if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset(
 			 }
 			 else
 			 {
-			 	$sql = "insert into user values ('','$uname','$email','$pass','$fname','$lname','$phone','admin','active')";
+			 	$sql = "insert into user_info values ('$user_name','$email','$pass','$first_name','$last_name','$phone','$gender','na','active')";
 		
 		        if(mysqli_query($conn, $sql))
 		        {
@@ -67,7 +73,7 @@ if(isset($_POST['uname'])&&isset($_POST['email'])&&isset($_POST['pass'])&&isset(
 		        }
 		        else
 		        {
-			    header("Location: createAdmin.php?ret=errorOccured");
+			    header("Location: createAdmin.php");
 		        }
 		        mysqli_close($conn);
 		     }

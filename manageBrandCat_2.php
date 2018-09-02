@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -24,102 +24,58 @@ if ($_SESSION['uname'] != true)
 
 
         </tr>
-        <tr align="center">
-            
+        
+
+<?php
+
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "gadto";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        $sql               =    "SELECT brand_name, COUNT(brand_name) AS NumberOfGadget
+                                FROM brand_gad_cat
+                                GROUP BY brand_name;";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['brand_name']  = $row['brand_name'];
+        $GLOBALS['NumberOfGadget']  = $row['NumberOfGadget'];
+        $GLOBALS['js']     ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $brand_name .'</td>
+            <td>'. $NumberOfGadget .'</td>
             <td>
-                Apple
+                <a href="manageBrandCat_2.php?del='.$brand_name.'"  onclick="'.$js.';">
+                <input type="button" value="Remove">
+                </a>
             </td>
-            <td>2056</td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-        <tr align="center">
-            
-            
-            <td>Samsung</td>
-            <td>
-                2018
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>OnePlus</td>
-            <td>
-                1067
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            
-            <td>Nokia</td>
-            <td>
-                794
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            
-            <td>mi</td>
-            <td>
-                555
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-    
-
-
-
-
-
+        </tr>'; 
+        
+        }
+?> 
 
 
     </table>
     <br><br>
     <div align="center">
-      <a href="insertBrand_2.php">Insert a New</a> | <a href="AdminPortal.php">Go back to Profile Home</a>
+      <a href="insertBrand_2.php">Insert a New</a> | <a href="adminPortal.php">Go back to Profile Home</a>
     </div> 
 </div>
 </body>
 
 </html>
+
+<?php
+    if(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM brand_categorys
+                            WHERE brand_name='$del_id';");
+        header("Location: manageBrandCat_2.php");
+    }
+    
+?>

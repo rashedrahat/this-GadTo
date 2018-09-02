@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="text " size="45" name='uname' placeholder="Username" style="height: 40px " ; />
+                    <input type="text " size="45" name='user_name' placeholder="Username" style="height: 40px " ; />
                     <br/>
                     <br/>
 
@@ -56,6 +56,8 @@
             </tr>
         </table>
     </form>
+</body>
+</html>
     <?php
         include 'footer.php';
     ?>

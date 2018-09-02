@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['uname'] != true)
+if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
@@ -16,12 +16,7 @@ if ($_SESSION['uname'] != true)
 <br><br><br><br><br>
     <h1 align="center"><i>Reviews Info</i></h1>
 <div align="center">
-     Filter By:
 
-                        <select>
-                            <option>Positive</option>
-                            <option>Negative</option>
-                        </select>
 </div><br>
     <table align="center" border="" height="350" width="800">
 
@@ -31,165 +26,60 @@ if ($_SESSION['uname'] != true)
             <th>Coment</th>
             <th>Date</th>
             <th>Action&emsp;</th>
-
-
-        </tr>
-        <tr align="center">
-            <td>
-                1001
-            </td>
-            <td>
-                mr.x
-            </td>
-            <td>Good,Super Phone</td>
-            <td>
-                21-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
         </tr>
 
 
+<?php
 
-        <tr align="center">
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "gadto";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        $sql               =    "SELECT review_id, user_name, comment, post_date FROM review;";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['review_id']  = $row['review_id'];
+        $GLOBALS['user_name']  = $row['user_name'];
+        $GLOBALS['comment']    = $row['comment'];
+        $GLOBALS['post_date']  = $row['post_date'];
+        $GLOBALS['js']         ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $review_id .'</td>
+            <td>'. $user_name .'</td>
+            <td>'. $comment .'</td>
+            <td>'. $post_date .'</td>
             <td>
-                1002
+                <a href="manageReviews_2.php?del='.$review_id.'"  onclick="'.$js.';">
+                <input type="button" value="Remove">
+                </a>
             </td>
-            <td>
-                imr
-            </td>
-            <td>Yea,Like it</td>
-            <td>
-                24-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-
-        <tr align="center"> 
-            <td>
-                1003
-            </td>
-            <td>
-                itsi
-            </td>
-            <td>Cool,Features</td>
-            <td>
-                25-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            <td>
-                1007
-            </td>
-            <td>
-                mr.x
-            </td>
-            <td>Awesome</td>
-            <td>
-                26-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            <td>
-                1011
-            </td>
-            <td>
-                mr.x
-            </td>
-            <td>Good,Super Phone</td>
-            <td>
-                26-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-        <tr align="center">
-            <td>
-                1012
-            </td>
-            <td>
-                mr.x
-            </td>
-            <td>Good,Super Phone</td>
-            <td>
-                27-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
-
-
-        <tr align="center">
-            <td>
-                1013
-            </td>
-            <td>
-                mr.x
-            </td>
-            <td>Good,Super Phone</td>
-            <td>
-                31-Jul-18
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-
+        </tr>'; 
+        
+        }
+?> 
 
 
 
     </table>
     <br><br>
     <div align="center">
-    <a href="AdminPortal.php">Go back to Profile Home</a>
+    <a href="adminPortal.php">Go back to Profile Home</a>
     </div>
 </body>
-
 </html>
+
+<?php
+    if(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM review
+                            WHERE review_id='$del_id';");
+        header("Location: manageReviews_2.php");
+    }
+    
+?>
