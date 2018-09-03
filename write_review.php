@@ -22,7 +22,7 @@ if ($_SESSION['user_name'] != true)
 		<form>
         <table align="center" border="1">
             <tr>
-                <td align="center"><?php echo $_SESSION['uname']?>
+                <td align="center"><?php echo $_SESSION['user_name']?>
                     </td>
                 </tr>
             <tr>
