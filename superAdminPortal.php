@@ -148,8 +148,30 @@ input[type=text] {
   <a href="superAdminPortal.php">Profile Home</a>
   <a href="Home.php">Home</a>
   <form>
-    &emsp;<input type="text" name="search" placeholder="Search..">
+    &emsp;<input type="text" name="search" placeholder="Search.."
+    onkeyup="searchedResult(this.value)">
   </form>
+</div>
+<!-- Ajax implementation-->
+<div style="text-align: center;">
+        <i id="sug"><small style="text-align: center;">&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>See Normal Admin list:</b></small></i>
+        <script>
+            function searchedResult(str)
+            {
+                if (str.length == 0) {document.getElementById("sug").innerHTML = "Empty!";}
+                
+                else{
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function()
+                    {
+                        if(this.readyState == 4 && this.status == 200)
+                        {document.getElementById("sug").innerHTML = this.responseText;}
+                    };
+                    xhttp.open("GET", "searchedAdminData.php?q="+str,true);
+                    xhttp.send();
+                }
+            }
+        </script>
 </div>
 <br><br><br>
 <div align="center">
@@ -180,7 +202,7 @@ function drawChart() {
   chart.draw(data, options);
 }
 </script>
-<div align="center" style="padding-bottom: 10px;">
+<div align="center" style="padding-bottom: 30px;">
 	<a href="stats.php">See more Stats</a>
 </div>
 <?php

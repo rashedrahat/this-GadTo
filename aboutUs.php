@@ -2,7 +2,7 @@
 <html>
 <head>
 </head>
-<body style="background-color: tomato">
+<body>
     <?php
         include 'headAboutUs.php';
     ?>

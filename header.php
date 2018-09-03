@@ -83,7 +83,7 @@ input[type=text]:focus {
 
   <span style="float: right;">
     <form>
-      <input type="text" name="search" placeholder="Search..">
+      <input class="sug" type="text" name="search" placeholder="Search.." onkeyup="searchedResult(this.value)">
     </form>
   </span>
   <span class="header-right">
@@ -95,6 +95,27 @@ input[type=text]:focus {
     <a href="help.php">Help</a>
     <a href="feedback.php">Feedback</a>
   </span>
+</div>
+<!-- Ajax implementation-->
+<div style="text-align: right; padding-right: 8px;">
+        <i id="sug"><small style="text-align: center;">&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Quick See:</b> Write something in "Search" to see here the seraching thing is or not in website?</small></i>
+        <script>
+            function searchedResult(str)
+            {
+                if (str.length == 0) {document.getElementById("sug").innerHTML = "Empty!";}
+                
+                else{
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function()
+                    {
+                        if(this.readyState == 4 && this.status == 200)
+                        {document.getElementById("sug").innerHTML = this.responseText;}
+                    };
+                    xhttp.open("GET", "searchedResData.php?q="+str,true);
+                    xhttp.send();
+                }
+            }
+        </script>
 </div>
 </body>
 </html>

@@ -21,12 +21,6 @@ $sql               = "select * from user where type='admin'";
 $result            = mysqli_query($conn, $sql);
 $data              = mysqli_fetch_assoc($result);
 
-
-    //$name               = $data['name'];
-    //$email              = $data['email'];
-    //$gender             = $data['gender'];
-    //$date               = $data['dob'];
-
 }
 ?>
 

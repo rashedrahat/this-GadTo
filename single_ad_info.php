@@ -10,11 +10,12 @@ if ($_SESSION['user_name'] != true)
 <html>
 <head>
 	<title>Your Ad Info</title>
+	<link rel="stylesheet" href="tableDesignUser.css">
 </head>
 <body>
 	<div><br/><br/><br/><br/><br/><br/><br/><br/>
 		<h2 align="center">Your Ad Id: 172</h2>
-		<table align="center" border="none" height="100" width="550">
+		<table align="center" border="none" style="height: auto; width: auto;">
 		<tr align="center">
 			<td colspan="1"><b>Duration</b></td>
 			<td colspan="2">10-JUL-2018-17-JUL-2018</td>

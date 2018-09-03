@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2018 at 06:31 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Sep 03, 2018 at 07:43 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -257,6 +257,7 @@ CREATE TABLE `gadget_categorys` (
 INSERT INTO `gadget_categorys` (`category_name`) VALUES
 ('Computer'),
 ('Mobile'),
+('Test'),
 ('Watch');
 
 -- --------------------------------------------------------
@@ -623,12 +624,12 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`user_name`, `email`, `pass`, `first_name`, `last_name`, `phone`, `gender`, `u_type_name`, `status`) VALUES
-('arman0010', 'tipu0010@gmail.com', '00000000', 'Arman', 'Hossen', '01676568244', 'Male', 'sa', 'active'),
+('arman0010', 'tipu@gmail.com', '00000000', 'Arman', 'Hossen', '01676568244', 'Male', 'sa', 'active'),
 ('ayesha', 'ayesha@gmail.com', '1234567890', 'Ayesha', 'Akhter', '+8801684313772', 'Female', 'na', 'active'),
 ('eva0010', 'eva@gmail.com', '00000000', 'Eva', 'Mony', '01676568244', 'Female', 'na', 'active'),
-('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '+8801633179767', 'Male', 'nu', 'pending'),
+('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '+8801633179767', 'Male', 'nu', 'active'),
 ('irashed1994', 'rashedrahat@outlook.com', 'rashed1994', 'Rashed', 'Ahmed', '+8801512349876', 'Male', 'sa', 'active'),
-('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '+8801712345678', 'Other', 'nu', 'pending'),
+('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '+8801712345678', 'Other', 'nu', 'active'),
 ('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '+8801633176797', 'Male', 'na', 'active'),
 ('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '+8801612345678', 'Male', 'nu', 'blocked'),
 ('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '+8801633171423', 'Male', 'na', 'pending'),
@@ -898,7 +899,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `leave_info`
