@@ -2,7 +2,6 @@
 <html>
 <head>
 	<style>
-		body {background-color: tomato;}
 		h1 {text-align: center;}
 		p {padding-left: 20px;}
 	</style>

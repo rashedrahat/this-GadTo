@@ -154,7 +154,7 @@ input[type=text] {
 </div>
 <!-- Ajax implementation-->
 <div style="text-align: center;">
-        <i id="sug"><small style="text-align: center;">&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>See Normal Admin list:</b></small></i>
+        <i id="sug"><small style="text-align: center;">&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b></b></small></i>
         <script>
             function searchedResult(str)
             {

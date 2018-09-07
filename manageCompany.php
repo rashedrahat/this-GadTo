@@ -10,6 +10,7 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>Manage Company</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@ if ($_SESSION['user_name'] != true)
 <div align="center">
 
 </div><br>
-    <table align="center" border="" height="350" width="800">
+    <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">
             <th>Price ID</th>

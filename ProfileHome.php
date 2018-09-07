@@ -96,7 +96,7 @@ if ($_SESSION['user_name'] != true)
                 }
 
                 $ru = $_SESSION['user_name'];
-                $sql = "SELECT * FROM gadget_review WHERE
+                $sql = "SELECT post_date, gadget_name FROM gadget_review WHERE
                 user_name='$ru'";
                 $result = mysqli_query($conn, $sql);
 

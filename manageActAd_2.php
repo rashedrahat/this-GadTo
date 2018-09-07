@@ -10,12 +10,13 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>rePost Ad information</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
 <br><br><br><br><br>
     <h1 align="center"><i>Activated Ad Info</i></h1>
-    <table align="center">
+    <table align="center" height="auto" width="auto">
 
         <tr>
             <td>

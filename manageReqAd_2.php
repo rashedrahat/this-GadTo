@@ -10,12 +10,13 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>Ad Confirmation</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
 <br><br><br><br><br>
     <h1 align="center"><i>Ad Confirmation Info</i></h1>
-    <table align="center" border="" height="350" width="700">
+    <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">
             <th>Ad Confirmation ID</th>

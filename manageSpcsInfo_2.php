@@ -10,6 +10,7 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>Manage Specifications Info</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
@@ -27,7 +28,7 @@ if ($_SESSION['user_name'] != true)
 
                         </select>
 </div><br>
-    <table align="center" border="" height="350" width="800">
+    <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">
             <th>Specifications ID</th>

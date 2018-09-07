@@ -134,8 +134,7 @@ elseif ($category_name=='Mobile') {
             </tr>
 
         </table>
-    </div>
-    <div style="padding-top: 20" align="center">
+            <div style="padding-top: 20" align="center">
         <table align="center" border="1" width="1000" height="250">
             <tr >
                 <th colspan="12">

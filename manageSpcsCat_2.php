@@ -10,12 +10,13 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>Manage Specifications Categories</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
     <br><br><br><br><br><br>
     <h1 align="center"><i>Gadget's Specifications Categories Info</i></h1><br>
-    <table align="center" border="" height="350" width="800">
+    <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">
             <th>Category Name</th>

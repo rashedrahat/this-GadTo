@@ -10,20 +10,21 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>DB Backup/Restore</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
     <br><br><br><br>
     <h2 align="center"><i>Manage Database</i></h2>
-    <table align="center" height="200" width="400">
+    <table align="center" height="auto" width="auto">
 
         <tr align="center">
             <td>
-                <img src="imge.jpg" width="300" height="200">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img style="float: center;" src="imge.jpg" width="300" height="200">
             </td>
         </tr>
     </table>
-    <table align="center" border="" height="200" width="500">
+    <table align="center" border="" height="auto" width="auto">
         <tr aria-rowspan="2">
             <td td rowspan="5">&emsp;D
                 <br/>&emsp;A

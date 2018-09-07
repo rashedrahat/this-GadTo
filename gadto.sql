@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2018 at 07:43 PM
+-- Generation Time: Sep 07, 2018 at 05:04 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -165,7 +165,9 @@ INSERT INTO `company_info` (`price_id`, `name`, `company_gadget_link`) VALUES
 (6, 'Daraz', 'https://www.daraz.com.bd/hp-3gm14pa-14-bw077au-dual-core-e2-9000e-4-gb-ram-500gb-hdd-amd-radeon-r2-graphics-14.1-notebook-black-630522.html'),
 (2, 'Pickaboo', 'https://www.pickaboo.com/iphone-x-64gb.html?gclid=CjwKCAjwwJrbBRAoEiwAGA1B_dv1SgiOl9VPdF0GBZmYQ_CyjNCT75-AHDzbEQUYgDYb4mdNosXMJhoCgksQAvD_BwE'),
 (7, 'Daraz', 'https://www.daraz.com.bd/apple-iphone-x-smartphone-5.8-3gb-ram-64gb-rom-dual-12mp-camera-space-gray-448301.html'),
-(8, 'Ryans', 'https://ryanscomputers.com/acer-aspire-a315-21-28f1-amd-e2-9000-1-80-2-20ghz-4gb-ddr4-1600mhz-1tb-15-6-inch-obsidian-black-notebook-freedos-2-yr-warranty-nx-gnvsi-007.html');
+(8, 'Ryans', 'https://ryanscomputers.com/acer-aspire-a315-21-28f1-amd-e2-9000-1-80-2-20ghz-4gb-ddr4-1600mhz-1tb-15-6-inch-obsidian-black-notebook-freedos-2-yr-warranty-nx-gnvsi-007.html'),
+(10, 'Daraz', 'https://www.daraz.com.bd/apple-iphone-6-smartphone-4.7-1gb-ram-32gb-rom-8mp-camera-gold-776489.html'),
+(11, 'Pickaboo', 'https://www.pickaboo.com/iphone-6-32gb-mobile.html');
 
 -- --------------------------------------------------------
 
@@ -257,7 +259,6 @@ CREATE TABLE `gadget_categorys` (
 INSERT INTO `gadget_categorys` (`category_name`) VALUES
 ('Computer'),
 ('Mobile'),
-('Test'),
 ('Watch');
 
 -- --------------------------------------------------------
@@ -351,6 +352,16 @@ CREATE TABLE `mobile_specs` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `normaladminlist`
+-- (See below for the actual view)
+--
+CREATE TABLE `normaladminlist` (
+`user_name` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notification`
 --
 
@@ -428,7 +439,10 @@ INSERT INTO `price_info` (`price_id`, `price`, `gadget_id`) VALUES
 (6, 26790, 10),
 (7, 100240, 5),
 (8, 22300, 9),
-(9, 2692, 11);
+(9, 2692, 11),
+(10, 34999, 12),
+(11, 34999, 12),
+(12, 22800, 8);
 
 -- --------------------------------------------------------
 
@@ -455,7 +469,8 @@ INSERT INTO `review` (`review_id`, `post_date`, `user_name`, `comment`, `rating`
 (6, '2018-07-29', 'imrashed', 'Awesome phone, i love & like it.', 5, 'Yes', 1, 5),
 (8, '2018-08-02', 'itsme', 'Hmm, good for home use and nice look.', 4, 'Yes', 1, 10),
 (9, '2018-08-01', 'itsme', 'Kaymu, their delivery is fast.', 5, 'Yes', 2, 9),
-(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5);
+(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5),
+(11, '2018-09-01', 'Tamanna', 'Love n like it :)', 4, 'Yes', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -546,7 +561,8 @@ CREATE TABLE `specs_info_mobile` (
 
 INSERT INTO `specs_info_mobile` (`specs_id`, `display`, `camera`, `RAM`, `battery`, `specs_category_id`, `gadget_id`) VALUES
 (3, '5.8\"', '12MP', '3GB', '2716mAh', 2, 5),
-(4, '5.99\"', '20MP', '6GB', '3000mAh', 2, 7);
+(4, '5.99\"', '20MP', '6GB', '3000mAh', 2, 7),
+(5, '4.7\"', '8 MP', '1 GB', '1810mAh', 2, 12);
 
 -- --------------------------------------------------------
 
@@ -625,15 +641,17 @@ CREATE TABLE `user_info` (
 
 INSERT INTO `user_info` (`user_name`, `email`, `pass`, `first_name`, `last_name`, `phone`, `gender`, `u_type_name`, `status`) VALUES
 ('arman0010', 'tipu@gmail.com', '00000000', 'Arman', 'Hossen', '01676568244', 'Male', 'sa', 'active'),
-('ayesha', 'ayesha@gmail.com', '1234567890', 'Ayesha', 'Akhter', '+8801684313772', 'Female', 'na', 'active'),
+('ayesha', 'ayesha@gmail.com', '1234567890', 'Ayesha', 'Akhter', '01684313772', 'Female', 'na', 'active'),
 ('eva0010', 'eva@gmail.com', '00000000', 'Eva', 'Mony', '01676568244', 'Female', 'na', 'active'),
-('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '+8801633179767', 'Male', 'nu', 'active'),
-('irashed1994', 'rashedrahat@outlook.com', 'rashed1994', 'Rashed', 'Ahmed', '+8801512349876', 'Male', 'sa', 'active'),
-('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '+8801712345678', 'Other', 'nu', 'active'),
-('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '+8801633176797', 'Male', 'na', 'active'),
-('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '+8801612345678', 'Male', 'nu', 'blocked'),
-('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '+8801633171423', 'Male', 'na', 'pending'),
-('Tamanna', 'tamanna@gmail.com', '0123456789', 'Ayesha', 'Tamanna', '+8801684313277', 'Female', 'nu', 'active');
+('imrashed', 'imrashedrahat@gmail.com', 'imRAR1994', 'Rashed', 'Rahat', '01633179767', 'Male', 'nu', 'active'),
+('irashed1994', 'rashedrahat@outlook.com', 'rashed1994', 'Rashed', 'Ahmed', '01512349876', 'Male', 'sa', 'active'),
+('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '01712345678', 'Other', 'nu', 'active'),
+('rashed', 'rashed@yahoo.com', '12345678', 'Rashed', 'Ahmed', '01778620485', 'Male', 'sa', 'active'),
+('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '01633176797', 'Male', 'na', 'active'),
+('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '01612345678', 'Male', 'nu', 'blocked'),
+('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '01633171423', 'Male', 'na', 'pending'),
+('Tamanna', 'tamanna@yahoo.com', '0123456789', 'Ayesha', 'Tamanna', '01680000', 'Female', 'nu', 'active'),
+('test', 'test@gmail.com', '123456789', 'Test', 'Test', '01633179767', 'Other', 'nu', 'pending');
 
 -- --------------------------------------------------------
 
@@ -688,6 +706,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `mobile_specs`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `mobile_specs`  AS  select `specs_info_mobile`.`display` AS `display`,`specs_info_mobile`.`camera` AS `camera`,`specs_info_mobile`.`RAM` AS `RAM`,`specs_info_mobile`.`battery` AS `battery`,`specs_info_mobile`.`gadget_id` AS `gadget_id` from `specs_info_mobile` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `normaladminlist`
+--
+DROP TABLE IF EXISTS `normaladminlist`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `normaladminlist`  AS  select `user_info`.`user_name` AS `user_name` from `user_info` where ((`user_info`.`u_type_name` = 'na') and (`user_info`.`status` = 'active')) ;
 
 -- --------------------------------------------------------
 
@@ -923,13 +950,13 @@ ALTER TABLE `payment_info`
 -- AUTO_INCREMENT for table `price_info`
 --
 ALTER TABLE `price_info`
-  MODIFY `price_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `price_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `review_type`
@@ -953,7 +980,7 @@ ALTER TABLE `specs_info_computer`
 -- AUTO_INCREMENT for table `specs_info_mobile`
 --
 ALTER TABLE `specs_info_mobile`
-  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`

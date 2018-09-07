@@ -10,13 +10,14 @@ if ($_SESSION['user_name'] != true)
 
 <head>
     <title>Blocked User Info</title>
+    <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
 <br><br><br><br><br>
     <h1 align="center"><i>Blocked User Info</i></h1>
 
-    <table align="center" border="" width="800">
+    <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">
             <th>User Name</th>

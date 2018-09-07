@@ -12,7 +12,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$str = "select user_name from user_info where user_name like '".$_REQUEST["q"]."%';";
+$str = "select user_name from normaladminlist where user_name like '".$_REQUEST["q"]."%';";
 $res = mysqli_query($conn, $str);
 $list = "";
 for ($i = 0; $i<mysqli_num_rows($res);$i++)
