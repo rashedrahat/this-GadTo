@@ -1,0 +1,75 @@
+Post Ad
+-------
+-------
+
+`````````````Start of Inserting portion`````````````
+#1
+//From 1st step, taking inputs and inserting all the inputs on multiple table at a time..
+
+INSERT INTO `ad_info`(`ad_id`, `cost`, `start_date`, `end_date`, `user_name`, `duration`, `level`, `area`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8]);
+INSERT INTO `ad_extra_info`(`link`, `file`, `ad_id`) VALUES ([value-1],[value-2],[value-3]);
+
+Note: Combined (pair) query.
+
+#2
+//From 1st step, taking inputs and inserting all the inputs on multiple table at a time..
+INSERT INTO `card_info`(`card_no`, `holder_name`, `exp_date`, `cvv`) VALUES ([value-1],[value-2],[value-3],[value-4]);
+INSERT INTO `payment_info`(`pay_id`, `pay_method`, `ad_id`, `card_no`) VALUES ([value-1],[value-2],[value-3],[value-4]);
+
+Note: Combined (pair) query.
+
+Manage Ad
+---------
+
+CREATE VIEW ad_confirmation_info AS SELECT ad_conf_id, ad_id FROM ad_confirmation WHERE ad_status = 'Pending';
+CREATE VIEW ad_activated_info AS SELECT ad_id, ad_status FROM ad_confirmation WHERE ad_status = 'Active' OR ad_status = 'Expire';
+
+`````````````Start of Showing portion`````````````
+#1
+//Ad confirmation details showing..
+
+SELECT * FROM `ad_confirmation_info`;
+
+#2
+//Activated ad details showing..
+
+SELECT * FROM `ad_activated_info`;
+
+
+`````````````Start of Removing portion`````````````
+
+#1 Removing a specific row from the Activated Ad Info table.
+
+DELETE FROM ad_activated_info
+WHERE ad_id='1';
+
+Note: Similar for all kind of rows. Just ad_id='1/2/3' likhte hobe query portion-er ending-e.
+
+Ad Info
+-------
+
+CREATE VIEW posted_ad_info AS SELECT ad_id, ad_status, user_name FROM ad_confirmation;
+
+#1
+//Showing all the posted ad info..
+
+SELECT `ad_id`, `ad_status` FROM `posted_ad_info` WHERE username=`something`;
+
+//"See" button e click korar por showing a single ad info..
+
+#1
+SELECT ad_info.ad_id, ad_info.start_date, ad_info.end_date, ad_info.level, ad_info.area, ad_info.cost, ad_extra_info.file, ad_extra_info.link FROM ad_info INNER JOIN ad_extra_info ON ad_info.ad_id=ad_extra_info.ad_id WHERE ad_info.ad_id=value;
+
+//"Edit" button e click korar por showing+update a single ad info er kaj..
+
+#1
+SELECT ad_info.duration, ad_info.level, ad_info.area, ad_extra_info.file, ad_extra_info.link FROM ad_info INNER JOIN ad_extra_info ON ad_info.ad_id=ad_extra_info.ad_id WHERE ad_info.ad_id=value;
+
+#2
+//Updating multiple tables by taking inputs of a single ad..
+
+UPDATE `ad_info` SET `duration`=[value], `start_date`=[value],`end_date`=[value], `level`=[value],`area`=[value], `cost`=[value] WHERE ad_id=value;
+UPDATE `ad_extra_info` SET `link`=[value],`file`=[value] WHERE `ad_id`=value;
+Note: Combined (pair) query.
+
+===================================================X=======================================================
