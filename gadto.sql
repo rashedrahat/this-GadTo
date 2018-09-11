@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2018 at 05:04 PM
+-- Generation Time: Sep 11, 2018 at 03:17 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -908,7 +908,7 @@ ALTER TABLE `ad_info`
 -- AUTO_INCREMENT for table `brand_categorys`
 --
 ALTER TABLE `brand_categorys`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `confirmation_type`
@@ -926,7 +926,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `leave_info`
