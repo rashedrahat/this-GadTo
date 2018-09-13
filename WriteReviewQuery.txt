@@ -1,0 +1,18 @@
+Write Review:
+=============
+
+On Gadget Review:
+-----------------
+#1
+INSERT INTO `review`(`review_id`, `post_date`, `user_name`, `comment`, `rating`, `recommend`, `r_type_id`, `gadget_id`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8]);
+
+Note: Here at the time of inserting, post_date column er value = date() php function call kore variable er vitor store kore pass korte hobe, user_name = session_username, r_type_id = 1 (always fixed! bcoz its Gadget review portion), gadget_id = page4.php er running showing gadget er id & review_id = auto increment.
+
+On E-coomerce Company Review:
+-----------------------------
+#1
+INSERT INTO `review`(`review_id`, `post_date`, `user_name`, `comment`, `rating`, `recommend`, `r_type_id`, `gadget_id`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8]);
+
+Note: Here at the time of inserting, post_date column er value = date() php function call kore variable er vitor store kore pass korte hobe, user_name = session_username, r_type_id = 2 (always fixed! bcoz its E-coomerce Company review portion), gadget_id = page4.php er running showing gadget er id & review_id = auto increment.
+
+```````````````````````````````````````````````The End`````````````````````````````````````````````
