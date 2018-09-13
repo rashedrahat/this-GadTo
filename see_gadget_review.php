@@ -139,68 +139,68 @@ if ($gadget_id=="") {
 -->
 <div class="modal" id="gadget_review">
 
-<div class="container border">
+  <div class="container border">
 
-  <div class="row bg-secondary text-white">
-    <?php
-    $review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
-    $result=mysqli_query($conn, $review)or die(mysqli_error($conn));
+      <div class="row bg-secondary text-white">
+        <?php
+        $review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
+        $result=mysqli_query($conn, $review)or die(mysqli_error($conn));
 
-    while ($row=mysqli_fetch_assoc($result)) {
-      $rr= $row['rating'];
-     ?>
+        while ($row=mysqli_fetch_assoc($result)) {
+          $rr= $row['rating'];
+         ?>
 
 
-    <div class="col-sm-3">
-      <div class="Image">
-        <img src="user.jpg" alt="review" width="100" height="100">
+        <div class="col-sm-3">
+          <div class="Image">
+            <img src="user.jpg" alt="review" width="100" height="100">
 
-      </div>
-      <div id="user_name">
-        <h4><a href="#"><?=$row['user_name']?></a></h4>
-      </div>
-      <div id="post_date">
-        <h6><?=$row['post_date']?></h6>
+          </div>
+          <div id="user_name">
+            <h4><a href="#"><?=$row['user_name']?></a></h4>
+          </div>
+          <div id="post_date">
+            <h6><?=$row['post_date']?></h6>
 
-      </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-9">
+          <div class="review-block-rate">
+
+                    <?php
+                    for ($i=0; $i <$row['rating'] ; $i++) {?>
+                      <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+      								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      								</button>
+                  <?php  }
+                    for ($i=0; $i <(5-$row['rating']) ; $i++) { ?>
+                      <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+      								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      								</button>
+                  <?php  }
+
+
+
+
+                     ?>
+
+
+
+          </div>
+          <div class="review-block-description text text-left ">
+            <p><?=$row['comment']?></p>
+          </div>
+        </div>
+
+      <hr>
+
+      <?php } ?>
 
     </div>
 
-    <div class="col-sm-9">
-      <div class="review-block-rate">
-
-                <?php
-                for ($i=0; $i <$row['rating'] ; $i++) {?>
-                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-  								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-  								</button>
-              <?php  }
-                for ($i=0; $i <(5-$row['rating']) ; $i++) { ?>
-                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-  								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-  								</button>
-              <?php  }
-
-
-
-
-                 ?>
-
-
-
-      </div>
-      <div class="review-block-description text text-left ">
-        <p><?=$row['comment']?></p>
-      </div>
-    </div>
-
-<hr>
-
-<?php } ?>
-
-</div>
-
-</div>
+  </div>
 
 </div>
 

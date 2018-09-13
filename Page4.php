@@ -111,29 +111,32 @@ elseif ($category_name=='Mobile') {
                   $s="SELECT * FROM price_comparison WHERE gadget_id='$gadget_id';";
                   $result2=mysqli_query($conn, $s)or die(mysqli_error($conn));
 
-                  while ($row=mysqli_fetch_assoc($result2)) {
-
-
-                   ?>
-                        <a class="page-link" href="<?=$row['company_gadget_link']?>" title="Click to go this site" target="_blank">
+                  while ($row=mysqli_fetch_assoc($result2)) { ?>
+                         <a class="page-link" href="<?=$row['company_gadget_link']?>" title="Click to go this site" target="_blank">
                           <?=$row['price']?>tk@<?=$row['name']?>
                          </a>
-<?php } ?>
-
-
-
-
+                        <?php } ?>
                 </td>
             </tr>
-
             <tr>
                 <td align="center" colspan="9">
-                    <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#gadget_review"> Gadget review</button>
-                     OR <a href="see_company_review.php">E-Commerce Company</a> | </a> Write Review => <a href="write_review.php">Gadget</a> OR <a href="write_review.php">E-Commerce Company</a>
+                    <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#gadget_review"> Gadget review</button> OR
+                    <a href="see_company_review.php">E-Commerce Company</a> |
+                    Write Review =>
+                    <?php if (!empty($_SESSION)) {?>
+
+
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#write_review">Gadget</button> OR
+                    <a href="write_review.php">E-Commerce Company</a>
+                  <?php } else {?>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Gadget</button> OR
+                    <a href="write_review.php">E-Commerce Company</a>
+                <?php  }?>
                 </td>
             </tr>
 
         </table>
+
             <div style="padding-top: 20" align="center">
         <table align="center" border="1" width="1000" height="250">
             <tr >
@@ -223,57 +226,235 @@ elseif ($category_name=='Mobile') {
     <div style="padding:5; text-align:center;">
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
     </div>
+<!--see review-->
 
-
-    <div class="modal " id="gadget_review"  aria-hidden="true">
-      <div class="container border">
-        <div class="row bg-secondary text-white">
-          <?php
-          $review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
-          $result=mysqli_query($conn, $review)or die(mysqli_error($conn));
-          while ($row=mysqli_fetch_assoc($result)) {
-           ?>
-          <div class="col-sm-3">
-            <div class="Image">
-              <img src="user.jpg" alt="review" width="100" height="100">
-            </div>
-            <div id="user_name">
-              <h4><a href="#"><?=$row['user_name']?></a></h4>
-            </div>
-            <div id="post_date">
-              <h6><?=$row['post_date']?></h6>
+    <div class="modal " id="gadget_review"  >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"> Review </h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row my-4">
+                <?php
+                $review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
+                $result=mysqli_query($conn, $review)or die(mysqli_error($conn));
+                while ($row=mysqli_fetch_assoc($result)) {
+                 ?>
+                <div class="col-sm-3">
+                  <div class="Image">
+                    <img src="user.jpg" alt="review" width="100" height="100">
+                  </div>
+                  <div id="user_name">
+                    <h4><a href="#"><?=$row['user_name']?></a></h4>
+                  </div>
+                  <div id="post_date">
+                    <h6><?=$row['post_date']?></h6>
+                  </div>
+                </div>
+                <div class="col-sm-9">
+                  <div class="review-block-rate">
+                            <?php
+                            for ($i=0; $i <$row['rating'] ; $i++) {?>
+                              <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                <i class="far fa-star"></i>
+              								</button>
+                          <?php  }
+                            for ($i=0; $i <(5-$row['rating']) ; $i++) { ?>
+                              <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                <i class="far fa-star"></i>
+              								</button>
+                          <?php  } ?>
+                  </div>
+                  <div class="review-block-description text text-left ">
+                    <p><?=$row['comment']?></p>
+                  </div>
+                </div>
+                <hr>
+                <?php } ?>
+              </div>
             </div>
           </div>
-          <div class="col-sm-9">
-            <div class="review-block-rate">
-                      <?php
-                      for ($i=0; $i <$row['rating'] ; $i++) {?>
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                          <i class="far fa-star"></i>
-        								</button>
-                    <?php  }
-                      for ($i=0; $i <(5-$row['rating']) ; $i++) { ?>
-                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                          <i class="far fa-star"></i>
-        								</button>
-                    <?php  } ?>
-            </div>
-            <div class="review-block-description text text-left ">
-              <p><?=$row['comment']?></p>
-            </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-dismiss="modal" >close</button>
           </div>
-          <hr>
-          <?php } ?>
         </div>
       </div>
     </div>
+
+<!-- write_review-->
+<div class="modal" id="write_review">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Give your opinion  </h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="reviewValidation.php" id="reviewForm">
+            <table class="table" align="center" border="1">
+              <tr>
+                <td>
+                    <div class="">
+                      <label for="comment">  Post a Comment:</label>
+                      <textarea class="form-control" rows="5" id="comment" name="comment">
+                      </textarea>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <label for="">Give a rating:</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="5">5 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="4">4 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="3">3 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="2">2 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="1">1 Stars
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="">
+                    <label for="">Will You Recommend?</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="recommend" class="form-check-input" value="yes">YES
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="recommend" class="form-check-input" value="no">NO
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="hidden" name="destination" value="<?php echo $gadget_id; ?>"/>
+                  </div>
+                </td>
+              </tr>
+            </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button" name="submit" id="btnReview">submit</button>
+        <button class="btn btn-secondary" data-dismiss="modal" >close</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--log in modal-->
+<div class="modal fade" id="logInModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> modal title</h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="logForm" action="log/loginModal.php" method="POST">
+            <table align="center" height="200" width="400" style="padding-top: 175px">
+                <tr>
+                    <td align="center" colspan="2">
+                        <input type="text " size="45" name='user_name' placeholder="Username" style="height: 40px " ; />
+                        <br/>
+                        <br/>
+
+                        <input type="password" name='pass' placeholder="Password" size="45" style="height: 40px " ;/>
+                        <br/>
+                        <br/>
+                        <input type="hidden" name="destination" value="<?php echo $gadget_id; ?>"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" id="submitForm" type="button">submit</button>
+        <button class="btn btn-secondary" data-dismiss="modal" >close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <?php
       mysqli_close($conn);
       ?>
 
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#logForm").on("click", function(e) {
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            $.ajax({
+                url: formURL,
+                type: "POST",
+                data: postData,
+            });
+            e.preventDefault();
+        });
+        $("#submitForm").on('click', function() {
+            $("#logForm").submit();
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#reviewForm").on("click",function(e){
+        var postData=$(this).serializeArray();
+        var formURL=$(this).attr("action");
+        $.ajax({
+          url:formURL,
+          type:"POST",
+          data:postData,
+        });
+        e.preventDefault();
+      });
+      $("#btnReview").on('click',function(){
+        $("#reviewForm").submit();
+      });
+    });
+    </script>
+
+
     <?php
       include 'footer.php';
     ?>
