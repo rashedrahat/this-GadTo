@@ -45,7 +45,7 @@ if ($_SESSION['user_name'] != true)
 </head>
 
 <body>
-        
+
         <?php
             include 'insideHeaderNormalUser.php';
         ?>
@@ -55,7 +55,7 @@ if ($_SESSION['user_name'] != true)
         </button>
         <br/><br/>
         <div align="center">
-           <b>Welcome <?php echo $_SESSION['user_name'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b> 
+           <b>Welcome <?php echo $_SESSION['user_name'] . "<br/>You logged in at:" . $_COOKIE['loggedintime'];?></b>
         </div>
         <br>
         <table align="center" border="" style="height: auto; width: auto; padding: 1">
@@ -73,7 +73,6 @@ if ($_SESSION['user_name'] != true)
                         <input type="text" placeholder="Search.." name="search">
                         <button type="submit">
                             <i class="fa fa-search"></i>
-
                         </button>
                     </form>
                     <br/>
@@ -110,16 +109,17 @@ if ($_SESSION['user_name'] != true)
                             </td>
                         </tr>
                         <tr style="text-align: left;">
-                            <td>&emsp;<?php echo $ru ?>, you posted a review about 
+                            <td>you posted a review about
                                 <a href="#"><?php echo $row["gadget_name"] ?></a>
                             </td>
                         </tr>
-                    </table>
+
                     <?php }
             }
 
             mysqli_close($conn);
             ?>
+                </table>
         </div>
         <script>
             // When the user scrolls down 20px from the top of the document, show the button
