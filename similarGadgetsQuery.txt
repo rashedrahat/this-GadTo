@@ -5,15 +5,13 @@ CREATE VIEW gadgets AS SELECT gadget_id, gadget_name, category_name FROM gadget_
 For showing similar gadget
 --------------------------
 #1
-SELECT gadget_name
-FROM gadgets
-WHERE gadget_name LIKE '%iPhone%' AND category_name = 'Mobile';
+SELECT gadget_name FROM gadgets WHERE gadget_name LIKE '%iPhone%' AND category_name = 'Mobile' AND NOT gadget_id = (SELECT gadget_id FROM gadgets WHERE gadget_name = 'iPhone X');
 
 OR
 
 #2
-SELECT gadget_name
-FROM gadgets
-WHERE gadget_name LIKE 'ASUS%' AND category_name = 'Computer';
+SELECT gadget_name FROM gadgets WHERE gadget_name LIKE 'Asus%' AND category_name = 'Computer' AND NOT gadget_id = (SELECT gadget_id FROM gadgets WHERE gadget_name = 'ASUS X540YA');
 
-N.B: Both queries are used to give same output, so use anyone query as ur wish.
+N.B: Both queries are used to give same output, so use anyone query as ur wish. Orthat, '%iPhone%'' or 'iPhone%' jkono ekta use korleo pblm nai. But personally suggest that to use '%iPhone%'
+
+==========================The End========================
