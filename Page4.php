@@ -120,18 +120,27 @@ elseif ($category_name=='Mobile') {
             </tr>
             <tr>
                 <td align="center" colspan="9">
-                    <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#gadget_review"> Gadget review</button> OR
-                    <a href="see_company_review.php">E-Commerce Company</a> |
-                    Write Review =>
-                    <?php if (!empty($_SESSION)) {?>
+                  <div class="row">
+                    <div class="col">
+                        <h4>See Reviews</h4>
+                        <hr>
+                        <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#gadget_review"> Gadget</button>
+                        <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#e_commerce_company"> E-Commerce Company</button>
+                    </div>
 
+                    <div class="col">
+                        <h4>Write Review</h4>
+                        <hr>
+                        <?php if (!empty($_SESSION)) {?>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#write_review">Gadget</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#write_e_commerce_company_review">e_commerce_company</button>
+                      <?php } else {?>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Gadget</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">E-Commerce Company</button>
+                    <?php  }?>
 
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#write_review">Gadget</button> OR
-                    <a href="write_review.php">E-Commerce Company</a>
-                  <?php } else {?>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Gadget</button> OR
-                    <a href="write_review.php">E-Commerce Company</a>
-                <?php  }?>
+                  </div>
+                </div>
                 </td>
             </tr>
 
@@ -227,20 +236,76 @@ elseif ($category_name=='Mobile') {
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
     </div>
 <!--see review-->
-
     <div class="modal " id="gadget_review"  >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title"> Review </h5>
+            <h5 class="modal-title">Gadget Review </h5>
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
             <div class="container">
               <div class="row my-4">
                 <?php
-                $review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
-                $result=mysqli_query($conn, $review)or die(mysqli_error($conn));
+                $gadget_review="SELECT * FROM gadget_review WHERE gadget_id='$gadget_id'; ";
+                $result=mysqli_query($conn, $gadget_review)or die(mysqli_error($conn));
+                while ($row=mysqli_fetch_assoc($result)) {
+                 ?>
+                <div class="col-sm-3">
+                  <div class="Image">
+                    <img src="user.jpg" alt="review" width="100" height="100">
+                  </div>
+                  <div id="user_name">
+                    <h4><a href="#"><?=$row['user_name']?></a></h4>
+                  </div>
+                  <div id="post_date">
+                    <h6><?=$row['post_date']?></h6>
+                  </div>
+                </div>
+                <div class="col-sm-9">
+                  <div class="review-block-rate">
+                            <?php
+                            for ($i=0; $i <$row['rating'] ; $i++) {?>
+                              <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                <i class="far fa-star"></i>
+              								</button>
+                          <?php  }
+                            for ($i=0; $i <(5-$row['rating']) ; $i++) { ?>
+                              <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                <i class="far fa-star"></i>
+              								</button>
+                          <?php  } ?>
+                  </div>
+                  <div class="review-block-description text text-left ">
+                    <p><?=$row['comment']?></p>
+                  </div>
+                </div>
+                <hr>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-dismiss="modal" >close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- e_commerce_company reviews -->
+    <div class="modal " id="e_commerce_company"  >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"> E-Commerce Company Review </h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row my-4">
+                <?php
+                $e_commerce_company_review="SELECT * FROM e_commerce_company_review WHERE gadget_id='$gadget_id'; ";
+                $result=mysqli_query($conn, $e_commerce_company_review)or die(mysqli_error($conn));
                 while ($row=mysqli_fetch_assoc($result)) {
                  ?>
                 <div class="col-sm-3">
@@ -366,9 +431,92 @@ elseif ($category_name=='Mobile') {
       </div>
     </div>
   </div>
+<!-- write e_commerce_company review -->
+</div>
+<div class="modal" id="write_e_commerce_company_review">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Give your opinion  </h5>
+        <button class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="reviewValidation.php" id="e_commerce_companyReviewForm">
+            <table class="table" align="center" border="1">
+              <tr>
+                <td>
+                    <div class="">
+                      <label for="comment">  Post a Comment:</label>
+                      <textarea class="form-control" rows="5" id="comment" name="comment">
+                      </textarea>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <label for="">Give a rating:</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="5">5 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="4">4 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="3">3 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="2">2 Stars
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="star" class="form-check-input" value="1">1 Stars
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="">
+                    <label for="">Will You Recommend?</label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="recommend" class="form-check-input" value="yes">YES
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" name="recommend" class="form-check-input" value="no">NO
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="hidden" name="destination" value="<?php echo $gadget_id; ?>"/>
+                    <input type="hidden" name="e_commerce_companyReview" value="e_commerce_companyReview">
+                  </div>
+                </td>
+              </tr>
+            </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button" name="submit" id="btn_e_commerce_companyReview">submit</button>
+        <button class="btn btn-secondary" data-dismiss="modal" >close</button>
+      </div>
+    </div>
+  </div>
 
 </div>
-
 <!--log in modal-->
 <div class="modal fade" id="logInModal" role="dialog">
   <div class="modal-dialog">
@@ -403,10 +551,6 @@ elseif ($category_name=='Mobile') {
     </div>
   </div>
 </div>
-
-
-
-
 
     <?php
       mysqli_close($conn);
@@ -450,6 +594,24 @@ elseif ($category_name=='Mobile') {
       });
       $("#btnReview").on('click',function(){
         $("#reviewForm").submit();
+      });
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#e_commerce_companyReviewForm").on("click",function(e){
+        var postData=$(this).serializeArray();
+        var formURL=$(this).attr("action");
+        $.ajax({
+          url:formURL,
+          type:"POST",
+          data:postData,
+        });
+        e.preventDefault();
+      });
+      $("#btn_e_commerce_companyReview").on('click',function(){
+        $("#e_commerce_companyReviewForm").submit();
       });
     });
     </script>

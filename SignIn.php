@@ -1,8 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_name'])) {
+ ?>
 <html>
 <head>
     <title>FORM | Sign-In</title>
 </head>
-
 <body>
     <?php
         include 'headSignIn.php';
@@ -66,3 +69,8 @@
     ?>
 </body>
 </html>
+<?php }
+else {
+  header("location: ProfileHome.php");
+}
+ ?>

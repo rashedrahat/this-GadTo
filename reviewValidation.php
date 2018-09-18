@@ -20,11 +20,21 @@
      header("Location: page4.php?gadget_id=$gadget_id");
    }
  		else{
-      $conn 		= mysqli_connect($servername, $username, $password, $dbname);
-      $sql 		= "INSERT INTO review (review_id, post_date, user_name, comment, rating, recommend, r_type_id, gadget_id) VALUES ('','$post_date','$user_name','$comment','$rating','$recommend','$r_type_id','$gadget_id')";
-      $result		= mysqli_query($conn, $sql);
-      header("Location: page4.php?gadget_id=$gadget_id");
-      exit;
+      if (isset($_POST['e_commerce_companyReview'])) {
+        $conn 		= mysqli_connect($servername, $username, $password, $dbname);
+        $sql 		= "INSERT INTO review (review_id, post_date, user_name, comment, rating, recommend, r_type_id, gadget_id) VALUES ('','$post_date','$user_name','$comment','$rating','$recommend','2','$gadget_id')";
+        $result		= mysqli_query($conn, $sql);
+        header("Location: page4.php?gadget_id=$gadget_id");
+        exit;
+      } else {
+        $conn 		= mysqli_connect($servername, $username, $password, $dbname);
+        $sql 		= "INSERT INTO review (review_id, post_date, user_name, comment, rating, recommend, r_type_id, gadget_id) VALUES ('','$post_date','$user_name','$comment','$rating','$recommend','1','$gadget_id')";
+        $result		= mysqli_query($conn, $sql);
+        header("Location: page4.php?gadget_id=$gadget_id");
+        exit;
+      }
+
+
  		}
  	}else {
     mysqli_close($conn);
