@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2018 at 01:49 PM
+-- Generation Time: Sep 18, 2018 at 07:16 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -266,6 +266,7 @@ CREATE TABLE `e_commerce_company_review` (
 ,`recommend` varchar(3)
 ,`post_date` date
 ,`gadget_name` varchar(30)
+,`gadget_id` int(10)
 );
 
 -- --------------------------------------------------------
@@ -508,7 +509,11 @@ INSERT INTO `review` (`review_id`, `post_date`, `user_name`, `comment`, `rating`
 (8, '2018-08-02', 'itsme', 'Hmm, good for home use and nice look.', 4, 'Yes', 1, 10),
 (9, '2018-08-01', 'itsme', 'Kaymu, their delivery is fast.', 5, 'Yes', 2, 9),
 (10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5),
-(11, '2018-09-01', 'Tamanna', 'Love n like it :)', 4, 'Yes', 1, 8);
+(11, '2018-09-01', 'Tamanna', 'Love n like it :)', 4, 'Yes', 1, 8),
+(13, '2018-09-14', 'tamanna', '                      Good', 4, 'yes', 1, 9),
+(14, '2018-09-16', 'tamanna', '                     Hmm ', 1, 'yes', 1, 8),
+(15, '2018-09-16', 'tamanna', '                      ', 0, 'yes', 1, 8),
+(16, '2018-09-16', 'tamanna', '                      ', 0, 'no', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -688,7 +693,7 @@ INSERT INTO `user_info` (`user_name`, `email`, `pass`, `first_name`, `last_name`
 ('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '01633176797', 'Male', 'na', 'active'),
 ('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '01612345678', 'Male', 'nu', 'blocked'),
 ('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '01633171423', 'Male', 'na', 'pending'),
-('Tamanna', 'tamanna@yahoo.com', '0123456789', 'Ayesha', 'Tamanna', '01680000', 'Female', 'nu', 'active'),
+('Tamanna', 'tamanna@gmail.com', '0123456789', 'Ayesha', 'Tamanna', '01680000', 'Female', 'nu', 'active'),
 ('test', 'test@gmail.com', '123456789', 'Test', 'Test', '01633179767', 'Other', 'nu', 'pending');
 
 -- --------------------------------------------------------
@@ -734,7 +739,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `e_commerce_company_review`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `e_commerce_company_review`  AS  select `review`.`user_name` AS `user_name`,`review`.`rating` AS `rating`,`review`.`comment` AS `comment`,`review`.`recommend` AS `recommend`,`review`.`post_date` AS `post_date`,`gadget_info`.`gadget_name` AS `gadget_name` from (`review` join `gadget_info` on((`review`.`gadget_id` = `gadget_info`.`gadget_id`))) where (`review`.`r_type_id` = 2) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `e_commerce_company_review`  AS  select `review`.`user_name` AS `user_name`,`review`.`rating` AS `rating`,`review`.`comment` AS `comment`,`review`.`recommend` AS `recommend`,`review`.`post_date` AS `post_date`,`gadget_info`.`gadget_name` AS `gadget_name`,`gadget_info`.`gadget_id` AS `gadget_id` from (`review` join `gadget_info` on((`review`.`gadget_id` = `gadget_info`.`gadget_id`))) where (`review`.`r_type_id` = 2) ;
 
 -- --------------------------------------------------------
 
@@ -973,7 +978,7 @@ ALTER TABLE `ad_info`
 -- AUTO_INCREMENT for table `brand_categorys`
 --
 ALTER TABLE `brand_categorys`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `confirmation_type`
@@ -991,7 +996,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `leave_info`
@@ -1021,7 +1026,7 @@ ALTER TABLE `price_info`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `review_type`
