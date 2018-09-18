@@ -1,0 +1,19 @@
+#0
+CREATE VIEW gadgets AS SELECT gadget_id, gadget_name, category_name FROM gadget_info;
+//Created a view.
+
+For showing similar gadget
+--------------------------
+#1
+SELECT gadget_name
+FROM gadgets
+WHERE gadget_name LIKE '%iPhone%' AND category_name = 'Mobile';
+
+OR
+
+#2
+SELECT gadget_name
+FROM gadgets
+WHERE gadget_name LIKE 'ASUS%' AND category_name = 'Computer';
+
+N.B: Both queries are used to give same output, so use anyone query as ur wish.

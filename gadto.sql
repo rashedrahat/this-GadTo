@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2018 at 02:51 PM
+-- Generation Time: Sep 18, 2018 at 07:43 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -98,7 +98,7 @@ INSERT INTO `brand_categorys` (`brand_id`, `brand_name`, `category_name`) VALUES
 --
 CREATE TABLE `brand_gad_cat` (
 `brand_name` varchar(20)
-,`gadget_name` varchar(30)
+,`gadget_name` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -199,8 +199,20 @@ CREATE TABLE `e_commerce_company_review` (
 ,`comment` varchar(100)
 ,`recommend` varchar(3)
 ,`post_date` date
-,`gadget_name` varchar(30)
+,`gadget_name` varchar(50)
 ,`gadget_id` int(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `gadgets`
+-- (See below for the actual view)
+--
+CREATE TABLE `gadgets` (
+`gadget_id` int(10)
+,`gadget_name` varchar(50)
+,`category_name` varchar(20)
 );
 
 -- --------------------------------------------------------
@@ -230,7 +242,7 @@ INSERT INTO `gadget_categorys` (`category_name`) VALUES
 
 CREATE TABLE `gadget_info` (
   `gadget_id` int(10) NOT NULL,
-  `gadget_name` varchar(30) NOT NULL,
+  `gadget_name` varchar(50) NOT NULL,
   `category_name` varchar(20) NOT NULL,
   `brand_id` int(10) NOT NULL,
   `specs_category_id` int(10) NOT NULL
@@ -241,13 +253,15 @@ CREATE TABLE `gadget_info` (
 --
 
 INSERT INTO `gadget_info` (`gadget_id`, `gadget_name`, `category_name`, `brand_id`, `specs_category_id`) VALUES
-(5, 'iPhoneX', 'Mobile', 1, 2),
+(5, 'iPhone X', 'Mobile', 1, 2),
 (7, 'Xiaomi Mi A2 (Mi 6X)', 'Mobile', 2, 2),
 (8, 'Asus X540YA', 'Computer', 3, 1),
 (9, 'Acer Aspire A315-21 28F1', 'Computer', 5, 1),
 (10, 'HP 14-BW077AU', 'Computer', 6, 1),
 (11, 'Rolex WRM13', 'Watch', 7, 3),
-(12, 'iPhone 6', 'Mobile', 1, 2);
+(12, 'iPhone 6', 'Mobile', 1, 2),
+(14, 'Asus Zenfone Max Pro (M1) ZB601KL', 'Mobile', 4, 2),
+(15, 'Asus X556UQ-7200U', 'Computer', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -261,7 +275,7 @@ CREATE TABLE `gadget_review` (
 ,`comment` varchar(100)
 ,`recommend` varchar(3)
 ,`post_date` date
-,`gadget_name` varchar(30)
+,`gadget_name` varchar(50)
 ,`gadget_id` int(10)
 );
 
@@ -273,7 +287,7 @@ CREATE TABLE `gadget_review` (
 --
 CREATE TABLE `gad_spcs_cat` (
 `specs_name` varchar(20)
-,`gadget_name` varchar(30)
+,`gadget_name` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -500,7 +514,8 @@ CREATE TABLE `specs_info_computer` (
 INSERT INTO `specs_info_computer` (`specs_id`, `processor`, `processor_clock_speed`, `display`, `RAM`, `RAM_type`, `HDD`, `OS`, `specs_category_id`, `gadget_id`) VALUES
 (5, 'AMD E1-6010', '1.35GHz', '15.6\"', '4GB', 'DDR3L 1333MHz', '500GB', NULL, 1, 8),
 (6, 'Intel Celeron Processor-N3350', '1.10-2.4GHz', '15.6\"', '4GB', 'DDR3L SDRAM 1600MHz', '500GB', 'Free DOS', 1, 9),
-(7, 'AMD DUAL CORE E2-9000E', '1.5-2.0GHz', '14.1\"', '4GB', 'DDR4 1866MHz', '500GB', NULL, 1, 10);
+(7, 'AMD DUAL CORE E2-9000E', '1.5-2.0GHz', '14.1\"', '4GB', 'DDR4 1866MHz', '500GB', NULL, 1, 10),
+(8, 'Intel® Core™ i5-7200U', '2.50 GHz up to 3.10 GHz', '15.6\" (16:9) LED backlit FHD (1920 X 1080)', '8GB', 'DDR4', '1TB', 'Free DOS', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -525,7 +540,8 @@ CREATE TABLE `specs_info_mobile` (
 INSERT INTO `specs_info_mobile` (`specs_id`, `display`, `camera`, `RAM`, `battery`, `specs_category_id`, `gadget_id`) VALUES
 (3, '5.8\"', '12MP', '3GB', '2716mAh', 2, 5),
 (4, '5.99\"', '20MP', '6GB', '3000mAh', 2, 7),
-(5, '4.7\"', '8 MP', '1 GB', '1810mAh', 2, 12);
+(5, '4.7\"', '8 MP', '1 GB', '1810mAh', 2, 12),
+(6, '5.99\"', '16MP', '6GB', '5000mAh', 2, 14);
 
 -- --------------------------------------------------------
 
@@ -607,6 +623,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `e_commerce_company_review`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `e_commerce_company_review`  AS  select `review`.`user_name` AS `user_name`,`review`.`rating` AS `rating`,`review`.`comment` AS `comment`,`review`.`recommend` AS `recommend`,`review`.`post_date` AS `post_date`,`gadget_info`.`gadget_name` AS `gadget_name`,`gadget_info`.`gadget_id` AS `gadget_id` from (`review` join `gadget_info` on((`review`.`gadget_id` = `gadget_info`.`gadget_id`))) where (`review`.`r_type_id` = 2) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `gadgets`
+--
+DROP TABLE IF EXISTS `gadgets`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `gadgets`  AS  select `gadget_info`.`gadget_id` AS `gadget_id`,`gadget_info`.`gadget_name` AS `gadget_name`,`gadget_info`.`category_name` AS `category_name` from `gadget_info` ;
 
 -- --------------------------------------------------------
 
@@ -795,13 +820,13 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `ad_info`
 --
 ALTER TABLE `ad_info`
-  MODIFY `ad_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ad_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `brand_categorys`
 --
 ALTER TABLE `brand_categorys`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `database_file`
@@ -813,7 +838,7 @@ ALTER TABLE `database_file`
 -- AUTO_INCREMENT for table `gadget_info`
 --
 ALTER TABLE `gadget_info`
-  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `gadget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `leave_info`
@@ -831,7 +856,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `payment_info`
 --
 ALTER TABLE `payment_info`
-  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `price_info`
@@ -861,13 +886,13 @@ ALTER TABLE `specs_categorys`
 -- AUTO_INCREMENT for table `specs_info_computer`
 --
 ALTER TABLE `specs_info_computer`
-  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `specs_info_mobile`
 --
 ALTER TABLE `specs_info_mobile`
-  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `specs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
