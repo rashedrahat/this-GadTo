@@ -115,6 +115,7 @@ if ($_SESSION['user_name'] != true)
     <div class="dropdown-content">
       <a href="manageReqAd_2.php">Requested Ad</a>
       <a href="manageActAd_2.php">Activated Ad</a>
+      <a href="manageExpAd_2.php">Expired Ad</a>
     </div>
   </div>
 </div>

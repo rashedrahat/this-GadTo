@@ -9,7 +9,7 @@ if ($_SESSION['user_name'] != true)
 <html>
 
 <head>
-    <title>FORM</title>
+    <title>Payment</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -22,7 +22,7 @@ if ($_SESSION['user_name'] != true)
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <div>
 
-        <form action="">
+        <form action="checkPayment.php"  method="POST">
 
             <table align="center" height="100" width="800">
                 <tr algin="center">
@@ -44,10 +44,8 @@ if ($_SESSION['user_name'] != true)
                     <td>Choose Payment Method</td>
 
                     <td>
-                        <input type="radio" name="payment" />
-                        <img src="visa.jpg" height="40" width="70">
-                        <input type="radio" name="payment" />
-                        <img src="mastercard.jpg" height="40" width="70">
+                        <input type="radio" name="pay_method" value="visa" checked/><img src="visa.jpg" height="40" width="70">
+                        <input type="radio" name="pay_method" value="mastercard"/><img src="mastercard.jpg" height="40" width="70">
 
                     </td>
                 </tr>
@@ -60,12 +58,12 @@ if ($_SESSION['user_name'] != true)
                     <td>
                         Cardholders Name
                         <br/>
-                        <input type="txt" name="name" />
+                        <input type="txt" name="holder_name" />
                     </td>
 
-                    <td>CardNumber
+                    <td>Card Number
                         <br/>
-                        <input type="txt" name="name" />
+                        <input type="txt" name="card_no" />
 
 
                     </td>
@@ -79,17 +77,13 @@ if ($_SESSION['user_name'] != true)
                     <td>Expiry Date
                         <br/>
 
-                        <input type="number" name="day" min="1" max="31" />
-                        <input type="number" name="month" min="1" max="12" />
-                        <input type="number" name="year" min="1900" max="2020" />
-                        <label>
-                            <font size="2">(dd/mm/yyyy)</font>
-                        </label>
+                        <input type="date" name="exp_date" />
+                        
                         <br/>
                     </td>
                     <td>CVC/CVC*
                         <br/>
-                        <input type="text" name="name" />
+                        <input type="text" name="cvv" />
 
                     </td>
                 </tr>
@@ -107,7 +101,7 @@ if ($_SESSION['user_name'] != true)
                     <td>
                         <font size="4">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <input type="button" style="height:50px;width:100px" value="COMPLETE" onclick="window.location.href='ad_pay_review.php'" />
+                            <input type="submit" style="height:50px;width:100px" />
                             &emsp;&emsp;&emsp;&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="CANCEL" onclick="window.location.href='PostAd.php'" />
                         </font>

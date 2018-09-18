@@ -374,7 +374,7 @@ elseif ($category_name=='Mobile') {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"> modal title</h5>
+        <h5 class="modal-title">Log In</h5>
         <button class="close" data-dismiss="modal">&times;</button>
       </div>
 

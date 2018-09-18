@@ -15,147 +15,79 @@ if ($_SESSION['user_name'] != true)
 
 <body>
 <br><br><br><br><br>
-    <h1 align="center"><i>Ad Confirmation Info</i></h1>
+    <h1 align="center"><i>Requested Ad Info</i></h1>
     <table align="center" border="" height="auto" width="auto">
 
-        <tr align="center">
-            <th>Ad Confirmation ID</th>
-            <th>Ad ID</th>
-            <th>Location</th>
-            <th>Action&emsp;</th>
+            <tr align="center">
+                <th><i>ID</i></th>
+                <th><i>Status</i></th>
+                <th><i>Details</i></th>
+                <th><i>Action</i></th>
+            </tr>
 
+<?php
 
-        </tr>
-        <tr align="center">
-            <td>
-                101
-            </td>
-            <td>
-                202
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accept" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
+        $servername = "localhost";
+        $uname      = "root";
+        $password   = "";
+        $dbname     = "gadto";
 
-        <tr align="center">
-            <td>
-                102
-            </td>
-            <td>
-                203
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accept" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
+        $conn = mysqli_connect($servername, $uname, $password, $dbname);
 
+        $sql               = "select * from ad_info where status='pending'";
+        $result            = mysqli_query($conn, $sql);
 
-        <tr align="center">
-            <td>
-                214
-            </td>
-            <td>
-                354
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accept" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['id']          = $row['ad_id'];
+        $GLOBALS['status']      = $row['status'];
+        $GLOBALS['cost']        = $row['cost'];
+        $GLOBALS['duration']    = $row['duration'];
+        $GLOBALS['level']       = $row['level'];
+        $GLOBALS['link']        = $row['link'];
 
-
-        <tr align="center">
+        $GLOBALS['js']          ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $id .'</td>
+            <td>'. $status .'</td>
             <td>
-                353
+                Cost: '. $cost .'  Duration: '. $duration .' </br>
+                Intensity: '. $level .' </br>
+                Link: '. $link .'
             </td>
             <td>
-                333
+                <a href="manageReqAd_2.php?accept='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Accept">
+                </a>
+                <a href="manageReqAd_2.php?decline='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Decline">
+                </a>
             </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accepted" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
-
-        <tr align="center">
-            <td>
-                337
-            </td>
-            <td>
-                244
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accepted" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
-        <tr align="center">
-            <td>
-                344
-            </td>
-            <td>
-                399
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accept" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
-
-        <tr align="center">
-            <td>
-                350
-            </td>
-            <td>
-                440
-            </td>
-            <td>
-                <input type="submit" name="Choose" value="Choose">
-                <input type="submit" name="ok" value="&nbsp;ok&nbsp;" />
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:66px" value="Accepted" onclick="window.location.href='#.html'" />
-                <input type="button" style="height:20px;width:66px" value="Decline" onclick="window.location.href='#'"
-                />
-            </td>
-        </tr>
-    </table><br/>
+        </tr>'; 
+        
+        }
+?> 
+    </table>
+    <br/>
     <div align="center">
-    <a href="AdminPortal.php">Go back to Profile Home</a>
+    <a href="adminPortal.php">Go back to Profile Home</a>
     </div>
 </body>
 
 </html>
+
+<?php
+    if(isset($_GET['accept'])){
+        $accept_id = $_GET['accept'];
+
+        mysqli_query($conn, "update ad_info set status='active' where ad_id = '$accept_id'");
+        header("Location: manageReqAd_2.php");
+    }
+        elseif(isset($_GET['decline'])){
+        $del_id = $_GET['decline'];
+
+        mysqli_query($conn, "DELETE FROM ad_info WHERE ad_id='$del_id'");
+        header("Location: manageReqAd_2.php");
+    }
+    
+?>

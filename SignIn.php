@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <title>FORM | Sign-In</title>
 </head>
@@ -26,18 +25,22 @@
                 <td align="center" colspan="2">
                     <input type="text " size="45" name='user_name' placeholder="Username" style="height: 40px " ; />
                     <br/>
+                    <a style="color:red;"><?php if(isset($_GET['reteu'])){$reteu=$_GET['reteu']; print $reteu;} ?></a>
+                    <br/>
                     <br/>
 
                     <input type="password" name='pass' placeholder="Password" size="45" style="height: 40px " ;/>
                     <br/>
+                    <a style="color:red;"><?php if(isset($_GET['retep'])){$retep=$_GET['retep']; print $retep;} ?></a>
+                    <br/>
+                    <a style="color:red;"><?php if(isset($_GET['retnup'])){$retnup=$_GET['retnup']; print $retnup;} ?></a>
+                    <a style="color:red;"><?php if(isset($_GET['retnub'])){$retnub=$_GET['retnub']; print $retnub;} ?></a>
+                    <a style="color:red;"><?php if(isset($_GET['retnab'])){$retnab=$_GET['retnab']; print $retnab;} ?></a>
+                    <a style="color:red;"><?php if(isset($_GET['ret'])){$ret=$_GET['ret']; print $ret;} ?></a>
                     <br/>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    &emsp;&emsp;<input type="checkbox" name="remember" value="remember me">Remember Me
-                </td>
-            </tr>
+
             <tr>
                 <td>
                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

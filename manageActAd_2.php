@@ -9,162 +9,85 @@ if ($_SESSION['user_name'] != true)
 <html>
 
 <head>
-    <title>rePost Ad information</title>
+    <title>Active Ads</title>
     <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
 <br><br><br><br><br>
-    <h1 align="center"><i>Activated Ad Info</i></h1>
-    <table align="center" height="auto" width="auto">
+    <h1 align="center"><i>Active Ads</i></h1>
+    <table align="center" border="" height="auto" width="auto">
 
-        <tr>
+            <tr align="center">
+                <th><i>ID</i></th>
+                <th><i>Status</i></th>
+                <th><i>Details</i></th>
+                <th><i>Action</i></th>
+            </tr>
+
+<?php
+
+        $servername = "localhost";
+        $uname      = "root";
+        $password   = "";
+        $dbname     = "gadto";
+
+        $conn = mysqli_connect($servername, $uname, $password, $dbname);
+
+        $sql               = "select * from ad_info where status='active'";
+        $result            = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+        $GLOBALS['id']          = $row['ad_id'];
+        $GLOBALS['status']      = $row['status'];
+        $GLOBALS['cost']        = $row['cost'];
+        $GLOBALS['duration']    = $row['duration'];
+        $GLOBALS['level']       = $row['level'];
+        $GLOBALS['link']        = $row['link'];
+
+        $GLOBALS['js']          ="return confirm('Are you sure?')";
+       
+echo'       <tr align="center">
+            <td>'. $id .'</td>
+            <td>'. $status .'</td>
             <td>
-                        Filter By:
-
-                        <select>
-                            <option>All</option>
-                            <option>Active</option>
-                            <option>Expire</option>
-
-                        </select>
+                Cost: '. $cost .'  Duration: '. $duration .' </br>
+                Intensity: '. $level .' </br>
+                Link: '. $link .'
             </td>
-        </tr>
+            <td>
+                <a href="manageActAd_2.php?exp='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Expire">
+                </a>
+                <a href="manageActAd_2.php?del='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Remove">
+                </a>
+            </td>
+        </tr>'; 
+        
+        }
+?> 
     </table>
-    <table align="center" border="" height="350" width="800">
-
-        <tr align="center">
-            <th>Ad ID</th>
-            <th>Status</th>
-            <th>Accepted Admin</th>
-            <th>Location</th>
-            <th>Action&emsp;</th>
-
-
-        </tr>
-        <tr align="center">
-            <td>
-                A1/72
-            </td>
-            <td>
-                Active
-            </td>
-            <td>imn.admin</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-                
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-        <tr align="center">
-            <td>
-                A107
-            </td>
-            <td>
-                Active
-            </td>
-            <td>imn.admin</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-                
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-        <tr align="center">
-            <td>
-                A177
-            </td>
-            <td>
-                Expire
-            </td>
-            <td>abc012</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-                
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-        <tr align="center">
-            <td>
-                A105
-            </td>
-            <td>
-                Expire
-            </td>
-            <td>xyz34</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-                
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-        <tr align="center">
-            <td>
-                A106
-            </td>
-            <td>
-                Active
-            </td>
-            <td>imn.admin</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-                
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-
-
-        <tr align="center">
-            <td>
-                A712
-            </td>
-            <td>
-                Active
-            </td>
-            <td>imn.admin</td>
-            <td>
-                <input type="button" style="height:20px;width:55px" value="see" onclick="window.location.href='#.html'" />
-                <input type="submit" name="Rechoose" value="Rechoose">
-            </td>
-            <td>
-                <input type="button" style="height:20px;width:60px" value="Remove" onclick="window.location.href='#.html'" />
-
-            </td>
-        </tr>
-
-    </table>
-    <div align="center"><br>
-    <a href="AdminPortal.php">Go back to Profile Home</a>
+    <br/>
+    <div align="center">
+    <a href="adminPortal.php">Go back to Profile Home</a>
     </div>
 </body>
 
 </html>
+
+<?php
+    if(isset($_GET['exp'])){
+        $exp_id = $_GET['exp'];
+
+        mysqli_query($conn, "update ad_info set status='expired' where ad_id = '$exp_id'");
+        header("Location: manageActAd_2.php");
+    }
+        elseif(isset($_GET['del'])){
+        $del_id = $_GET['del'];
+
+        mysqli_query($conn, "DELETE FROM ad_info WHERE ad_id='$del_id'");
+        header("Location: manageActAd_2.php");
+    }
+    
+?>

@@ -9,8 +9,8 @@ if ($_SESSION['user_name'] != true)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .navbar {
@@ -91,7 +91,7 @@ input[type=text] {
 </style>
 </head>
 <body>
-	<div class="navbar">
+  <div class="navbar">
   <a href="signout.php">LogOut</a>
   <a href="notification_2.php">Notifications</a>
   <a href="adminProfileInfo.php">Profile Info</a>
@@ -135,6 +135,7 @@ input[type=text] {
     <div class="dropdown-content">
       <a href="manageReqAd.php">Requested Ad</a>
       <a href="manageActAd.php">Activated Ad</a>
+      <a href="manageExpAd.php">Expired Ad</a>
     </div>
   </div>
   <div class="dropdown">
@@ -203,7 +204,7 @@ function drawChart() {
 }
 </script>
 <div align="center" style="padding-bottom: 30px;">
-	<a href="stats.php">See more Stats</a>
+  <a href="stats.php">See more Stats</a>
 </div>
 <?php
   include 'insidePortalFooterAdmin.php';

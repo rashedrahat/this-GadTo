@@ -9,13 +9,13 @@ if ($_SESSION['user_name'] != true)
 <html>
 
 <head>
-    <title>Ad Confirmation</title>
+    <title>Expired Ads</title>
     <link rel="stylesheet" href="tableDesignAdmin.css">
 </head>
 
 <body>
 <br><br><br><br><br>
-    <h1 align="center"><i>Requested Ad Info</i></h1>
+    <h1 align="center"><i>Expired Ads</i></h1>
     <table align="center" border="" height="auto" width="auto">
 
             <tr align="center">
@@ -34,7 +34,7 @@ if ($_SESSION['user_name'] != true)
 
         $conn = mysqli_connect($servername, $uname, $password, $dbname);
 
-        $sql               = "select * from ad_info where status='pending'";
+        $sql               = "select * from ad_info where status='expired'";
         $result            = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -56,11 +56,11 @@ echo'       <tr align="center">
                 Link: '. $link .'
             </td>
             <td>
-                <a href="manageReqAd.php?accept='. $id .'"  onclick="'. $js .';">
-                <input type="button" value="Accept">
+                <a href="manageExpAd.php?ren='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Renew">
                 </a>
-                <a href="manageReqAd.php?decline='. $id .'"  onclick="'. $js .';">
-                <input type="button" value="Decline">
+                <a href="manageExpAd.php?del='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Remove">
                 </a>
             </td>
         </tr>'; 
@@ -77,17 +77,17 @@ echo'       <tr align="center">
 </html>
 
 <?php
-    if(isset($_GET['accept'])){
-        $accept_id = $_GET['accept'];
+    if(isset($_GET['ren'])){
+        $ren_id = $_GET['ren'];
 
-        mysqli_query($conn, "update ad_info set status='active' where ad_id = '$accept_id'");
-        header("Location: manageReqAd.php");
+        mysqli_query($conn, "update ad_info set status='active' where ad_id = '$ren_id'");
+        header("Location: manageExpAd.php");
     }
-        elseif(isset($_GET['decline'])){
-        $del_id = $_GET['decline'];
+        elseif(isset($_GET['del'])){
+        $del_id = $_GET['del'];
 
         mysqli_query($conn, "DELETE FROM ad_info WHERE ad_id='$del_id'");
-        header("Location: manageReqAd.php");
+        header("Location: manageExpAd.php");
     }
     
 ?>

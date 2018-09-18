@@ -9,7 +9,7 @@ if ($_SESSION['user_name'] != true)
 <html>
 
 <head>
-    <title>FORM</title>
+    <title>Post Ad</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -23,12 +23,12 @@ if ($_SESSION['user_name'] != true)
     <div>
         <br><br><br><br><br><br>
 
-        <form action="">
+        <form action="checkPostAd.php"  method="POST">
 
 
             <table align="center" height="100" width="800">
                 <tr algin="center">
-                    <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Complete Ad Details</th>
+                    <th><h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Complete Ad Details</h2></th>
 
                 </tr>
                 <tr>
@@ -37,43 +37,15 @@ if ($_SESSION['user_name'] != true)
                     </td>
                 </tr>
                 <tr>
-                    <td>For how long want to show?</td>
+                    <td>Choose A Package</td>
                     <td>
-                        <select>
-                            <option>1 week</option>
-                            <option>1 month</option>
-                            <option>2 months</option>
-                        </select>
+                        <input type="radio" name="package" value="p1" checked/>Premium  | 1 Week   | $100 </br>
+                        <input type="radio" name="package" value="p2" />Premium  | 1 Month  | $200 </br>
+                        <input type="radio" name="package" value="p3" />Standard | 1 Week   | $50 </br>
+                        <input type="radio" name="package" value="p4" />Standard | 1 Month  | $100
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Intesity level of showing?</td>
 
-                    <td>
-                        <input type="radio" name="level" />High
-                        <input type="radio" name="level" />Avg
-                        <input type="radio" name="level" />low
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>showing area</td>
-
-                    <td>
-                        <input type="radio" name="visual" />MoreVisual
-                        <input type="radio" name="visual" />LessVisual
-
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         <br/>
@@ -83,13 +55,24 @@ if ($_SESSION['user_name'] != true)
                     <td>share about your add</td>
                     <td>
                         <input type="file" name="file" />
-                        <input type="submit" name="addlink" value="Add Link" />
                         <br/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add Link</td>
+                    <td>
+                        <input type="text" name="link" placeholder="Enter a Link" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br/>
+                        <?php if(isset($_GET['ret'])){$ret=$_GET['ret']; echo $ret;} ?>
                         <br/>
 
                     </td>
@@ -113,7 +96,7 @@ if ($_SESSION['user_name'] != true)
                         <font size="4">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
-                            <input type="button" style="height:50px;width:100px" value="COMPLETE" onclick="window.location.href='payment.php'" />&emsp;&emsp;
+                            <input type="submit" style="height:50px;width:100px" value="COMPLETE" />&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="CANCEL" onclick="window.location.href='ProfileHome.php'" />
                         </font>
                     </td>
