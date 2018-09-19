@@ -5,7 +5,7 @@ CREATE VIEW gadgets AS SELECT gadget_id, gadget_name, category_name FROM gadget_
 For showing similar gadget
 --------------------------
 #1
-SELECT gadget_name FROM gadgets WHERE gadget_name LIKE '%iPhone%' AND category_name = 'Mobile' AND NOT gadget_id = (SELECT gadget_id FROM gadgets WHERE gadget_name = 'iPhone X');
+SELECT gadget_name FROM gadget_info WHERE gadget_name LIKE '%$gadget_title%' AND category_name ='$category_name'AND NOT gadget_id = (SELECT gadget_id FROM gadget_info WHERE gadget_name = '$gadget_name') ";
 
 OR
 

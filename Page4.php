@@ -150,93 +150,31 @@ elseif ($category_name=='Mobile') {
             </tr>
 
         </table>
-
-            <div style="padding-top: 20" align="center">
-        <table align="center" border="1" width="1000" height="250">
+<!--similar gadget -->
+        <div style="padding-top: 20" align="center">
+          <table class="table" border="2" align="center">
             <tr >
                 <th colspan="12">
                             Similar Gadget
                 </th>
             </tr>
+          <?php
+          $gadget_title=substr("$gadget_name",0,3);
+            $similar_gadget="SELECT gadget_name FROM gadget_info WHERE gadget_name LIKE '%$gadget_title%' AND category_name ='$category_name'AND NOT gadget_id = (SELECT gadget_id FROM gadget_info WHERE gadget_name = '$gadget_name') ";
 
-            <tr align="center">
-                <td>
-                    <img src="" alt="ASUS SQ107" width="20" height="30">
-                    <a href="#Page4.php"><h3>Asus SQ107</h3></a>
-                </td>
+            $result3=mysqli_query($conn, $similar_gadget)or die(mysqli_error($conn));
 
-                <td>
-                    <img src="" alt="ASUS ZX525" width="20" height="30">
-                    <a href="#AsusZX525"><h3>Asus ZX525</h3></a>
-                </td>
+            while ($row=mysqli_fetch_assoc($result3)) { ?>
+              <tr align="center">
+                  <td>
+                      <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="20" height="30">
+                      <a href="#"><h3><?=$row['gadget_name']?></h3></a>
+                  </td>
+              </tr>
+                <?php } ?>
+          </table>
+        </div>
 
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G3</h3></a>
-                </td>
-
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G4</h3></a>
-                </td>
-
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G5</h3></a>
-                </td>
-
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G6</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G7</h3></a>
-                </td>
-            </tr>
-
-            <tr align="center">
-
-                    <td>
-                            <img src="" alt="Gadget Name" width="20" height="30">
-                            <a href="#G3"><h3>G8</h3></a>
-                    </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G9</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G10</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G11</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G12</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G13</h3></a>
-                </td>
-
-                <td>
-                        <img src="" alt="Gadget Name" width="20" height="30">
-                        <a href="#G3"><h3>G14</h3></a>
-            </tr>
-        </table>
-    </div>
     <div style="padding:5; text-align:center;">
         <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
     </div>
