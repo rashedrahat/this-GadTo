@@ -106,13 +106,18 @@ elseif ($category_name=='Mobile') {
             </tr>
 
             <tr>
+              <td colspan="9" align="center">
+                <h4><i>Prices</i></h4>
+              </td>
+            </tr>
+            <tr>
                 <td colspan="9" align="center">
                   <?php
                   $s="SELECT * FROM price_comparison WHERE gadget_id='$gadget_id';";
                   $result2=mysqli_query($conn, $s)or die(mysqli_error($conn));
 
                   while ($row=mysqli_fetch_assoc($result2)) { ?>
-                         <a class="page-link" href="<?=$row['company_gadget_link']?>" title="Click to go this site" target="_blank">
+                         <a class="page-link" style="color: red;" href="<?=$row['company_gadget_link']?>" title="Click to go this site" target="_blank">
                           <?=$row['price']?>tk@<?=$row['name']?>
                          </a>
                         <?php } ?>
@@ -122,18 +127,18 @@ elseif ($category_name=='Mobile') {
                 <td align="center" colspan="9">
                   <div class="row">
                     <div class="col">
-                        <h4>See Reviews</h4>
+                        <h4><i>See Reviews</i></h4>
                         <hr>
                         <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#gadget_review"> Gadget</button>
                         <button type="button" name="button" class="btn btn-primary" data-toggle="modal" data-target="#e_commerce_company"> E-Commerce Company</button>
                     </div>
 
                     <div class="col">
-                        <h4>Write Review</h4>
+                        <h4><i>Write Review</i></h4>
                         <hr>
                         <?php if (!empty($_SESSION)) {?>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#write_review">Gadget</button>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#write_e_commerce_company_review">e_commerce_company</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#write_e_commerce_company_review">E Commerce Company</button>
                       <?php } else {?>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">Gadget</button>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#logInModal">E-Commerce Company</button>
