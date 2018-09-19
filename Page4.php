@@ -155,7 +155,7 @@ elseif ($category_name=='Mobile') {
             </tr>
           <?php
           $gadget_title=substr("$gadget_name",0,3);
-            $similar_gadget="SELECT gadget_name FROM gadget_info WHERE gadget_name LIKE '%$gadget_title%' AND category_name ='$category_name'AND NOT gadget_id = (SELECT gadget_id FROM gadget_info WHERE gadget_name = '$gadget_name') ";
+            $similar_gadget="SELECT gadget_name,gadget_id FROM gadget_info WHERE gadget_name LIKE '%$gadget_title%' AND category_name ='$category_name'AND NOT gadget_id = (SELECT gadget_id FROM gadget_info WHERE gadget_name = '$gadget_name') ";
 
             $result3=mysqli_query($conn, $similar_gadget)or die(mysqli_error($conn));
 
@@ -163,7 +163,7 @@ elseif ($category_name=='Mobile') {
               <tr align="center">
                   <td>
                       <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="20" height="30">
-                      <a href="#"><h3><?=$row['gadget_name']?></h3></a>
+                      <a href="Page4.php?gadget_id=<?=$row['gadget_id']?>"><h3><?=$row['gadget_name']?></h3></a>
                   </td>
               </tr>
                 <?php } ?>
