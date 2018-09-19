@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2018 at 07:43 PM
+-- Generation Time: Sep 19, 2018 at 01:40 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,24 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gadto`
 --
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `ad_activated_info`
--- (See below for the actual view)
---
-CREATE TABLE `ad_activated_info` (
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `ad_confirmation_info`
--- (See below for the actual view)
---
-CREATE TABLE `ad_confirmation_info` (
-);
 
 -- --------------------------------------------------------
 
@@ -62,8 +44,9 @@ CREATE TABLE `ad_info` (
 --
 
 INSERT INTO `ad_info` (`ad_id`, `user_name`, `cost`, `duration`, `file`, `link`, `level`, `status`) VALUES
-(7, 'eva0010', 100, '1 week', 0x7235514c4d52572e6a7067, 'fb.com/arman0010', 'high', 'expired'),
-(8, 'eva0010', 50, '1 week', 0x6261636b67726f756e645f68645f30342e6a7067, 'fb.com/arman0010', 'low', 'active');
+(9, 'eva0010', 100, '1 week', '', '', 'high', 'pending'),
+(10, 'eva0010', 100, '1 week', '', '', 'high', 'pending'),
+(11, 'eva0010', 100, '1 week', 0x32303138303333305f3131353632322e706e67, 'eva.com', 'high', 'pending');
 
 -- --------------------------------------------------------
 
@@ -353,7 +336,6 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`notification_id`, `description`, `notify_date`, `from_whom`, `to_whom`) VALUES
-(1, 'Your requested ad is now promoting', '2018-07-27', 'Tamanna', 'imrashed'),
 (2, 'You have a leave request', '2018-07-28', 'ayesha', 'irashed1994');
 
 -- --------------------------------------------------------
@@ -368,29 +350,6 @@ CREATE TABLE `payment_info` (
   `ad_id` int(10) NOT NULL,
   `card_no` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `posted_ad_info`
--- (See below for the actual view)
---
-CREATE TABLE `posted_ad_info` (
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `price_comparison`
--- (See below for the actual view)
---
-CREATE TABLE `price_comparison` (
-`price_id` int(10)
-,`price` float
-,`gadget_id` int(10)
-,`name` varchar(20)
-,`company_gadget_link` varchar(1000)
-);
 
 -- --------------------------------------------------------
 
@@ -446,8 +405,7 @@ INSERT INTO `review` (`review_id`, `post_date`, `user_name`, `comment`, `rating`
 (6, '2018-07-29', 'imrashed', 'Awesome phone, i love & like it.', 5, 'Yes', 1, 5),
 (8, '2018-08-02', 'itsme', 'Hmm, good for home use and nice look.', 4, 'Yes', 1, 10),
 (9, '2018-08-01', 'itsme', 'Kaymu, their delivery is fast.', 5, 'Yes', 2, 9),
-(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5),
-(11, '2018-09-01', 'Tamanna', 'Love n like it :)', 4, 'Yes', 1, 8);
+(10, '2018-08-12', 'itsme', 'Hmm, superb', 4, 'Yes', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -574,28 +532,9 @@ INSERT INTO `user_info` (`user_name`, `email`, `pass`, `first_name`, `last_name`
 ('itsme', 'itsme@gmail.com', 'itsme2018', 'Its', 'Me', '01712345678', 'Other', 'nu', 'active'),
 ('rashed', 'rashed@yahoo.com', '12345678', 'Rashed', 'Ahmed', '01778620485', 'Male', 'sa', 'active'),
 ('rashed1994', 'rashedrahat@gmail.com', '0123456789', 'Rashed', 'Ahmed', '01633176797', 'Male', 'na', 'active'),
-('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '01612345678', 'Male', 'nu', 'blocked'),
+('rpm.shuvo', 'rpm.shuvo@gmail.com', 'rpm.shuvo', 'Shuvo', 'Hasan', '01612345678', 'Male', 'nu', 'active'),
 ('Shuvo', 'shuvo@gmail.com', 'shuvo.rpm', 'Mehedi', 'Shuvo', '01633171423', 'Male', 'na', 'pending'),
-('Tamanna', 'tamanna@yahoo.com', '0123456789', 'Ayesha', 'Tamanna', '01680000', 'Female', 'nu', 'active'),
-('test', 'test@gmail.com', '123456789', 'Test', 'Test', '01633179767', 'Other', 'nu', 'pending');
-
--- --------------------------------------------------------
-
---
--- Structure for view `ad_activated_info`
---
-DROP TABLE IF EXISTS `ad_activated_info`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ad_activated_info`  AS  select `ad_confirmation`.`ad_id` AS `ad_id`,`ad_confirmation`.`ad_status` AS `ad_status` from `ad_confirmation` where ((`ad_confirmation`.`ad_status` = 'Active') or (`ad_confirmation`.`ad_status` = 'Expire')) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `ad_confirmation_info`
---
-DROP TABLE IF EXISTS `ad_confirmation_info`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ad_confirmation_info`  AS  select `ad_confirmation`.`ad_conf_id` AS `ad_conf_id`,`ad_confirmation`.`ad_id` AS `ad_id` from `ad_confirmation` where (`ad_confirmation`.`ad_status` = 'Pending') ;
+('test', 'test@gmail.com', '123456789', 'Test', 'Test', '01633179767', 'Other', 'nu', 'blocked');
 
 -- --------------------------------------------------------
 
@@ -668,24 +607,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `normaladminlist`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `normaladminlist`  AS  select `user_info`.`user_name` AS `user_name` from `user_info` where ((`user_info`.`u_type_name` = 'na') and (`user_info`.`status` = 'active')) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `posted_ad_info`
---
-DROP TABLE IF EXISTS `posted_ad_info`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `posted_ad_info`  AS  select `ad_confirmation`.`ad_id` AS `ad_id`,`ad_confirmation`.`ad_status` AS `ad_status`,`ad_confirmation`.`user_name` AS `user_name` from `ad_confirmation` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `price_comparison`
---
-DROP TABLE IF EXISTS `price_comparison`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `price_comparison`  AS  select `price_info`.`price_id` AS `price_id`,`price_info`.`price` AS `price`,`price_info`.`gadget_id` AS `gadget_id`,`company_info`.`name` AS `name`,`company_info`.`company_gadget_link` AS `company_gadget_link` from (`price_info` join `company_info` on((`price_info`.`price_id` = `company_info`.`price_id`))) ;
 
 --
 -- Indexes for dumped tables
@@ -820,7 +741,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `ad_info`
 --
 ALTER TABLE `ad_info`
-  MODIFY `ad_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ad_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `brand_categorys`
@@ -856,7 +777,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `payment_info`
 --
 ALTER TABLE `payment_info`
-  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pay_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `price_info`
@@ -868,7 +789,7 @@ ALTER TABLE `price_info`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `review_type`
