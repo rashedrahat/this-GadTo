@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2018 at 01:40 PM
+-- Generation Time: Sep 19, 2018 at 02:02 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -354,6 +354,20 @@ CREATE TABLE `payment_info` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `price_comparison`
+-- (See below for the actual view)
+--
+CREATE TABLE `price_comparison` (
+`price_id` int(10)
+,`price` float
+,`gadget_id` int(10)
+,`name` varchar(20)
+,`company_gadget_link` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `price_info`
 --
 
@@ -607,6 +621,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `normaladminlist`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `normaladminlist`  AS  select `user_info`.`user_name` AS `user_name` from `user_info` where ((`user_info`.`u_type_name` = 'na') and (`user_info`.`status` = 'active')) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `price_comparison`
+--
+DROP TABLE IF EXISTS `price_comparison`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `price_comparison`  AS  select `price_info`.`price_id` AS `price_id`,`price_info`.`price` AS `price`,`price_info`.`gadget_id` AS `gadget_id`,`company_info`.`name` AS `name`,`company_info`.`company_gadget_link` AS `company_gadget_link` from (`price_info` join `company_info` on((`price_info`.`price_id` = `company_info`.`price_id`))) ;
 
 --
 -- Indexes for dumped tables
