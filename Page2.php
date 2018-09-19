@@ -59,13 +59,7 @@ if ($category_name=="") {
                   </div>
                 </td>
               </tr>
-
         </table>
-        </div>
-        <div style="padding:5; text-align:center;">
-        <a href="#next">Next</a> > <a href="#2">2</a> > .. > <a href="#2">5</a>
-        </div>
-
         <?php
           mysqli_close($conn);
           ?>
