@@ -39,7 +39,7 @@ if ($brand_name==""&& $category_name=="") {
                     <a class="page-link" href="Page4.php?gadget_id=<?php echo $row['gadget_id'];?>">
                       <h4 class="text-center"><?php echo $row['gadget_name']; ?> </h4>
                       <div class="text-center">
-                        <img src="Image/<?php echo $row['gadget_name'];?>.jpg" class="rounded " alt="<?php echo $row['gadget_name'];?>" width="20%" height="20%">
+                        <img src="Image/<?php echo $row['gadget_name'];?>.jpg" class="rounded " alt="<?php echo $row['gadget_name'];?>" width="18%" height="18%">
                       </div>
                     </a>
                   </td>
@@ -51,9 +51,6 @@ if ($brand_name==""&& $category_name=="") {
                   <div >
                     <nav aria-label="Page navigation ">
                       <ul class="pagination justify-content-center">
-                        <li class="page-item ">
-                          <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item">
                           <a class="page-link" href="#">Next</a>

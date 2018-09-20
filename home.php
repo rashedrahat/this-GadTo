@@ -68,7 +68,7 @@
                           <a class="page-link" href="Page2.php?category_name=<?php echo $row['category_name']; ?> ">
                             <h4 class="text-center"><?php echo $row['category_name']; ?> </h4>
                             <div class="text-center">
-                              <img src="Image/<?php echo $row['category_name'];?>.jpg" class="rounded " alt="<?php echo $row['category_name'];?>" width="40%" height="40%">
+                              <img src="Image/<?php echo $row['category_name'];?>.jpg" class="rounded " alt="<?php echo $row['category_name'];?>" width="18%" height="18%">
                             </div>
                           </a>
                         </td>
@@ -81,9 +81,6 @@
                         <div >
                           <nav aria-label="Page navigation ">
                             <ul class="pagination justify-content-center">
-                              <li class="page-item ">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                              </li>
                               <li class="page-item"><a class="page-link" href="#">1</a></li>
                               <li class="page-item">
                                 <a class="page-link" href="#">Next</a>

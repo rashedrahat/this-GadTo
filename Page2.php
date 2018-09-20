@@ -36,7 +36,7 @@ if ($category_name=="") {
                     <a class="page-link" href="Page3.php?brand_name=<?php echo $row['brand_name']; ?>&&category_name=<?php echo $category_name; ?> ">
                       <h4 class="text-center"><?php echo $row['brand_name']; ?> </h4>
                       <div class="text-center">
-                        <img src="Image/<?php echo $row['brand_name'];?>.jpg" class="rounded " alt="<?php echo $row['brand_name'];?>" width="20%" height="20%">
+                        <img src="Image/<?php echo $row['brand_name'];?>.jpg" class="rounded " alt="<?php echo $row['brand_name'];?>" width="18%" height="18%">
                       </div>
                     </a>
                   </td>
@@ -47,9 +47,6 @@ if ($category_name=="") {
                   <div >
                     <nav aria-label="Page navigation ">
                       <ul class="pagination justify-content-center">
-                        <li class="page-item ">
-                          <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item">
                           <a class="page-link" href="#">Next</a>

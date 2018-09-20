@@ -87,8 +87,8 @@ $row        = mysqli_fetch_assoc($result);
             </div>
     </div>
     </form>
-</div>
-</div>
+<div align="center">
+    <a href="adminPortal.php">Close</a>
 </div>
 </body>
 

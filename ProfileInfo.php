@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 
 if ($_SESSION['user_name'] != true)
@@ -7,25 +7,20 @@ if ($_SESSION['user_name'] != true)
 }
 else {
 $servername = "localhost";
-$username   = "root";
+$uname      = "root";
 $password   = "";
 $dbname     = "gadto";
 
-$conn       = mysqli_connect($servername, $username, $password, $dbname);
+$conn       = mysqli_connect($servername, $uname, $password, $dbname);
 
 if (!$conn) {
     die("Connection Error!" . mysqli_connect_error());
 }
 
-$sql               = "select * from user where type='admin'";
-$result            = mysqli_query($conn, $sql);
-$data              = mysqli_fetch_assoc($result);
-
-
-    //$name               = $data['name'];
-    //$email              = $data['email'];
-    //$gender             = $data['gender'];
-    //$date               = $data['dob'];
+$username   = $_SESSION['user_name'];
+$sql        = "select * from user_info where user_name='$username'";
+$result     = mysqli_query($conn, $sql);
+$row        = mysqli_fetch_assoc($result);
 
 }
 ?>
@@ -34,7 +29,7 @@ $data              = mysqli_fetch_assoc($result);
 <html>
 
 <head>
-    <title>FORM | Admin Profile Info</title>
+    <title>Admin Profile Info</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -44,54 +39,20 @@ $data              = mysqli_fetch_assoc($result);
     <div style="padding-bottom: 77px;">
         <div class="login-box">
                 <img src="ppic.png" class="avatar">
+
                 <?php
-                //Show profile info portion
-
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "gadto";
-
-                    // Create connection
-                    $conn = mysqli_connect($servername, $username, $password, $dbname);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
-                    
-                    $un = $_SESSION['user_name'];
-                    $sql = "SELECT first_name, last_name, user_name, phone, pass, email FROM user_info WHERE user_name = '$un'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                    }
-                    mysqli_close($conn);
-                ?>
-                <?php
-                //Upadate profile info portion
-
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "gadto";
-
-                    // Create connection
-                    $conn = mysqli_connect($servername, $username, $password, $dbname);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
+ 
                     if (isset($_POST['update'])) {
-                        $un = $_SESSION['user_name'];
-                        $UpEmail = $_POST['email'];
-                        $UpPass = $_POST['password'];
-                        $UpFname = $_POST['fName'];
-                        $UpLname = $_POST['lName'];
-                        $UpPhn = $_POST['mobileNo'];
-                        $sql = "UPDATE user_info SET email = '$UpEmail', pass ='$UpPass', first_name = '$UpFname', last_name = '$UpLname', phone = '$UpPhn' WHERE user_name = '$un'";
+                        $email      = $_POST['email'];
+                        $pass       = $_POST['pass'];
+                        $first_name = $_POST['first_name'];
+                        $last_name  = $_POST['last_name'];
+                        $phone      = $_POST['phone'];
+
+                        $sql        = "UPDATE user_info SET email = '$email', pass ='$pass', first_name = '$first_name', last_name = '$last_name', phone = '$phone' WHERE user_name = '$username'";
+
                         if (mysqli_query($conn, $sql)) {
-                            echo "Updated successfully! Refresh to see.";
+                            header("Location: adminProfileInfo_2.php?ret=Updated Successfully");
                                 } 
                             else {
                                 echo "Error updating record: " . mysqli_error($conn);
@@ -101,15 +62,15 @@ $data              = mysqli_fetch_assoc($result);
                 ?>
                 <form method="POST" action="">
                     <lebel>First Name</lebel>
-                    <input type="text" name="fName" value="<?php echo $row['first_name']?>" border-style: solid>
+                    <input type="text" name="first_name" value="<?php echo $row['first_name']?>" border-style: solid>
                     <lebel>Last Name</lebel>
-                    <input type="text" name="lName" value="<?php echo $row['last_name']?>" border-style: solid>
+                    <input type="text" name="last_name" value="<?php echo $row['last_name']?>" border-style: solid>
                     <lebel>Username</lebel>
-                    <input type="text" name="username" value="<?php echo $row['user_name']?>" readonly border-style: solid />
+                    <input type="text" name="user_name" value="<?php echo $row['user_name']?>" readonly border-style: solid />
                     <lebel>Mobile Number</lebel>
-                    <input type="text" name="mobileNo" value="<?php echo $row['phone']?>" border-style: solid />
+                    <input type="text" name="phone" value="<?php echo $row['phone']?>" border-style: solid />
                     <lebel>Password</lebel>
-                    <input type="password" name="password" value="<?php echo $row['pass']?>">
+                    <input type="password" name="pass" value="<?php echo $row['pass']?>">
                     <lebel>E-mail</lebel>
                     <input type="text" name="email" value="<?php echo $row['email']?>">
                     <br/>
@@ -117,17 +78,17 @@ $data              = mysqli_fetch_assoc($result);
 
 
                     <input type="submit" name="update" value="Update">
+                    <br/>
+                    <br/>
+                    <a style="color:green;"><?php if(isset($_GET['ret'])){$ret=$_GET['ret']; echo $ret;} ?></a>
                     <!--<input type="button" value="Back" onclick="window.location.href='ProfileHome.php'"/>-->
 
                 </form>
             </div>
     </div>
     </form>
-</div>
 <div align="center">
     <a href="ProfileHome.php">Close</a>
-</div>
-</div>
 </div>
 </body>
 

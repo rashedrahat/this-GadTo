@@ -40,7 +40,7 @@ while ($row=mysqli_fetch_assoc($result)) {
             </tr>
             <tr>
                <td colspan="6">
-                 <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="400" height="400">
+                 <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="300" height="300">
                 </td>
                 <td colspan="3" align="left" >
                 <ul>
@@ -167,7 +167,7 @@ elseif ($category_name=='Mobile') {
             while ($row=mysqli_fetch_assoc($result3)) { ?>
               <tr align="center">
                   <td>
-                      <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="20" height="30">
+                      <img src="Image/<?=$row['gadget_name']?>.jpg" alt="<?=$row['gadget_name']?>" width="100" height="100">
                       <a href="Page4.php?gadget_id=<?=$row['gadget_id']?>"><h3><?=$row['gadget_name']?></h3></a>
                   </td>
               </tr>
