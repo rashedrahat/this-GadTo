@@ -7,7 +7,10 @@ if ($_SESSION['user_name'] != true)
 }
 ?>
 <html>
-  <head>
+
+<head>
+
+    <head>
         <meta name="viewport" content="width=device-width">
         <style type="text/css">
             @charset "UTF-8";
@@ -45,19 +48,16 @@ if ($_SESSION['user_name'] != true)
     </head>
 
     <body>
-        
+        <?php
+        include 'insideHeadNotificationNormalUser.php';
+    ?>
 
-    
+
+
         <!--THE NOTIFICAIONS DROPDOWN BOX.-->
 
 
         <div id="notifications" style="display: block;">
-            <div style="width: 100%">
-                <h3>
-                    Notifications
-                    <a href="ProfileHome.php" class="pull-right" ng-click="DocumentClick()">Close</a>
-                </h3>
-            </div>
             <div ng-repeat="notification in Notifications" class="ng-scope">
                 <a href="#" ng-click="GoToUrl(notification)">
                     <div class="row" style="margin: 5px; padding: 5px; background-color: lightblue; border-radius: 15px; color: #3b5998; ">

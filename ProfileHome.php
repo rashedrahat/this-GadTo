@@ -95,7 +95,7 @@ if ($_SESSION['user_name'] != true)
                 }
 
                 $ru = $_SESSION['user_name'];
-                $sql = "SELECT post_date, gadget_name FROM gadget_review WHERE
+                $sql = "SELECT post_date, gadget_name, gadget_id FROM gadget_review WHERE
                 user_name='$ru'";
                 $result = mysqli_query($conn, $sql);
 
@@ -110,7 +110,7 @@ if ($_SESSION['user_name'] != true)
                         </tr>
                         <tr style="text-align: left;">
                             <td>you posted a review about
-                                <a href="#"><?php echo $row["gadget_name"] ?></a>
+                                <a href="Page4.php?gadget_id=<?=$row['gadget_id']?>"><?php echo $row["gadget_name"] ?></a>
                             </td>
                         </tr>
 

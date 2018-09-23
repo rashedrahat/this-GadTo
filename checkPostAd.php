@@ -38,7 +38,8 @@ elseif($_POST['package']=='p4'){
 
 
 $username 	= $_SESSION['user_name'];
-$file		= $_POST['file'];
+
+$file		= addslashes(file_get_contents($_FILES['image']['tmp_name']));
 $link	 	= $_POST['link'];
 
 
@@ -47,8 +48,10 @@ $sql 	= "INSERT INTO ad_info VALUES ('','$username','$cost','$duration','$file',
 
 		if (mysqli_query($conn, $sql))
 		{
-			header("Location: payment.php");
+			$last_id = mysqli_insert_id($conn);
+			header("Location: payment.php?ad_id=" . $last_id);
 		}
+
 		else
 		{
 			header("Location: PostAd.php?ret=*Error!!! try again");

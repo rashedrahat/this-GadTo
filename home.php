@@ -18,10 +18,10 @@
     ?>
     <div style="padding-left:20px;">
         <div style="padding-top: 15px;">
-            <table align="center" border="1" width="1000" height="300">
+            <table align="center" border="1" width="900" height="300">
                 <tr>
                     <th align="center" colspan="3">
-                        <h2><i>GadTo (Gadget Tottho) is different. Here is how:</i></h2>
+                        <h2><i><b>&emsp;GadTo (Gadget Tottho) is different. Here is how?</b></i></h2>
                     </th>
                 </tr>
 
@@ -51,7 +51,7 @@
             </table>
         </div>
         <div class="container text-justify" style="padding-top: 20">
-            <table class="table " align="center" border="2" >
+            <table class="table " align="center" border="3" >
                 <tr >
                     <th align="center" colspan="9">
                         <h3 class="text text-success">Categories</h3>

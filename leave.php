@@ -11,7 +11,11 @@ if ($_SESSION['user_name'] != true)
 <head>
 	<title>Apply for leave</title>
 </head>
-<body><br><br><br><br>
+<body>
+	<?php
+        include 'NA_Header.php';
+    ?>
+	<br><br><br><br>
 	<div align="center" style="color: red;">
 		<h2><i>Apply for leave</i></h2>
 		<table style="width: 400px; height: 200px; border: 1px;" align="center">
@@ -32,7 +36,7 @@ if ($_SESSION['user_name'] != true)
 	</table>
 	</div>
 	<div align="center">
-		<a href="adminPortal.php">Close (Go back to Profile Home)</a>
+		<a href="adminPortal.php">Close?</a>
 	</div>
 </body>
 </html>

@@ -65,7 +65,7 @@ $username   = $_SESSION['user_name'];
                 <br/>
                 <br/>
 
-                <td colspan="3">
+                <td colspan="4">
 
 
                     <br/>
@@ -100,7 +100,7 @@ $username   = $_SESSION['user_name'];
         $sql               = "select * from ad_info where user_name='$username'";
         $result            = mysqli_query($conn, $sql);
 
-        while ($row = mysqli_fetch_assoc($result)) {
+while ($row = mysqli_fetch_assoc($result)) {
         $GLOBALS['id']          = $row['ad_id'];
         $GLOBALS['status']      = $row['status'];
         $GLOBALS['cost']        = $row['cost'];
@@ -110,22 +110,31 @@ $username   = $_SESSION['user_name'];
 
         $GLOBALS['js']          ="return confirm('Are you sure?')";
        
-echo'       <tr align="center">
+echo'   <tr align="center">
             <td>'. $id .'</td>
             <td>'. $status .'</td>
             <td>
                 Cost: '. $cost .'  Duration: '. $duration .' </br>
                 Intensity: '. $level .' </br>
-                Link: '. $link .'
+                Link: '. $link .' </br>
+                file: <img src="data:image/jpeg;base64,'.base64_encode($row['file'] ).'" height="40" width="60"/></br>
             </td>
-            <td>
-                <a href="AdInfo.php?del='. $id .'"  onclick="'. $js .';">
+            <td>';
+            if ($status == 'expired') {
+        echo'   <a href="checkAdInfo.php?ren='. $id .'"  onclick="'. $js .';">
+                <input type="button" value="Renew">
+                </a>';
+            }
+            else{
+        echo'   <a href="checkAdInfo.php?del='. $id .'"  onclick="'. $js .';">
                 <input type="button" value="Remove">
-                </a>
-            </td>
+                </a>';
+            }
+        echo'    </td>
         </tr>'; 
         
         }
+
 ?> 
     </table>
         <script>
@@ -153,13 +162,3 @@ echo'       <tr align="center">
 </body>
 
 </html>
-
-<?php
-    if(isset($_GET['del'])){
-        $del_id = $_GET['del'];
-
-        mysqli_query($conn, "DELETE FROM ad_info WHERE ad_id='$del_id'");
-        header("Location: AdInfo.php.php");
-    }
-    
-?>

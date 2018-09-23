@@ -10,7 +10,17 @@
  $password 	="";
  $dbname 	="gadto";
  $conn 		= mysqli_connect($servername, $username, $password, $dbname);
- if(isset($_POST["comment"]) && isset($_POST["star"]) && isset($_POST["recommend"]))
+
+ if (empty($_POST["comment"])) {
+   echo "Comment field can't be empty! Go back & fill.";
+ }
+  elseif (empty($_POST["star"])) {
+   echo "Star field can't be empty! Go back & fill.";
+ }
+  elseif (empty($_POST["recommend"])) {
+   echo "Recommend field can't be empty! Go back & fill.";
+ }
+ elseif(isset($_POST["comment"]) && isset($_POST["star"]) && isset($_POST["recommend"]))
  {
    $comment=$_POST["comment"];
    $rating=$_POST["star"];

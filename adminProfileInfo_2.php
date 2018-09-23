@@ -36,7 +36,7 @@ $row        = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-    <div style="padding-bottom: 77px;">
+    <div style="padding-bottom: 60px;">
         <div class="login-box">
                 <img src="ppic.png" class="avatar">
 
@@ -60,7 +60,7 @@ $row        = mysqli_fetch_assoc($result);
                         }
                         mysqli_close($conn);
                 ?>
-                <form method="POST" action="">
+                <form method="POST" action="#">
                     <lebel>First Name</lebel>
                     <input type="text" name="first_name" value="<?php echo $row['first_name']?>" border-style: solid>
                     <lebel>Last Name</lebel>

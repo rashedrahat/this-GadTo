@@ -20,13 +20,16 @@ if ($_SESSION['user_name'] != true)
 </head>
 
 <body>
+    <?php
+        include 'SA_Header.php';
+    ?>
     <div>
         <form action="checkCreateAdmin.php"  method="POST">
             <table align="center" height="200" width="400" style="padding-top: 100px">
                 <tr>
                     <td>
                         <b>
-                            <font size="4">
+                            <font size="5">
                                 <label align="center"> Complete details to create a admin.
                                 </label>
                             </font>
@@ -35,12 +38,12 @@ if ($_SESSION['user_name'] != true)
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" onkeyup="uncheckun()" id="username" name="user_name" placeholder="User Name" size="50" style="height: 40px; width: 400px;"/><span id="un"></span>
+                        <input type="text" onkeyup="uncheckun()" id="username" name="user_name" placeholder="User Name" size="50" style="height: 40px; width: 400px;"/><?php if(isset($_GET['retu'])){$retu=$_GET['retu']; echo $retu;} ?><span id="un"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="email" onkeyup="uncheckemail()" id="email" name="email" placeholder="Email Address" size="50" style="height: 40px; width: 400px;"/> <span id="em"></span>
+                        <input type="email" onkeyup="uncheckemail()" id="email" name="email" placeholder="Email Address" size="50" style="height: 40px; width: 400px;"/><?php if(isset($_GET['rete'])){$rete=$_GET['rete']; echo $rete;} ?><span id="em"></span>
                     </td>
                 </tr>
                 <tr>
@@ -84,10 +87,6 @@ if ($_SESSION['user_name'] != true)
                 </tr>
             </table>
         </form>
-    </div> 
-
-    <div align="center">
-      <a href="superAdminPortal.php">Go back to Profile Home</a>
     </div>
 
 <script>

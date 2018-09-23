@@ -5,7 +5,14 @@ if ($_SESSION['user_name'] != true)
 {
     header("location: SignIn.php");
 }
+
+if(isset($_GET['ad_id']))
+    {
+        $ad_id = $_GET['ad_id'];                      
+    } 
+
 ?>
+
 <html>
 
 <head>
@@ -46,7 +53,7 @@ if ($_SESSION['user_name'] != true)
                     <td>
                         <input type="radio" name="pay_method" value="visa" checked/><img src="visa.jpg" height="40" width="70">
                         <input type="radio" name="pay_method" value="mastercard"/><img src="mastercard.jpg" height="40" width="70">
-
+                        
                     </td>
                 </tr>
                 <tr>
@@ -59,6 +66,7 @@ if ($_SESSION['user_name'] != true)
                         Cardholders Name
                         <br/>
                         <input type="txt" name="holder_name" />
+                        <input type="hidden"  name="ad_id"      value="<?php echo $ad_id;?>" >
                     </td>
 
                     <td>Card Number
@@ -101,19 +109,14 @@ if ($_SESSION['user_name'] != true)
                     <td>
                         <font size="4">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                            <input type="submit" style="height:50px;width:100px" />
+                            <input type="submit" name="submit" value="submit" style="height:50px;width:100px" />
                             &emsp;&emsp;&emsp;&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="CANCEL" onclick="window.location.href='PostAd.php'" />
                         </font>
                     </td>
-
                 </tr>
-
-
-
             </table>
         </form>
     </div>
 </body>
-
 </html>

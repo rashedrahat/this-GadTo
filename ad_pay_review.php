@@ -42,11 +42,11 @@ if ($_SESSION['user_name'] != true)
                         <br/>
                         <br/>The requested add is under processing
                         <br/>
-                        <br/>Cost of this ad is 1000 BDT Your Ad ID: A172
+<!--                         <br/>Cost of this ad is 1000 BDT Your Ad ID: A172
                         <br/>
                         <br/>To Know more about the ad
 
-                        <a href="single_ad_info.php">Click Here</a>
+                        <a href="single_ad_info.php">Click Here</a> -->
 
                     </td>
                 </tr>

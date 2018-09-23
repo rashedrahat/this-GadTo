@@ -23,6 +23,9 @@ if ($_SESSION['user_name'] != true)
 
 <body>
 	<?php
+        include 'NA_Header.php';
+    ?>
+	<?php
 		// define variables and set to empty values
 		$specsCatName = "";
 		$specsCatNameErr = "";

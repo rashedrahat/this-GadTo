@@ -52,7 +52,7 @@ $row        = mysqli_fetch_assoc($result);
                         $sql        = "UPDATE user_info SET email = '$email', pass ='$pass', first_name = '$first_name', last_name = '$last_name', phone = '$phone' WHERE user_name = '$username'";
 
                         if (mysqli_query($conn, $sql)) {
-                            header("Location: adminProfileInfo_2.php?ret=Updated Successfully");
+                            header("Location: adminProfileInfo.php?ret=Updated Successfully");
                                 } 
                             else {
                                 echo "Error updating record: " . mysqli_error($conn);

@@ -30,12 +30,12 @@
     			</tr>
 				<tr>
 			    	<td>
-			            <input type="text" onkeyup="uncheckun()" id="username" name="user_name" placeholder="User Name" size="50" style="height: 40px; width: 400px;"/><span id="un"></span>
+			            <input type="text" onkeyup="uncheckun()" id="username" name="user_name" placeholder="User Name" size="50" style="height: 40px; width: 400px;"/><?php if(isset($_GET['retu'])){$retu=$_GET['retu']; echo $retu;} ?><span id="un"></span>
 			        </td>
     			</tr>
 			    <tr>
 			        <td>
-			            <input type="email" onkeyup="uncheckemail()" id="email" name="email" placeholder="Email Address" size="50" style="height: 40px; width: 400px;"/> <span id="em"></span>
+			            <input type="email" onkeyup="uncheckemail()" id="email" name="email" placeholder="Email Address" size="50" style="height: 40px; width: 400px;"/><?php if(isset($_GET['rete'])){$rete=$_GET['rete']; echo $rete;} ?><span id="em"></span>
 			        </td>
 			    </tr>
 			    <tr>

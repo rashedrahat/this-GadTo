@@ -14,6 +14,9 @@ if ($_SESSION['user_name'] != true)
 </head>
 
 <body>
+    <?php
+        include 'SA_Header.php';
+    ?>
     <br><br><br><br>
     <h2 align="center"><i>Manage Database</i></h2>
     <table align="center" height="auto" width="auto">
@@ -57,9 +60,6 @@ if ($_SESSION['user_name'] != true)
             </td>
         </tr>
     </table>
-<div align="center"><br>
-    <a href="superAdminPortal.php">Go back to Profile Home</a>
-    </div>
 </body>
 
 </html>

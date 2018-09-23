@@ -17,11 +17,14 @@ if ($_SESSION['user_name'] != true)
 </head>
 
 <body>
+    <?php
+        include 'SA_Header.php';
+    ?>
     <div><br><br><br><br><br><br><br>
 
         <form action="">
 
-            <table align="center" border="1" height="300" width="800">
+            <table align="center" border="2" height="300" width="700" style="background-color: lightgreen;">
                 <tr>
                     <th colspan="4">
                         <h1>Successfully Created a Admin</h1><br/>
@@ -33,7 +36,7 @@ if ($_SESSION['user_name'] != true)
             <table align="center" height="100" width="800">
                 <tr>
                     <td>
-                        &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                         <input type="button" style="height:50px;width:100px" value="Finish" onclick="window.location.href='superAdminPortal.php'" />
                     </td>
                 </tr>

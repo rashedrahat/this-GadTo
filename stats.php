@@ -33,6 +33,9 @@ if ($_SESSION['user_name'] != true)
 </style>
 </head>
 <body>
+  <?php
+        include 'SA_Header.php';
+    ?>
 <div style="padding-right: 100px; padding-left: 100px;"><br><br><br>
  <h1><i>Top 5 gadgets list of this week:</i><span><small>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Filter By:<select>
                   <option>Rating</option>
@@ -62,10 +65,7 @@ if ($_SESSION['user_name'] != true)
 <p>S8</p>
 <div class="container">
   <div class="skills s8">524321</div>
-</div><br><br><br>
-<div align="center">
-      <a href="superAdminPortal.php">Go back to Profile Home</a>
-    </div> 
+</div><br><br><br> 
 </div>
 
 

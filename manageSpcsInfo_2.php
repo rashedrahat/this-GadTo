@@ -16,18 +16,7 @@ if ($_SESSION['user_name'] != true)
 <body>
     <br><br><br><br><br>
     <h1 align="center"><i>Gadget's Specifications Info</i></h1>
-<div align="center">
-     Filter By:
-
-                        <select>
-                            <option>Mobile</option>
-                            <option>Computer</option>
-                            <option>Watch</option>
-                            <option>Furniture</option>
-                            <option>Beauty</option>
-
-                        </select>
-</div><br>
+<br>
     <table align="center" border="" height="auto" width="auto">
 
         <tr align="center">

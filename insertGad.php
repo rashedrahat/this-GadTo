@@ -22,6 +22,9 @@ if ($_SESSION['user_name'] != true)
 
 <body>
 	<?php
+        include 'SA_Header.php';
+    ?>
+	<?php
 		// define variables and set to empty values
 		$catName = "";
 		$catNameErr = "";

@@ -23,7 +23,7 @@ if ($_SESSION['user_name'] != true)
     <div>
         <br><br><br><br><br><br>
 
-        <form action="checkPostAd.php"  method="POST">
+        <form action="checkPostAd.php"  method="POST"  enctype="multipart/form-data">
 
 
             <table align="center" height="100" width="800">
@@ -54,7 +54,7 @@ if ($_SESSION['user_name'] != true)
                 <tr>
                     <td>share about your add</td>
                     <td>
-                        <input type="file" name="file" />
+                        <input type="file" name="image" />
                         <br/>
                     </td>
                 </tr>
@@ -72,7 +72,8 @@ if ($_SESSION['user_name'] != true)
                 <tr>
                     <td>
                         <br/>
-                        <?php if(isset($_GET['ret'])){$ret=$_GET['ret']; echo $ret;} ?>
+                        <a style="color:red;"><?php if(isset($_GET['ret'])){$ret=$_GET['ret']; echo $ret;} ?></a>
+                        <br/>
                         <br/>
 
                     </td>
@@ -96,7 +97,7 @@ if ($_SESSION['user_name'] != true)
                         <font size="4">
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
-                            <input type="submit" style="height:50px;width:100px" value="COMPLETE" />&emsp;&emsp;
+                            <input type="submit" name="submit" style="height:50px;width:100px" value="POST" />&emsp;&emsp;
                             <input type="button" style="height:50px;width:100px" value="CANCEL" onclick="window.location.href='ProfileHome.php'" />
                         </font>
                     </td>
@@ -109,5 +110,4 @@ if ($_SESSION['user_name'] != true)
         </form>
     </div>
 </body>
-
 </html>

@@ -48,6 +48,9 @@ if ($_SESSION['user_name'] != true)
     </head>
 
     <body>
+        <?php
+        include 'NA_Header.php';
+    ?>
 
 
 
@@ -55,12 +58,6 @@ if ($_SESSION['user_name'] != true)
 
 
         <div id="notifications" style="display: block;">
-            <div style="width: 100%">
-                <h3>
-                    Notifications
-                    <a href="adminPortal.php" class="pull-right" ng-click="DocumentClick()">Close</a>
-                </h3>
-            </div>
             <div ng-repeat="notification in Notifications" class="ng-scope">
                 <a href="#" ng-click="GoToUrl(notification)">
                     <div class="row" style="margin: 5px; padding: 5px; background-color: lightblue; border-radius: 15px; color: #3b5998; ">
